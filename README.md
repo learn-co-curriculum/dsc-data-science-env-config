@@ -3,15 +3,16 @@
 
 ## Introduction
 
-In this lesson, you'll continue setting up your professional data science environment by configuring your terminal to work with GitHub, making a virtual environment, and setting up your virtual environment to . 
+In this lesson, you'll continue setting up your professional data science environment by configuring your terminal to work with GitHub, making a virtual environment, and setting up your virtual environment to open by default from your terminal. 
 
 ## Objectives
 
 You will be able to:
 
 * Use basic commands to navigate the command line
+* Practice utilizing Git and GitHub
 * Summarize why virtual environments are used
-* Use a virtual environment
+* Set up a virtual environment
 
 ## Connecting Your Terminal to GitHub
 
@@ -84,10 +85,11 @@ If you want to learn more about Conda environments, have a look at the [document
 
 You need to start by navigating into this project folder. If you run `pwd` to print your working directory in your terminal, you should be inside the folder we cloned down. If the name of the current working directory is not "dsc-data-science-env-config", then you need to move into that folder - follow the steps above.
 
-Then to create the environment, type `conda env create -f learn-env.yml`. Depending on the speed of your computer and your internet connection it may take up to five minutes for this to complete. While it does you should see output similar to that displayed below start to appear in your terminal.
+Then to create the environment, type `conda env create -f environment.yml`. Depending on the speed of your computer and your internet connection it may take up to five minutes for this to complete. While it does you should see output similar to that displayed below start to appear in your terminal.
 
+MacOS Example:
 
-
+<img src="images/mac-env-create-from-yml.png" width="450">
 
 Next, try activating the environment. Type `conda activate learn-env`.
 
@@ -97,11 +99,11 @@ To confirm that it worked, type `conda info --envs` and confirm that the output 
 
 If you see a message that states “WARNING: A newer version of Conda exists”, run `conda update -n base conda` and then try again to create the environment using `conda env create -f environment.yml`.
 
-If you see a message that states "file not found", double check that you are running this command from the directory that contains the .yml file. If you type `ls` you should see the .yml file. If you don't see it, you likely forgot to run `cd dsc-data-science-env-setup-v2-1` to change into the right directory.
+If you see a message that states "file not found", double check that you are running this command from the directory that contains the .yml file. If you type `ls` you should see the environment.yml file. If you don't see it, you likely forgot to run `cd dsc-data-science-env-config` to change into the right directory.
 
 ## Setting your Default Environment
 
-You have successfully created your virtual environment! To be sure that you are using the learn-env, it's helpful to set it as your default environment so that you don't need to remember to manually switch to it every time you open terminal. This step is suggested but not required.
+You have successfully created your virtual environment! But, to be sure that you are using the learn-env, it's helpful to set it as your default environment so that you don't need to remember to manually switch to it every time you open the terminal. This step is highly recommended but not required.
 
 ### Mac
 
@@ -129,13 +131,13 @@ Every so often we create new versions of the virtual environment and we'll ask y
 
 ## Configuring your Kernel
 
-Jupyter Notebooks run "kernels" - the computational engine used for executing your code. It's important to be running the right kernel within your notebook, otherwise you may get errors stating that you don't have a particular package or have the wrong version of it or even complaints about the version of Python you're running (some packages that work with Python 3.6.6 don't currently support Python 3.7, for example).
+Jupyter Notebooks run "kernels" - the computational engine used for executing your code. It's important to be running the right kernel within your notebook, otherwise you may get errors stating that you don't have a particular package or have the wrong version of it or even complaints about the version of Python you're running (some packages that work with Python 3.6.6 don't support Python 3.7, for example).
 
-It is essential to run `conda activate learn-env` (if you have an issue with running git bash, the command to activate Conda within the Conda shell on windows is `activate learn-env`) every time you start a new terminal window that you are going to use to either run a Jupyter Notebook or your tests. If you don't do this you **will** get errors, so please check this first. If you are not sure whether you have activated the environment, in the terminal type `conda list -f obscure` and it should show you that you have v1.0.1 of the "obscure" package. If it doesn't show that, (re)run (`conda`) `activate learn-env`.
+It is essential to run `conda activate learn-env` every time you start a new terminal window if you do not set your terminal to activate that environment by default. If you don't do this you **will** get errors, so please check this first. 
 
-However, there is one more step you need to perform. Firstly you need to ensure your terminal is running the learn-env virtual environment so you have the necessary packages. Then you need to go into your Jupyter Notebook and when viewing a notebook, click on "Kernel" in the top bar, then "Change Kernel" and then pick the learn-env kernel. You must make sure you're running the learn-env kernel whenever you're working in a Jupyter Notebook.
+There is one more step you need to perform. Firstly you need to ensure your terminal is running the learn-env virtual environment so you have the necessary packages. Then you need to go into your Jupyter Notebook and when viewing a notebook, click on "Kernel" in the top bar, then "Change Kernel" and then pick the learn-env kernel. You must make sure you're running the learn-env kernel whenever you're working in a Jupyter Notebook.
 
-If for any reason you don't see the learn-env option in the drop-down list of kernels, exit the notebook in the browser, close down the notebook server, and in the terminal type `python -m ipykernel install --user --name=learn-env` - that will add the learn-env to your list of kernels and when you restart the Jupyter Notebook server and then open a notebook, you'll be able to select the learn-env option from the list of kernels.
+If for any reason you don't see the learn-env option in the drop-down list of kernels, exit the notebook in the browser, close down the notebook server from the terminal, and in the terminal type `python -m ipykernel install --user --name=learn-env` - that will add the learn-env to your list of kernels and when you restart the Jupyter Notebook server and then open a notebook, you'll be able to select the learn-env option from the list of kernels.
 
 ## Summary
 

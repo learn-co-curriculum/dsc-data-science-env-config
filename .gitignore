@@ -3,3 +3,6 @@
 *.pytest_cache
 *.pyc
 *__pycache__
+
+# Ignoring old copies of yml files
+old/
