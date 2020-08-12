@@ -3,15 +3,17 @@ channels:
   - defaults
   - conda-forge
 dependencies:
-  - python=3.7
+  - python=3.6.9
   - pip=19.2.3
   - numpy=1.16.5
   - pandas=0.25.3
+  - sqlite=3.26.0
   # Visualizations
   - matplotlib=3.1.2
   - plotly=4.6.0
   - seaborn=0.9.0
   # Statistical Modeling & Machine Learning
+  - statsmodels=0.10.1
   - scikit-learn=0.21.2
   - scipy=1.3.1
   - category_encoders=2.1.0
@@ -19,6 +21,8 @@ dependencies:
   # Web scraping and APIs
   - beautifulsoup4=4.8.0
   - requests=2.22.0
+  # Et Cetera
+  - tqdm=4.36.1
   - pip:
     - folium==0.9.1
 prefix: /opt/anaconda3/envs/learn-env
