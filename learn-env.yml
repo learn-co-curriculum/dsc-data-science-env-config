@@ -1,0 +1,13 @@
+name: learn-env
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python=3.7
+  - geopandas
+  - pip:
+    - xgboost
+    - sklearn-pandas
+    - folium
+prefix: /opt/anaconda3/envs/learn-env
+

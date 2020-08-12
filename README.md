@@ -1,9 +1,9 @@
 
-# Setting up a Professional Data Science Environment - Setup
+# Setting up a Professional Data Science Environment - Configuring Git and Anaconda
 
 ## Introduction
 
-In this lesson, you'll continue setting up your professional data science environment by making a virtual environment. 
+In this lesson, you'll continue setting up your professional data science environment by configuring your terminal to work with GitHub, making a virtual environment, and setting up your virtual environment to . 
 
 ## Objectives
 
@@ -13,21 +13,59 @@ You will be able to:
 * Summarize why virtual environments are used
 * Use a virtual environment
 
+## Connecting Your Terminal to GitHub
+
+Now that you have Git installed locally, you'll be often working back and forth between GitHub, a service which hosts Git repositories online, and your local computer. To better integrate with GitHub, you should set up your name and email address:
+
+1. In your terminal window\*, type `git config --global user.name`
+
+    - If it returns your name, you’re set! 
+    - If it returns nothing or displays an error message, type `git config --global user.name “Your Name”` - replacing Your Name with your name inside the quotes (this should be your real first and last name, not your GitHub username)
+
+2. In your terminal window, type `git config --global user.email`
+
+    - If it returns your email address, you’re set! 
+    - If it returns nothing or displays an error message, type `git config --global user.email your@email.com` - replacing your@email.com with your email address
+
+\* Remember, when we say "terminal" we mean the Terminal app for Mac, and the Git Bash program for Windows
+
 ## Cloning this Repository
 
-To finish this setup process, you’re going to need to download a copy of the files in this repository. To do that, you need to start by opening a terminal window.
+To complete the later steps in this configuration process, you’re going to need to download a copy of the files in this repository, so we should do this now since you already have a terminal window open.
 
-If you’re on a Windows machine, select “Git Bash” from either the start menu or the search bar and it’ll open up a terminal (don’t use the default Windows terminal - it will not work for this).
+You should get in the habit of checking exactly where you are in your Terminal before downloading anything. Use the command `pwd` to print your working directory. If you're not in a place you want to download lessons, you should navigate to a place you want to keep your Flatiron repositories and files. 
 
-If you’re working on a mac, open the “Terminal” app in the “Utilities” folder within your “Applications” folder.
+If you have not used the command line much or at all, follow the below steps:
 
-Let’s type `pwd` to “print the working directory. It should be somewhere you are OK downloading files to. If not, feel free to use the “cd” command to change directory to one you’d like to work from.
+1. Open a new terminal window
+2. Type `pwd` - this should show your home directory, the most basic of paths on your computer
+3. Type `cd Documents` - this will change your directory, and move you into your Documents folder
+4. Type `mkdir Flatiron` - this will create a new folder, called Flatiron, to keep all of your Flatiron repositories and files
+5. Type `cd Flatiron` - this will change your directory, moving you into the new Flatiron folder you just created
 
-Then type (or better still, copy and paste) `git clone https://github.com/learn-co-curriculum/dsc-data-science-env-setup-v2-1.git`
+MacOS Example:
 
-*In Windows, in git bash, to paste from the clipboard the shortcut should be `ctrl-shift-insert`*
+<img src="images/mac-make-flatiron-directory.png" width="450">
 
-This will create a new subdirectory whose name starts with "dsc-data-science-env-setup-v2-1" which will contain a copy of all of the files from this repository. Go into that directory using the `cd`, or change directory, command (after typing `cd dsc` you should be able to hit the **tab** key to "tab complete" so you don't need to type the whole directory name). That should work on both Windows and Macs.
+> ## Important Note
+>
+> You should **NEVER** clone a Git repository into another Git repository!
+>
+> You can always check if you are currently in a Git repository by running `git status`. If you get an error that says "`fatal: not a git repository (or any of the parent directories): .git`", then you are not in a Git repository.
+
+Once you are in a good place to download files from GitHub, like a general folder to keep all of your Flatiron repositories and files, type (or better still, copy and paste) `git clone https://github.com/learn-co-curriculum/dsc-data-science-env-config.git`
+
+_In Windows, in Git Bash, to paste from the clipboard the shortcut should be **ctrl-shift-insert**_
+
+This will create a new subdirectory whose name is "dsc-data-science-env-config" which will contain a copy of all of the files in this repository!
+
+Move into that directory using the `cd`, or change directory, command (after typing `cd dsc` you should be able to hit the **tab** key to "tab complete" so you don't need to type the whole directory name). 
+
+Now, if you run `pwd` to print your working directory again, you should be inside the folder we just cloned down from that GitHub link!
+
+MacOS Example:
+
+<img src="images/mac-git-clone.png" width="450">
 
 ## Setting Up Virtual Environments
 
@@ -38,22 +76,25 @@ Occasionally, code that works in an old version of a library won’t work in a n
 To avoid that problem, a best practice is to use “virtual environments”. Virtual environments allow you to have different versions of Python and different versions of the various libraries you use, so you can install a new version of a library for one project but still use the old version for another project. It’s almost as if you have multiple computers that you can swap between, each having a different setup and configuration, just by running a couple of commands.
 
 There is a built-in virtual environment feature in Python, but we’re going to use the more flexible virtual environments provided by Conda as part of the Anaconda distribution you installed.
-
 To use a new virtual environment, there are two steps you need to complete. The first step is to create the virtual environment. That may take a couple of minutes as your computer has to download the necessary version of Python and all of the libraries that you want to be able to use in that environment. The next step then is to “use” the virtual environment by activating it.
 
 If you want to learn more about Conda environments, have a look at the [documentation](https://conda.io/docs/user-guide/tasks/manage-environments.html), otherwise, let’s give this a try.
 
-You need to start by navigating into the root of this project folder, so you’re going to want to type `cd dsc-data-science-env-setup-v2-1` in your terminal if you didn't already.
+### Creating the Conda Virtual Environment
 
-Then to create the environment, on a mac, type `conda env create -f environment.yml`. On windows, type `conda env create -f windows.yml`. Depending on the speed of your computer and your internet connection it may take up to five minutes for this to complete. While it does you should see output similar to that displayed below start to appear in your terminal.
+You need to start by navigating into this project folder. If you run `pwd` to print your working directory in your terminal, you should be inside the folder we cloned down. If the name of the current working directory is not "dsc-data-science-env-config", then you need to move into that folder - follow the steps above.
 
-<img src='http://curriculum-content.s3.amazonaws.com/data-science/screen-47.png' width="750">
+Then to create the environment, type `conda env create -f learn-env.yml`. Depending on the speed of your computer and your internet connection it may take up to five minutes for this to complete. While it does you should see output similar to that displayed below start to appear in your terminal.
 
-Next, try activating the environment. Whether you're on a Mac or using git bash on a windows machine, type `conda activate learn-env` (if you have an issue with running git bash, the command to activate Conda within the Conda shell on windows is `activate learn-env`).
 
-To confirm that it worked, type `conda info --envs` and confirm that the output in the terminal ends with /learn-env - e.g. *  /Users/peterbell/anaconda3/envs/learn-env
+
+
+Next, try activating the environment. Type `conda activate learn-env`.
+
+To confirm that it worked, type `conda info --envs` and confirm that the output in the terminal ends with "/learn-env" - For example, : `/Users/peterbell/anaconda3/envs/learn-env`
 
 #### Troubleshooting
+
 If you see a message that states “WARNING: A newer version of Conda exists”, run `conda update -n base conda` and then try again to create the environment using `conda env create -f environment.yml`.
 
 If you see a message that states "file not found", double check that you are running this command from the directory that contains the .yml file. If you type `ls` you should see the .yml file. If you don't see it, you likely forgot to run `cd dsc-data-science-env-setup-v2-1` to change into the right directory.
@@ -63,28 +104,28 @@ If you see a message that states "file not found", double check that you are run
 You have successfully created your virtual environment! To be sure that you are using the learn-env, it's helpful to set it as your default environment so that you don't need to remember to manually switch to it every time you open terminal. This step is suggested but not required.
 
 ### Mac
-On a Mac, run `echo "conda activate learn-env" >> ~/.bash_profile` to add the configuration to your bash profile and then run `source ~/.bash_profile` to activate the changes you just made.
-</details>
+
+On a Mac, we need to first see what shell you're running in your terminal. Run `echo $SHELL`.
+
+If the response ends in `bash`:
+
+- run `echo "conda activate learn-env" >> ~/.bash_profile` to add the configuration to your bash profile and then run `source ~/.bash_profile` to activate the changes you just made
+
+
+
 
 ### Windows
+
 To follow these instructions on a Windows machine you must be using the Git Bash shell it was suggested to install above.
-Run `touch ~/.bash_profile` to create a new file. Next, run `echo "conda activate learn-env" >> ~/.bash_profile` to add the configuration to your bash profile and then run `source ~/.bash_profile` to activate the changes you just made.
+
+1. Run `touch ~/.bash_profile` to create a new file. 
+2. Run `echo "conda activate learn-env" >> ~/.bash_profile` to add the configuration to your bash profile
+3. Run `source ~/.bash_profile` to activate the changes you just made
 
 ## Updating your Virtual Environment
 
 Every so often we create new versions of the virtual environment and we'll ask you to update your virtual environment. To do that, download the latest version of this repository with the latest changes. Then go into a terminal window and:
 
-```
-conda activate base # To make sure you're not in the learn-env environment
-conda remove -n learn-env --all # To get rid of the environment
-conda env list # Make sure it doesn't list learn-env - if it does, try the last step again
-# Then to re-create the environment from the latest environment file
-# On a Mac
-conda env create -f environment.yml
-# Or in Windows
-conda env create -f windows.yml
-
-```
 
 ## Configuring your Kernel
 
