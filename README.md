@@ -46,6 +46,10 @@ MacOS Example:
 
 <img src="images/mac-make-flatiron-directory.png" width="450">
 
+Windows Example:
+
+<img src="images/windows_create_dir.png" width="450">
+
 > ## Important Note
 >
 > You should **NEVER** clone a Git repository into another Git repository!
@@ -100,6 +104,10 @@ MacOS Example:
 
 <img src="images/mac-env-create-from-yml.png" width="450">
 
+Windows Example:
+
+<img src="images/win_env_create.PNG" width="450">
+
 ### Activating the Conda Virtual Environment 
 
 Next, try activating the environment. Type `conda activate learn-env`.
@@ -110,9 +118,13 @@ MacOS Example:
 
 <img src="images/mac-conda-info-envs.png" width="450">
 
-#### Troubleshooting
+WindowsWindows Example:
 
-If you see a message that states “WARNING: A newer version of Conda exists”, run `conda update -n base conda` and then try again to create the environment.
+<img src="images/win_env_check.PNG" width="450">
+
+## Troubleshooting
+
+if you see a message that states “WARNING: A newer version of Conda exists”, run `conda update -n base conda` and then try again to create the environment.
 
 If you see a message that states "file not found", double check that you are running this command from the directory that contains the .yml file. If you type `ls` you should see the environment.yml file. If you don't see it, you likely forgot to run `cd dsc-data-science-env-config` to change into the right directory.
 
@@ -147,6 +159,8 @@ To follow these instructions on a Windows machine you must be using the Git Bash
 1. Run `touch ~/.bash_profile` to create a new file. 
 2. Run `echo "conda activate learn-env" >> ~/.bash_profile` to add the configuration to your bash profile
 3. Run `source ~/.bash_profile` to activate the changes you just made
+
+<img src="images/win_default_env.PNG" width="450">
 
 ## Updating your Virtual Environment
 
