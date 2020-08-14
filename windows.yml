@@ -1,4 +1,4 @@
-name: learn_env
+name: learn-env
 channels:
   - conda-forge
   - anaconda
