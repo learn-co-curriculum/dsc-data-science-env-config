@@ -19,12 +19,10 @@ You will be able to:
 Now that you have Git installed locally, you'll be often working back and forth between GitHub, a service which hosts Git repositories online, and your local computer. To better integrate with GitHub, you should set up your name and email address:
 
 1. In your terminal window\*, type `git config --global user.name`
-
     - If it returns your name, you’re set! 
     - If it returns nothing or displays an error message, type `git config --global user.name “Your Name”` - replacing Your Name with your name inside the quotes (this should be your real first and last name, not your GitHub username)
 
 2. In your terminal window, type `git config --global user.email`
-
     - If it returns your email address, you’re set! 
     - If it returns nothing or displays an error message, type `git config --global user.email your@email.com` - replacing your@email.com with your email address
 
@@ -56,7 +54,7 @@ MacOS Example:
 
 Once you are in a good place to download files from GitHub, like a general folder to keep all of your Flatiron repositories and files, type (or better still, copy and paste) `git clone https://github.com/learn-co-curriculum/dsc-data-science-env-config.git`
 
-_In Windows, in Git Bash, to paste from the clipboard the shortcut should be **ctrl-shift-insert**_
+_In Windows, in Git Bash, to paste from the clipboard the shortcut should be **shift-insert**_
 
 This will create a new subdirectory whose name is "dsc-data-science-env-config" which will contain a copy of all of the files in this repository!
 
