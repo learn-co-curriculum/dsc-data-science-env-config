@@ -68,6 +68,10 @@ MacOS Example:
 
 <img src="images/mac-git-clone.png" width="650">
 
+Windows Example:
+
+<img src="images/win_git_clone.png" width="650">
+
 ## Setting Up Virtual Environments
 
 As you do data science projects, you will spend a lot of your time using pre-written libraries to speed up your development - like numpy, pandas, or scikit-learn. As you work on different projects, you may also find that you use different versions of different libraries for different projects. The most common versioning issue is that some projects will run in Python 2 whereas others will run in Python 3, but you may also find that different projects depend on different versions of libraries like Tensorflow.
@@ -86,7 +90,13 @@ If you want to learn more about Conda environments, have a look at the <a href="
 
 You need to start by navigating into this project folder. If you run `pwd` to print your working directory in your terminal, you should be inside the folder we cloned down. If the name of the current working directory is not "dsc-data-science-env-config", then you need to move into that folder - follow the steps above.
 
-Then to create the environment, type `conda env create -f environment.yml`. Depending on the speed of your computer and your internet connection it may take up to five minutes for this to complete. While it does you should see output similar to that displayed below start to appear in your terminal.
+The instructions to create the environment are slightly different for MacOS and Windows, because they need to use different environment files, so make sure you follow the instructions relevant to your operating system.
+
+**MacOS**: run `conda env create -f environment.yml` 
+
+**Windows**: run `conda env create -f windows.yml` 
+
+Depending on the speed of your computer and your internet connection it may take up to five minutes for this to complete. While it does you should see output similar to that displayed below start to appear in your terminal.
 
 MacOS Example:
 
