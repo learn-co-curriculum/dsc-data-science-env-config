@@ -3,7 +3,7 @@
 
 ## Introduction
 
-In this lesson, you'll continue setting up your professional data science environment by configuring your terminal to work with GitHub, creating an Anaconda virtual environment, setting up your new virtual environment to open by default from your terminal, and confirming your configuration. 
+In this lesson, you'll continue setting up your professional data science environment by configuring your terminal to work with GitHub, creating an Anaconda virtual environment, setting up your new virtual environment to open by default from your terminal, and confirming your configuration.
 
 ## Objectives
 
@@ -19,11 +19,11 @@ You will be able to:
 Now that you have Git installed locally, you'll be often working back and forth between GitHub, a service which hosts Git repositories online, and your local computer. To better integrate with GitHub, you should set up your name and email address:
 
 1. In your terminal window\*, type `git config --global user.name`
-    - If it returns your name, you’re set! 
+    - If it returns your name, you’re set!
     - If it returns nothing or displays an error message, type `git config --global user.name “Your Name”` - replacing Your Name with your name inside the quotes (this should be your real first and last name, not your GitHub username)
 
 2. In your terminal window, type `git config --global user.email`
-    - If it returns your email address, you’re set! 
+    - If it returns your email address, you’re set!
     - If it returns nothing or displays an error message, type `git config --global user.email your@email.com` - replacing your@email.com with your email address
 
 \* Remember, when we say "terminal" we mean the Terminal app for Mac, and the Git Bash program for Windows
@@ -32,7 +32,7 @@ Now that you have Git installed locally, you'll be often working back and forth 
 
 To complete the later steps in this configuration process, you’re going to need to download a copy of the files in this repository, so we should do this now since you already have a terminal window open.
 
-You should get in the habit of checking exactly where you are in your Terminal before downloading anything. Use the command `pwd` to print your working directory. If you're not in a place you want to download lessons, you should navigate to a place you want to keep your Flatiron repositories and files. 
+You should get in the habit of checking exactly where you are in your Terminal before downloading anything. Use the command `pwd` to print your working directory. If you're not in a place you want to download lessons, you should navigate to a place you want to keep your Flatiron repositories and files.
 
 If you have not used the command line much or at all, follow the below steps:
 
@@ -62,7 +62,7 @@ _In Windows, in Git Bash, to paste from the clipboard the shortcut should be **s
 
 This will create a new subdirectory whose name is "dsc-data-science-env-config" which will contain a copy of all of the files in this repository!
 
-Move into that directory using the `cd`, or change directory, command (after typing `cd dsc` you should be able to hit the **tab** key to "tab complete" so you don't need to type the whole directory name). 
+Move into that directory using the `cd`, or change directory, command (after typing `cd dsc` you should be able to hit the **tab** key to "tab complete" so you don't need to type the whole directory name).
 
 Now, if you run `pwd` to print your working directory again, you should be inside the folder we just cloned down from that GitHub link!
 
@@ -94,11 +94,11 @@ You need to start by navigating into this project folder. If you run `pwd` to pr
 
 The instructions to create the environment are slightly different for MacOS and Windows, because they need to use different environment files, so make sure you follow the instructions relevant to your operating system.
 
-**MacOS**: run `conda env create -f environment.yml` 
+**MacOS**: run `conda env create -f mac_environment.yml`
 
-**Windows**: run `conda env create -f windows.yml` 
+**Windows**: run `conda env create -f win_environment.yml`
 
-Depending on the speed of your computer and your internet connection it may take up to five minutes for this to complete. While it does you should see output similar to that displayed below start to appear in your terminal.
+Depending on the speed of your computer and your internet connection it may take up to twenty minutes for this to complete. While it does you should see output similar to that displayed below start to appear in your terminal.
 
 MacOS Example:
 
@@ -108,7 +108,7 @@ Windows Example:
 
 <img src="images/win_env_create.PNG" width="450">
 
-### Activating the Conda Virtual Environment 
+### Activating the Conda Virtual Environment
 
 Next, try activating the environment. Type `conda activate learn-env`.
 
@@ -156,7 +156,7 @@ If the response ends in `zsh`:
 
 To follow these instructions on a Windows machine you must be using the Git Bash shell it was suggested to install above.
 
-1. Run `touch ~/.bash_profile` to create a new file. 
+1. Run `touch ~/.bash_profile` to create a new file.
 2. Run `echo "conda activate learn-env" >> ~/.bash_profile` to add the configuration to your bash profile
 3. Run `source ~/.bash_profile` to activate the changes you just made
 
@@ -168,23 +168,23 @@ To follow these instructions on a Windows machine you must be using the Git Bash
 
 Python packages are constantly updating and changing, and switching between environments, updating or installing new packages, and troubleshooting environment issues will are all necessary skills for when you're a fully-fledged professional data scientist.
 
-In general, because we are using Anaconda as our package manager, it is preferable to update or install new packages using `conda` options instead of `pip`. 
+In general, because we are using Anaconda as our package manager, it is preferable to update or install new packages using `conda` options instead of `pip`.
 
 If you are ever concerned about conflicting package versions, just remember that creating a new conda environment is as easy as `conda create --name new-env` - and it is very normal to have different environments with different packages for different purposes. Just remember that you've likely just set up learn-env to activate by default, so you'll need to either change that or activate other environments manually when needed.
 
 ## Configuring your Kernel and Confirming your Configuration
 
-Jupyter Notebooks run "kernels" - the computational engine used for executing your code. It's important to be running the right kernel within your notebook, otherwise you may get errors stating that you don't have a particular package or have the wrong version of it or even complaints about the version of Python you're running (some packages that work with Python 3.6.9 don't support Python 3.8, for example).
+Jupyter Notebooks run "kernels" - the computational engine used for executing your code. It's important to be running the right kernel within your notebook, otherwise you may get errors stating that you don't have a particular package or have the wrong version of it or even complaints about the version of Python you're running (some packages don't support Python 3.8, for example).
 
 Right now, let's check that everything is running properly. In your terminal, run `jupyter notebook`. This should prompt a new browser window to open, at an address that is something like "localhost:8888". 
 
 <img src="images/jupyter-home-dir.png" width="650">
 
-We'll talk a lot more about jupyter notebooks later on in the course, because you'll use them quite a lot! For now, we want to check not only that the terminal shortcut you just used to open a jupyter notebook worked, but also that you are running your learn-env kernel in your notebook.
+We'll talk a lot more about Jupyter Notebooks later on in the course, because you'll use them quite a lot! For now, we want to check not only that the terminal shortcut you just used to open a Jupyter Notebook worked, but also that you are running your learn-env kernel in your notebook.
 
 You should be able to see learn-env as an option in two places:
 
-- When you create a new jupyter notebook, by clicking "New" on the right-hand side
+- When you create a new Jupyter Notebook, by clicking "New" on the right-hand side
 
 <img src="images/check-kernel1.png" width="650">
 
@@ -197,7 +197,7 @@ If you don't see the learn-env option in those two places:
 - Close the notebook in the browser
 - Close down the notebook server from the terminal
     - (run `ctrl` + `c` and then type `y` to confirm that you want to close down jupyter)
-- In the terminal, type `python -m ipykernel install --user --name=learn-env` 
+- In the terminal, type `python -m ipykernel install --user --name=learn-env`
 
 That will add the learn-env to your list of kernels. When you restart the Jupyter Notebook server and try again, you'll be able to select the learn-env option in those two places above.
 
