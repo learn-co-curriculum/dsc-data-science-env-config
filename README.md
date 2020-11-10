@@ -44,11 +44,11 @@ If you have not used the command line much or at all, follow the below steps:
 
 MacOS Example:
 
-<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/images/mac-make-flatiron-directory.png" width="450">
+<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/mac-make-flatiron-directory.png" width="450">
 
 Windows Example:
 
-<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/images/windows_create_dir.png" width="450">
+<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/windows_create_dir.png" width="450">
 
 > ## Important Note
 >
@@ -68,11 +68,11 @@ Now, if you run `pwd` to print your working directory again, you should be insid
 
 MacOS Example:
 
-<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/images/mac-git-clone.png" width="650">
+<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/mac-git-clone.png" width="650">
 
 Windows Example:
 
-<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/images/win_git_clone.png" width="650">
+<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/win_git_clone.png" width="650">
 
 ## Setting Up Virtual Environments
 
@@ -102,11 +102,11 @@ Depending on the speed of your computer and your internet connection it may take
 
 MacOS Example:
 
-<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/images/mac-env-create-from-yml.png" width="450">
+<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/mac-env-create-from-yml.png" width="450">
 
 Windows Example:
 
-<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/images/win_env_create.PNG" width="450">
+<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/win_env_create.PNG" width="450">
 
 ### Activating the Conda Virtual Environment
 
@@ -116,11 +116,11 @@ To confirm that it worked, type `conda info --envs` and confirm that the asteris
 
 MacOS Example:
 
-<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/images/mac-conda-info-envs.png" width="450">
+<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/mac-conda-info-envs.png" width="450">
 
 WindowsWindows Example:
 
-<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/images/win_env_check.PNG" width="450">
+<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/win_env_check.PNG" width="450">
 
 ## Troubleshooting
 
@@ -141,7 +141,7 @@ If the response ends in `bash`:
 - run `echo "conda activate learn-env" >> ~/.bash_profile` to add the configuration to your bash profile
 - run `source ~/.bash_profile` to activate the changes you just made
 
-<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/images/mac-bash-set-default-env.png" width="450">
+<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/mac-bash-set-default-env.png" width="450">
 
 > (Don't forget to run `source ~/.bash_profile` like the Test Student in the screen capture!)
 
@@ -150,7 +150,7 @@ If the response ends in `zsh`:
 - run `echo "conda activate learn-env" >> ~/.zshrc` to add the configuration to your bash profile
 - run `source ~/.zshrc` to activate the changes you just made
 
-<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/images/mac-zsh-set-default-env.png" width="450">
+<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/mac-zsh-set-default-env.png" width="450">
 
 ### Windows
 
@@ -160,7 +160,7 @@ To follow these instructions on a Windows machine you must be using the Git Bash
 2. Run `echo "conda activate learn-env" >> ~/.bash_profile` to add the configuration to your bash profile
 3. Run `source ~/.bash_profile` to activate the changes you just made
 
-<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/images/win_default_env.PNG" width="450">
+<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/win_default_env.PNG" width="450">
 
 ## Updating your Virtual Environment
 
@@ -178,7 +178,7 @@ Jupyter Notebooks run "kernels" - the computational engine used for executing yo
 
 Right now, let's check that everything is running properly. In your terminal, run `jupyter notebook`. This should prompt a new browser window to open, at an address that is something like "localhost:8888". 
 
-<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/images/jupyter-home-dir.png" width="650">
+<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/jupyter-home-dir.png" width="650">
 
 We'll talk a lot more about Jupyter Notebooks later on in the course, because you'll use them quite a lot! For now, we want to check not only that the terminal shortcut you just used to open a Jupyter Notebook worked, but also that you are running your learn-env kernel in your notebook.
 
@@ -186,11 +186,11 @@ You should be able to see learn-env as an option in two places:
 
 - When you create a new Jupyter Notebook, by clicking "New" on the right-hand side
 
-<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/images/check-kernel1.png" width="650">
+<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/check-kernel1.png" width="650">
 
 - Once you're in a notebook or create a new one, by checking the options under "Kernel" in the top menu bar
 
-<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/images/check-kernel2.png" width="650">
+<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/check-kernel2.png" width="650">
 
 If you don't see the learn-env option in those two places:
 
