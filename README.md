@@ -197,7 +197,12 @@ If you don't see the learn-env option in those two places:
 - Close the notebook in the browser
 - Close down the notebook server from the terminal
     - (run `ctrl` + `c` and then type `y` to confirm that you want to close down jupyter)
-- In the terminal, type `python -m ipykernel install --user --name=learn-env`
+- In the terminal, enter 
+
+```bash
+conda activate learn-env
+python -m ipykernel install --user --name learn-env --display-name "Python (learn-env)"
+```
 
 That will add the learn-env to your list of kernels. When you restart the Jupyter Notebook server and try again, you'll be able to select the learn-env option in those two places above.
 
