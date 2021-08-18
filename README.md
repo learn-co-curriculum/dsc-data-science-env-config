@@ -118,7 +118,7 @@ MacOS Example:
 
 <img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/mac-conda-info-envs.png" width="450">
 
-WindowsWindows Example:
+Windows Example:
 
 <img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/win_env_check.PNG" width="450">
 
