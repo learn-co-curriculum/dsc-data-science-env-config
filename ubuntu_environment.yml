@@ -38,6 +38,7 @@ dependencies:
   - cffi=1.14.3
   - cftime=1.2.1
   - chardet=3.0.4
+  - chart-studio==1.1.0
   - clang=10.0.1
   - clang_osx-64=10.0.1
   - clangxx=10.0.1
