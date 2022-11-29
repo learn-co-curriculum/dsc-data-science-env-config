@@ -122,6 +122,8 @@ Windows Example:
 
 <img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/win_env_check.PNG" width="450">
 
+Note: For Windows 11, you may need to follow the steps here in order to run [conda activate learn-env](https://discuss.codecademy.com/t/setting-up-conda-in-git-bash/534473).
+
 ## Troubleshooting
 
 if you see a message that states “WARNING: A newer version of Conda exists”, run `conda update -n base conda` and then try again to create the environment.
