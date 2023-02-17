@@ -110,7 +110,7 @@ Windows Example:
 
 ### Activating the Conda Virtual Environment
 
-Next, try activating the environment. Type `conda activate learn-env`.
+Next, run `conda init bash` to initialize a permanent shell which adds shell code to the startup scripts of your shell (e.g. ~/.bashrc). Now you are ready to try activating the environment. Type `conda activate learn-env`.
 
 To confirm that it worked, type `conda info --envs` and confirm that the asterisk (*) is next to the learn-env environment.
 
@@ -184,17 +184,7 @@ Right now, let's check that everything is running properly. In your terminal, ru
 
 We'll talk a lot more about Jupyter Notebooks later on in the course, because you'll use them quite a lot! For now, we want to check not only that the terminal shortcut you just used to open a Jupyter Notebook worked, but also that you are running your learn-env kernel in your notebook.
 
-You should be able to see learn-env as an option in two places:
-
-- When you create a new Jupyter Notebook, by clicking "New" on the right-hand side
-
-<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/check-kernel1.png" width="650">
-
-- Once you're in a notebook or create a new one, by checking the options under "Kernel" in the top menu bar
-
-<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/check-kernel2.png" width="650">
-
-If you don't see the learn-env option in those two places:
+You should be able to see learn-env as an option in the two places shown below. If you don't see the learn-env option in those two places:
 
 - Close the notebook in the browser
 - Close down the notebook server from the terminal
@@ -206,7 +196,15 @@ conda activate learn-env
 python -m ipykernel install --user --name learn-env --display-name "Python (learn-env)"
 ```
 
-That will add the learn-env to your list of kernels. When you restart the Jupyter Notebook server and try again, you'll be able to select the learn-env option in those two places above.
+That will add the learn-env to your list of kernels. When you restart the Jupyter Notebook server and try again, you'll be able to select the learn-env option in these two places:
+
+- When you create a new Jupyter Notebook, by clicking "New" on the right-hand side
+
+<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/check-kernel1.png" width="650">
+
+- Once you're in a notebook or create a new one, by checking the options under "Kernel" in the top menu bar
+
+<img src="https://raw.githubusercontent.com/learn-co-curriculum/dsc-data-science-env-config/master/images/check-kernel2.png" width="650">
 
 It will be essential to run `conda activate learn-env` every time you start a new terminal window if you do not set your terminal to activate that environment by default. If you don't do this you **will** get errors, so please check this first. You can always run `conda info --envs` to see which environment is selected - and, if you run the above steps to set the learn-env to open by default, you won't need to remember to activate every time you open your terminal.
 
