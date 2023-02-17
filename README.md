@@ -16,7 +16,7 @@ You will be able to:
 
 ## Connecting Your Terminal to GitHub
 
-Now that you have Git installed locally, you'll be often working back and forth between GitHub, a service which hosts Git repositories online, and your local computer. To better integrate with GitHub, you should set up your name and email address:
+Now that you have Git installed locally, you'll be often working back and forth between GitHub, a service which hosts Git repositories online, and your local computer. You will first need to [sign up for a GitHub account](https://github.com/signup). Next, to better integrate with GitHub, you should set up your name and email address on your local machine:
 
 1. In your terminal window\*, type `git config --global user.name`
     - If it returns your name, you’re set!
