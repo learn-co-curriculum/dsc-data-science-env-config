@@ -1,0 +1,340 @@
+1
+00:00:01,892 --> 00:00:04,822
+So we've seen how we can apply simple
+
+2
+00:00:04,822 --> 00:00:06,828
+mathematical operations, but what if you
+
+3
+00:00:06,828 --> 00:00:09,057
+want to do some more complex mathematics?
+
+4
+00:00:09,057 --> 00:00:11,348
+Well, let me show you some examples. First
+
+5
+00:00:11,348 --> 00:00:13,951
+of all, here I'm creating a DataFrame, and
+
+6
+00:00:13,951 --> 00:00:16,955
+I'm adding two columns, sin and cos. And
+
+7
+00:00:16,955 --> 00:00:19,390
+the sin column I fill with values from 0
+
+8
+00:00:19,390 --> 00:00:23,083
+to 5 pi with a step size of 0 to 0. 01,
+
+9
+00:00:23,083 --> 00:00:25,961
+and the cos column I fill similarly, but
+
+10
+00:00:25,961 --> 00:00:29,427
+here I start at 0. 5 times pi and I go all
+
+11
+00:00:29,427 --> 00:00:32,564
+the way up to 5. 5 times pi. Now right now
+
+12
+00:00:32,564 --> 00:00:34,936
+this DataFrame contains simply a range of
+
+13
+00:00:34,936 --> 00:00:37,350
+numbers that counts from 0 upwards. Now
+
+14
+00:00:37,350 --> 00:00:40,385
+let's apply a function to this. I want to
+
+15
+00:00:40,385 --> 00:00:43,264
+apply the sin function to each cell in my
+
+16
+00:00:43,264 --> 00:00:45,231
+DataFrame. Now numpy already has these
+
+17
+00:00:45,231 --> 00:00:47,865
+kinds of functions for us, so numpy offers
+
+18
+00:00:47,865 --> 00:00:50,364
+a very complete set of mathematical
+
+19
+00:00:50,364 --> 00:00:54,055
+operations we can apply to our data. So in
+
+20
+00:00:54,055 --> 00:00:57,867
+this case I can simply say np. sin. df. So
+
+21
+00:00:57,867 --> 00:01:00,446
+np. sin is what numpy calls a universal
+
+22
+00:01:00,446 --> 00:01:02,818
+function, and this is the kind of function
+
+23
+00:01:02,818 --> 00:01:04,846
+that we can simply apply to our DataFrame
+
+24
+00:01:04,846 --> 00:01:07,378
+and it will calculate the sin for every
+
+25
+00:01:07,378 --> 00:01:10,307
+single value in our DataFrame. Now to show
+
+26
+00:01:10,307 --> 00:01:12,624
+you the results, let's immediately plot
+
+27
+00:01:12,624 --> 00:01:15,307
+it. Of course, I have to say matplotlib
+
+28
+00:01:15,307 --> 00:01:17,755
+inline to actually show the plots, and
+
+29
+00:01:17,755 --> 00:01:21,456
+then I say df. plots. So here we can see
+
+30
+00:01:21,456 --> 00:01:23,548
+that all the values I generated at first
+
+31
+00:01:23,548 --> 00:01:25,578
+have now had the sin function applied to
+
+32
+00:01:25,578 --> 00:01:27,337
+them, and this gives us this beautiful
+
+33
+00:01:27,337 --> 00:01:30,461
+graph here. Now as I just said, numpy is
+
+34
+00:01:30,461 --> 00:01:32,669
+very complete and it contains functions
+
+35
+00:01:32,669 --> 00:01:35,129
+for just about everything, not just
+
+36
+00:01:35,129 --> 00:01:37,053
+trigonometry, but exponentials,
+
+37
+00:01:37,053 --> 00:01:40,544
+logarithms, etc., etc. So that's very nice
+
+38
+00:01:40,544 --> 00:01:42,983
+if you want to use a well-known standard
+
+39
+00:01:42,983 --> 00:01:44,354
+mathematical function, but what if you
+
+40
+00:01:44,354 --> 00:01:46,013
+have a function that you wrote yourself
+
+41
+00:01:46,013 --> 00:01:48,803
+that you want to apply to your data? As an
+
+42
+00:01:48,803 --> 00:01:50,764
+example here, I wrote a function iqr that
+
+43
+00:01:50,764 --> 00:01:53,800
+takes a column from a DataFrame as input,
+
+44
+00:01:53,800 --> 00:01:56,882
+and it calculates the interquartile range.
+
+45
+00:01:56,882 --> 00:01:59,129
+Now, if you don't know what that means, it
+
+46
+00:01:59,129 --> 00:02:01,341
+doesn't really matter, the point here is I
+
+47
+00:02:01,341 --> 00:02:03,975
+wrote a function that works on a column of
+
+48
+00:02:03,975 --> 00:02:06,961
+a DataFrame, and to apply this to my
+
+49
+00:02:06,961 --> 00:02:10,162
+DataFrame I can simply say df. apply iqr.
+
+50
+00:02:10,162 --> 00:02:12,235
+And here I don't use parentheses, because
+
+51
+00:02:12,235 --> 00:02:14,454
+if I would use parentheses here like this
+
+52
+00:02:14,454 --> 00:02:16,420
+I would be calling my function, and that's
+
+53
+00:02:16,420 --> 00:02:19,628
+not what I want to do. I want to pass the
+
+54
+00:02:19,628 --> 00:02:22,176
+function to df. apply, and then df. apply
+
+55
+00:02:22,176 --> 00:02:24,957
+will call the function for me on each
+
+56
+00:02:24,957 --> 00:02:27,311
+column in my DataFrame. So now by
+
+57
+00:02:27,311 --> 00:02:29,879
+executing this I apply my iqr function to
+
+58
+00:02:29,879 --> 00:02:32,717
+each of the columns in my DataFrame, and
+
+59
+00:02:32,717 --> 00:02:35,571
+it returns these two values here. Now, of
+
+60
+00:02:35,571 --> 00:02:37,984
+course, you can also apply a function to
+
+61
+00:02:37,984 --> 00:02:41,764
+each of the rows, and in that case you add
+
+62
+00:02:41,764 --> 00:02:44,202
+the axis=1 argument. Now there's a lot of
+
+63
+00:02:44,202 --> 00:02:46,046
+rows here, and they all contain only two
+
+64
+00:02:46,046 --> 00:02:48,909
+values, so this doesn't really make sense,
+
+65
+00:02:48,909 --> 00:02:51,651
+so let's remove this. Very well. Now what
+
+66
+00:02:51,651 --> 00:02:53,625
+if you wrote a function that you don't
+
+67
+00:02:53,625 --> 00:02:55,843
+want to apply to a column, but you want to
+
+68
+00:02:55,843 --> 00:02:57,701
+apply it to every single value in your
+
+69
+00:02:57,701 --> 00:03:00,487
+DataFrame? So here I wrote a very simple
+
+70
+00:03:00,487 --> 00:03:03,980
+function. It takes a value, x, adds. 25 to
+
+71
+00:03:03,980 --> 00:03:06,574
+it, and then calculates the absolute value
+
+72
+00:03:06,574 --> 00:03:08,693
+of that, and I want to apply this function
+
+73
+00:03:08,693 --> 00:03:11,050
+to every single cell in my DataFrame. Now
+
+74
+00:03:11,050 --> 00:03:13,881
+I cannot use the apply method because it
+
+75
+00:03:13,881 --> 00:03:16,872
+works for rows or columns. Now to apply a
+
+76
+00:03:16,872 --> 00:03:19,328
+function to every cell, you say df.
+
+77
+00:03:19,328 --> 00:03:22,364
+applymap, and again, you pass the name of
+
+78
+00:03:22,364 --> 00:03:24,489
+your function. And don't forget, no
+
+79
+00:03:24,489 --> 00:03:26,538
+parentheses here, because, again, we want
+
+80
+00:03:26,538 --> 00:03:29,014
+applymap to apply the function for us, so
+
+81
+00:03:29,014 --> 00:03:31,452
+we're not going to run the function right
+
+82
+00:03:31,452 --> 00:03:33,355
+here. Now I'm just going to plot this
+
+83
+00:03:33,355 --> 00:03:35,282
+immediately so we can see the output. So
+
+84
+00:03:35,282 --> 00:03:37,583
+this has applied my somefunc function to
+
+85
+00:03:37,583 --> 00:03:42,000
+every single cell in my DataFrame, and here we see the result.
+

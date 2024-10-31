@@ -1,0 +1,304 @@
+1
+00:00:00,549 --> 00:00:03,542
+In the second part of this module, I want
+
+2
+00:00:03,542 --> 00:00:06,192
+to move on from just indexing. First I'd
+
+3
+00:00:06,192 --> 00:00:08,812
+like to take a look at filtering data
+
+4
+00:00:08,812 --> 00:00:10,401
+using Boolean expressions, then we'll see
+
+5
+00:00:10,401 --> 00:00:12,221
+that we can assign new values to the parts
+
+6
+00:00:12,221 --> 00:00:14,358
+of our DataFrame that we have selected
+
+7
+00:00:14,358 --> 00:00:16,783
+with the techniques we have learned so
+
+8
+00:00:16,783 --> 00:00:19,237
+far, and I'll finish up the module by
+
+9
+00:00:19,237 --> 00:00:21,869
+taking a short look at sorting. As you
+
+10
+00:00:21,869 --> 00:00:25,172
+already know, passing a list to the index
+
+11
+00:00:25,172 --> 00:00:27,653
+operator on our DataFrame we can select
+
+12
+00:00:27,653 --> 00:00:29,591
+columns from our data. So here I'm
+
+13
+00:00:29,591 --> 00:00:31,771
+selecting the capital names with their
+
+14
+00:00:31,771 --> 00:00:34,210
+population. But there's another kind of
+
+15
+00:00:34,210 --> 00:00:37,796
+list we can also use. Let me show you. I
+
+16
+00:00:37,796 --> 00:00:40,884
+can pass a list of Booleans, and this list
+
+17
+00:00:40,884 --> 00:00:43,511
+selects only some rows from our data. The
+
+18
+00:00:43,511 --> 00:00:45,545
+list has to have as many elements as there
+
+19
+00:00:45,545 --> 00:00:47,753
+are rows, so in this case I need five
+
+20
+00:00:47,753 --> 00:00:50,179
+elements, and for every row in the data I
+
+21
+00:00:50,179 --> 00:00:52,888
+say whether I want it in my output. So
+
+22
+00:00:52,888 --> 00:00:55,058
+here I'm selecting the first two rows,
+
+23
+00:00:55,058 --> 00:00:58,278
+skipping the third, selecting the fourth,
+
+24
+00:00:58,278 --> 00:01:00,646
+etc. Now you may wonder what's the point
+
+25
+00:01:00,646 --> 00:01:03,302
+of this. If my data contains 200, 000
+
+26
+00:01:03,302 --> 00:01:06,502
+rows, I'm not going to type 200, 000 times
+
+27
+00:01:06,502 --> 00:01:08,787
+true or false. Well, the beautiful thing
+
+28
+00:01:08,787 --> 00:01:11,301
+is that we can generate lists of Booleans.
+
+29
+00:01:11,301 --> 00:01:13,945
+Let's say I want to see only the rows
+
+30
+00:01:13,945 --> 00:01:16,181
+where the capital city contains more than
+
+31
+00:01:16,181 --> 00:01:18,820
+a quarter of all the population in the
+
+32
+00:01:18,820 --> 00:01:21,582
+country. To start, I select the Percentage
+
+33
+00:01:21,582 --> 00:01:24,017
+column, and remember this expression will
+
+34
+00:01:24,017 --> 00:01:26,464
+return a series containing only the
+
+35
+00:01:26,464 --> 00:01:29,369
+percentages, and now I can compare a
+
+36
+00:01:29,369 --> 00:01:33,268
+series to a single value. So let's say is
+
+37
+00:01:33,268 --> 00:01:36,552
+greater than 25, and this returns a series
+
+38
+00:01:36,552 --> 00:01:39,332
+with Booleans, telling me for every row
+
+39
+00:01:39,332 --> 00:01:41,769
+whether the percentage in that row is
+
+40
+00:01:41,769 --> 00:01:43,738
+greater than 25. And because this
+
+41
+00:01:43,738 --> 00:01:46,508
+expression returns a list, I can use it in
+
+42
+00:01:46,508 --> 00:01:49,974
+an indexing operation like this. So let me
+
+43
+00:01:49,974 --> 00:01:52,729
+explain the syntax another time. Selecting
+
+44
+00:01:52,729 --> 00:01:55,727
+the Percentage column returns a series.
+
+45
+00:01:55,727 --> 00:01:57,550
+Comparing this with a value returns a
+
+46
+00:01:57,550 --> 00:01:59,922
+series of Booleans which you can use to
+
+47
+00:01:59,922 --> 00:02:02,420
+index your DataFrame, so this will return
+
+48
+00:02:02,420 --> 00:02:06,160
+exactly the rows where the percentage is
+
+49
+00:02:06,160 --> 00:02:09,898
+greater than 25. Now just to make a point,
+
+50
+00:02:09,898 --> 00:02:12,140
+let me add another DataFrame and it
+
+51
+00:02:12,140 --> 00:02:14,726
+contains a number of student names and
+
+52
+00:02:14,726 --> 00:02:17,332
+their grades on two different tests. Now
+
+53
+00:02:17,332 --> 00:02:19,712
+suppose I want to select those students
+
+54
+00:02:19,712 --> 00:02:22,358
+whose score didn't improve after the first
+
+55
+00:02:22,358 --> 00:02:25,359
+test. I can actually compare two columns
+
+56
+00:02:25,359 --> 00:02:27,950
+against each other like this, and this,
+
+57
+00:02:27,950 --> 00:02:30,030
+again, returns a series with Booleans,
+
+58
+00:02:30,030 --> 00:02:32,784
+which I can use inside an indexing
+
+59
+00:02:32,784 --> 00:02:35,861
+operation. So this shows me exactly the
+
+60
+00:02:35,861 --> 00:02:38,798
+students who didn't improve. You can also
+
+61
+00:02:38,798 --> 00:02:41,473
+use these Boolean expressions with loc and
+
+62
+00:02:41,473 --> 00:02:43,630
+iloc. For example, I might want to see
+
+63
+00:02:43,630 --> 00:02:45,719
+only the tests that have an average over
+
+64
+00:02:45,719 --> 00:02:48,870
+5. 5, and this means I want to create a
+
+65
+00:02:48,870 --> 00:02:51,552
+list of Booleans that has the same length
+
+66
+00:02:51,552 --> 00:02:54,758
+as the number of columns in my data. First
+
+67
+00:02:54,758 --> 00:02:57,300
+I will calculate the averages, and this
+
+68
+00:02:57,300 --> 00:03:00,034
+already creates a series, so all I have to
+
+69
+00:03:00,034 --> 00:03:02,853
+do is to compare this with 5. 5 and now we
+
+70
+00:03:02,853 --> 00:03:05,639
+have a series of Booleans, and I can plug
+
+71
+00:03:05,639 --> 00:03:08,367
+this into loc like this. So here I use a
+
+72
+00:03:08,367 --> 00:03:10,134
+colon as the first argument, which means I
+
+73
+00:03:10,134 --> 00:03:12,861
+want to see all rows, and as a second
+
+74
+00:03:12,861 --> 00:03:15,245
+argument I pass my Boolean list, which
+
+75
+00:03:15,245 --> 00:03:17,157
+selects only the first column because
+
+76
+00:03:17,157 --> 00:03:23,000
+that's the only test with an average over 5. 5.
+

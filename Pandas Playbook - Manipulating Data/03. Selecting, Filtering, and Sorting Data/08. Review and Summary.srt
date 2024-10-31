@@ -1,0 +1,416 @@
+1
+00:00:00,722 --> 00:00:03,217
+We've seen that we can use Boolean
+
+2
+00:00:03,217 --> 00:00:06,226
+comparisons to select parts of our data by
+
+3
+00:00:06,226 --> 00:00:09,303
+using the comparison inside the indexing
+
+4
+00:00:09,303 --> 00:00:11,309
+operation. The example you see here
+
+5
+00:00:11,309 --> 00:00:13,398
+selects all rows from a DataFrame where
+
+6
+00:00:13,398 --> 00:00:16,295
+the column called Temp has a value greater
+
+7
+00:00:16,295 --> 00:00:18,794
+than 20. Note that we have two pairs of
+
+8
+00:00:18,794 --> 00:00:20,657
+square brackets, one to select the column
+
+9
+00:00:20,657 --> 00:00:23,047
+and another one that accepts the Boolean
+
+10
+00:00:23,047 --> 00:00:25,680
+expression and selects matching rows. The
+
+11
+00:00:25,680 --> 00:00:29,093
+name of our DataFrame, df, also appears
+
+12
+00:00:29,093 --> 00:00:31,182
+twice. Now this works because the
+
+13
+00:00:31,182 --> 00:00:33,424
+comparison of a series with a number
+
+14
+00:00:33,424 --> 00:00:36,100
+returns a new series with Booleans, so
+
+15
+00:00:36,100 --> 00:00:38,150
+comparing the Temperature column with the
+
+16
+00:00:38,150 --> 00:00:40,556
+number 20 returns a Boolean series and we
+
+17
+00:00:40,556 --> 00:00:43,769
+can use that inside square brackets to
+
+18
+00:00:43,769 --> 00:00:46,507
+retrieve matching rows. You can also use
+
+19
+00:00:46,507 --> 00:00:48,851
+this with other ways of indexing like loc
+
+20
+00:00:48,851 --> 00:00:51,059
+and iloc, and here I have an example where
+
+21
+00:00:51,059 --> 00:00:53,318
+I first pass a colon, which is a slice
+
+22
+00:00:53,318 --> 00:00:55,745
+that selects everything. So this first
+
+23
+00:00:55,745 --> 00:00:58,297
+argument selects all rows, and then the
+
+24
+00:00:58,297 --> 00:01:00,721
+second argument is a list of Booleans. In
+
+25
+00:01:00,721 --> 00:01:02,449
+this case we select columns, and that
+
+26
+00:01:02,449 --> 00:01:04,840
+means that the list must contain as many
+
+27
+00:01:04,840 --> 00:01:07,165
+Booleans as there are columns. Well,
+
+28
+00:01:07,165 --> 00:01:09,934
+grades. mean returns a mean for every
+
+29
+00:01:09,934 --> 00:01:13,690
+column, and comparing that to the number 6
+
+30
+00:01:13,690 --> 00:01:17,503
+returns a list of Booleans. Most of the
+
+31
+00:01:17,503 --> 00:01:19,693
+time using an indexing operation with
+
+32
+00:01:19,693 --> 00:01:22,089
+Pandas returns a view on the original
+
+33
+00:01:22,089 --> 00:01:24,364
+DataFrame, and that means you can assign
+
+34
+00:01:24,364 --> 00:01:26,683
+values to the selected part of your data.
+
+35
+00:01:26,683 --> 00:01:28,737
+In the first example here I'm I'm
+
+36
+00:01:28,737 --> 00:01:30,808
+selecting a column and increasing every
+
+37
+00:01:30,808 --> 00:01:34,104
+value in it by 1, and the second example
+
+38
+00:01:34,104 --> 00:01:37,640
+selects a row and sets its values using a
+
+39
+00:01:37,640 --> 00:01:40,430
+list. This tends to work with all indexing
+
+40
+00:01:40,430 --> 00:01:43,132
+operations, so it also works with loc and
+
+41
+00:01:43,132 --> 00:01:45,443
+iloc. In this example, I'm selecting two
+
+42
+00:01:45,443 --> 00:01:49,093
+cells by using loc and selecting a row and
+
+43
+00:01:49,093 --> 00:01:52,195
+two columns, and I'm setting both values
+
+44
+00:01:52,195 --> 00:01:55,935
+to 8. You may have noticed that I was
+
+45
+00:01:55,935 --> 00:01:58,380
+using uncertain wording with the previous
+
+46
+00:01:58,380 --> 00:02:00,711
+slide. This is because I cannot give you
+
+47
+00:02:00,711 --> 00:02:02,354
+certainty that these Pandas operations
+
+48
+00:02:02,354 --> 00:02:05,072
+always return views. The Pandas
+
+49
+00:02:05,072 --> 00:02:07,972
+documentation is quite clear on the
+
+50
+00:02:07,972 --> 00:02:10,511
+uncertainty here. They cannot give any
+
+51
+00:02:10,511 --> 00:02:12,714
+guarantees, and this is especially true in
+
+52
+00:02:12,714 --> 00:02:15,231
+the case of chained indexing, like you see
+
+53
+00:02:15,231 --> 00:02:17,989
+in the example here. I'm first indexing a
+
+54
+00:02:17,989 --> 00:02:21,002
+DataFrame which returns a series, and then
+
+55
+00:02:21,002 --> 00:02:24,176
+I'm indexing that series. When I try to
+
+56
+00:02:24,176 --> 00:02:26,967
+assign a value to that, I get a
+
+57
+00:02:26,967 --> 00:02:28,138
+SettingWithCopyWarning, and this means
+
+58
+00:02:28,138 --> 00:02:30,057
+that Pandas cannot tell you whether you're
+
+59
+00:02:30,057 --> 00:02:33,206
+assigning to a view of your original data
+
+60
+00:02:33,206 --> 00:02:36,594
+or to a copy. So, did the assignment work?
+
+61
+00:02:36,594 --> 00:02:39,165
+I don't know, it depends. The best thing
+
+62
+00:02:39,165 --> 00:02:41,920
+to do is test the result of your code, and
+
+63
+00:02:41,920 --> 00:02:44,034
+in general you will usually see this
+
+64
+00:02:44,034 --> 00:02:46,222
+warning when you use chained indexing, so
+
+65
+00:02:46,222 --> 00:02:49,031
+try not to do that when you assign values,
+
+66
+00:02:49,031 --> 00:02:53,737
+instead use loc and iloc because those
+
+67
+00:02:53,737 --> 00:02:57,095
+usually work. We also saw two methods for
+
+68
+00:02:57,095 --> 00:02:58,827
+sorting your data. First there's
+
+69
+00:02:58,827 --> 00:03:01,004
+sort_index, which as the name implies,
+
+70
+00:03:01,004 --> 00:03:03,640
+sorts your data by the index, and the
+
+71
+00:03:03,640 --> 00:03:05,806
+other one is sort_values, which sorts on
+
+72
+00:03:05,806 --> 00:03:08,411
+the actual values of your data. In this
+
+73
+00:03:08,411 --> 00:03:11,139
+case you need to specify which column of
+
+74
+00:03:11,139 --> 00:03:13,798
+your DataFrame to sort by. If necessary,
+
+75
+00:03:13,798 --> 00:03:17,570
+you can also select multiple columns to
+
+76
+00:03:17,570 --> 00:03:20,385
+sort on. There's a number of extra
+
+77
+00:03:20,385 --> 00:03:22,782
+arguments that you can pass to the sort
+
+78
+00:03:22,782 --> 00:03:24,685
+methods. First of all, there's the
+
+79
+00:03:24,685 --> 00:03:26,608
+ascending option, which makes Pandas sort
+
+80
+00:03:26,608 --> 00:03:29,450
+in reverse when it's set to false. Then
+
+81
+00:03:29,450 --> 00:03:31,631
+there's the axis argument, which you can
+
+82
+00:03:31,631 --> 00:03:34,162
+set to 1 if you want to sort along rows
+
+83
+00:03:34,162 --> 00:03:35,884
+instead of columns. Actually, there are a
+
+84
+00:03:35,884 --> 00:03:37,946
+lot of methods that take this argument. In
+
+85
+00:03:37,946 --> 00:03:40,977
+the demo, we've also seen it, for example,
+
+86
+00:03:40,977 --> 00:03:43,594
+with the mean method. And usually sorting
+
+87
+00:03:43,594 --> 00:03:46,164
+with Pandas does not change the data
+
+88
+00:03:46,164 --> 00:03:48,473
+itself, but it will return a sorted copy.
+
+89
+00:03:48,473 --> 00:03:50,416
+If you want to change the original
+
+90
+00:03:50,416 --> 00:03:54,220
+DataFrame, pass the argument inplace=True.
+
+91
+00:03:54,220 --> 00:03:59,529
+By the way, all of these arguments work
+
+92
+00:03:59,529 --> 00:04:03,292
+with both sort_index and sort_values. And
+
+93
+00:04:03,292 --> 00:04:06,848
+that's it for this module. We've learned a
+
+94
+00:04:06,848 --> 00:04:09,590
+lot about indexing from the basics of
+
+95
+00:04:09,590 --> 00:04:11,704
+retrieving single rows and columns to
+
+96
+00:04:11,704 --> 00:04:14,841
+indexing with slices and lists and doing
+
+97
+00:04:14,841 --> 00:04:18,054
+row-based indexing with loc and iloc. We
+
+98
+00:04:18,054 --> 00:04:20,114
+saw Boolean filtering, which is a powerful
+
+99
+00:04:20,114 --> 00:04:23,312
+way to select parts of your data based on
+
+100
+00:04:23,312 --> 00:04:25,470
+logical expressions, assigned new values
+
+101
+00:04:25,470 --> 00:04:28,689
+to our data, and took a short look at
+
+102
+00:04:28,689 --> 00:04:30,171
+sorting methods. Thank you for watching,
+
+103
+00:04:30,171 --> 00:04:32,273
+and I hope that you'll join me in the next
+
+104
+00:04:32,273 --> 00:04:37,000
+module where we'll talk about cleaning your dataset with Pandas.
+

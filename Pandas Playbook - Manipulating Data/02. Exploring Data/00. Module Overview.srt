@@ -1,0 +1,68 @@
+1
+00:00:00,000 --> 00:00:03,576
+Hi, in this module we'll look at the first
+
+2
+00:00:03,576 --> 00:00:06,148
+steps for a data scientist when working
+
+3
+00:00:06,148 --> 00:00:08,493
+with new datasets, exploring it to get a
+
+4
+00:00:08,493 --> 00:00:12,448
+feeling for the kind of data we have, the
+
+5
+00:00:12,448 --> 00:00:15,335
+statistical properties it has, and more.
+
+6
+00:00:15,335 --> 00:00:18,276
+Whenever you start to work with a new
+
+7
+00:00:18,276 --> 00:00:20,743
+dataset, the first thing you normally want
+
+8
+00:00:20,743 --> 00:00:23,576
+to do is to explore what the data looks
+
+9
+00:00:23,576 --> 00:00:26,269
+like. How many items are there in the set,
+
+10
+00:00:26,269 --> 00:00:28,349
+and what kind of measurements are there?
+
+11
+00:00:28,349 --> 00:00:30,433
+To get a feeling for the dataset, you
+
+12
+00:00:30,433 --> 00:00:32,718
+usually also want to see a quick overview
+
+13
+00:00:32,718 --> 00:00:35,955
+of basic statistics like the mean, max,
+
+14
+00:00:35,955 --> 00:00:38,904
+and minimum values, etc., etc., and maybe
+
+15
+00:00:38,904 --> 00:00:41,453
+even make a few simple plots while you're
+
+16
+00:00:41,453 --> 00:00:44,098
+at it. So this is exactly what I'll do in
+
+17
+00:00:44,098 --> 00:00:49,000
+this module. I'll show you how to get up and running with a new dataset.
+

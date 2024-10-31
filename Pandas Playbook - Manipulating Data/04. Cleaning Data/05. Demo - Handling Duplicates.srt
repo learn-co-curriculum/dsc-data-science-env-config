@@ -1,0 +1,284 @@
+1
+00:00:00,933 --> 00:00:04,277
+There is a third kind of unwanted data you
+
+2
+00:00:04,277 --> 00:00:07,038
+may have in your dataset, and that is
+
+3
+00:00:07,038 --> 00:00:09,145
+duplicate values. These may occur in your
+
+4
+00:00:09,145 --> 00:00:11,185
+data for any number of reasons, and right
+
+5
+00:00:11,185 --> 00:00:13,458
+now I'm going to show you how to get rid
+
+6
+00:00:13,458 --> 00:00:16,091
+of them. First of all, there's a function
+
+7
+00:00:16,091 --> 00:00:18,506
+called duplicated, which returns a list of
+
+8
+00:00:18,506 --> 00:00:20,608
+Boolean values. For each row it will
+
+9
+00:00:20,608 --> 00:00:23,347
+contain True if it's a duplicate and False
+
+10
+00:00:23,347 --> 00:00:26,237
+otherwise. Just running it like this tells
+
+11
+00:00:26,237 --> 00:00:28,658
+us nothing, but fortunately we can use the
+
+12
+00:00:28,658 --> 00:00:30,784
+any function to see if there are any
+
+13
+00:00:30,784 --> 00:00:33,703
+duplicate rows in our data, and it seems
+
+14
+00:00:33,703 --> 00:00:36,730
+that there are. So let's check them out by
+
+15
+00:00:36,730 --> 00:00:39,307
+using the call to duplicated to index our
+
+16
+00:00:39,307 --> 00:00:41,059
+DataFrame. So it seems that there's a
+
+17
+00:00:41,059 --> 00:00:42,988
+total of five rows that are duplicated, so
+
+18
+00:00:42,988 --> 00:00:45,081
+these rows appear more than once in our
+
+19
+00:00:45,081 --> 00:00:48,043
+data, and we can simply remove them with
+
+20
+00:00:48,043 --> 00:00:50,249
+another function called drop_duplicates.
+
+21
+00:00:50,249 --> 00:00:53,091
+And because I want to update my data
+
+22
+00:00:53,091 --> 00:00:55,713
+structure, I'll add inplace is True. And
+
+23
+00:00:55,713 --> 00:00:59,630
+now just to check, let's rerun this line.
+
+24
+00:00:59,630 --> 00:01:02,574
+There are no more duplicates in the set.
+
+25
+00:01:02,574 --> 00:01:04,543
+Now the drop_duplicates function has more
+
+26
+00:01:04,543 --> 00:01:07,462
+uses than just cleaning up a dataset with
+
+27
+00:01:07,462 --> 00:01:10,314
+unwanted duplicates. Sometimes it's a nice
+
+28
+00:01:10,314 --> 00:01:12,940
+tool for data exploration, for example, I
+
+29
+00:01:12,940 --> 00:01:14,870
+might want to know the list of countries
+
+30
+00:01:14,870 --> 00:01:17,246
+that has taken place in this tournament.
+
+31
+00:01:17,246 --> 00:01:20,138
+But since most countries send more than
+
+32
+00:01:20,138 --> 00:01:22,237
+one athlete, each country appears multiple
+
+33
+00:01:22,237 --> 00:01:25,101
+times in the list, but if I take the
+
+34
+00:01:25,101 --> 00:01:27,359
+column with nationalities and apply
+
+35
+00:01:27,359 --> 00:01:31,549
+drop_duplicates, we get a long list of 207
+
+36
+00:01:31,549 --> 00:01:34,480
+nationalities in the tournament. Of
+
+37
+00:01:34,480 --> 00:01:36,976
+course, you could also call sort_values on
+
+38
+00:01:36,976 --> 00:01:39,599
+this series to get the countries sorted by
+
+39
+00:01:39,599 --> 00:01:42,293
+name. But a lot of the time in scenarios
+
+40
+00:01:42,293 --> 00:01:44,347
+like these there's another function I like
+
+41
+00:01:44,347 --> 00:01:46,989
+to use instead of drop_duplicates, and
+
+42
+00:01:46,989 --> 00:01:50,201
+that is value_counts. This also returns
+
+43
+00:01:50,201 --> 00:01:52,892
+every value in the column once, but it
+
+44
+00:01:52,892 --> 00:01:55,401
+also counts how many times each value
+
+45
+00:01:55,401 --> 00:01:58,705
+occurs, so here we can see the same 207
+
+46
+00:01:58,705 --> 00:02:01,073
+nationalities, but we can immediately see
+
+47
+00:02:01,073 --> 00:02:03,618
+which countries sent the most athletes,
+
+48
+00:02:03,618 --> 00:02:07,296
+the USA followed by Brazil and Germany. Or
+
+49
+00:02:07,296 --> 00:02:09,973
+if we want to know the ratio of women
+
+50
+00:02:09,973 --> 00:02:12,314
+versus men, I can get the value_counts for
+
+51
+00:02:12,314 --> 00:02:14,819
+the sex column, and we see that the ratio
+
+52
+00:02:14,819 --> 00:02:19,430
+of men to women is about 6 to 5. We've
+
+53
+00:02:19,430 --> 00:02:22,329
+seen that the duplicated method returns a
+
+54
+00:02:22,329 --> 00:02:25,067
+series of Booleans that's true whenever a
+
+55
+00:02:25,067 --> 00:02:28,429
+row has been seen before, so when it's a
+
+56
+00:02:28,429 --> 00:02:31,350
+duplicate, and you can use this series, as
+
+57
+00:02:31,350 --> 00:02:33,851
+always, to index into your DataFrame. So
+
+58
+00:02:33,851 --> 00:02:36,072
+here we say df followed by square
+
+59
+00:02:36,072 --> 00:02:38,019
+brackets, and then inside the square
+
+60
+00:02:38,019 --> 00:02:40,539
+brackets we call df. duplicated, and this
+
+61
+00:02:40,539 --> 00:02:43,848
+will show you all the rows that are
+
+62
+00:02:43,848 --> 00:02:46,865
+actually duplicates. Now to remove all
+
+63
+00:02:46,865 --> 00:02:49,252
+duplicates, there's a separate function
+
+64
+00:02:49,252 --> 00:02:52,077
+called df. drop_duplicates, and this will
+
+65
+00:02:52,077 --> 00:02:55,265
+remove all duplicated rows from your
+
+66
+00:02:55,265 --> 00:02:57,634
+DataFrame. Interestingly, a DataFrame also
+
+67
+00:02:57,634 --> 00:03:00,625
+has another method called unique which has
+
+68
+00:03:00,625 --> 00:03:03,401
+the same behavior, but it doesn't return a
+
+69
+00:03:03,401 --> 00:03:05,845
+new DataFrame, it returns a numpy array,
+
+70
+00:03:05,845 --> 00:03:08,995
+so that means that most of the time you
+
+71
+00:03:08,995 --> 00:03:13,000
+don't want to use it, you just want to use drop_duplicates.
+

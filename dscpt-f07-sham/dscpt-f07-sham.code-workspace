@@ -1,0 +1,12 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"jupyter.interactiveWindow.textEditor.executeSelection": true,
+		"code-runner.runInTerminal": true,
+		"code-runner.clearPreviousOutput": true
+	}
+}

@@ -1,0 +1,248 @@
+1
+00:00:00,429 --> 00:00:03,752
+So we've seen what happens when we put a
+
+2
+00:00:03,752 --> 00:00:06,103
+single value between these brackets like a
+
+3
+00:00:06,103 --> 00:00:08,726
+number or a string, but we can use more
+
+4
+00:00:08,726 --> 00:00:10,857
+complicated things in here as well, like
+
+5
+00:00:10,857 --> 00:00:13,392
+for example, a list of column names. And
+
+6
+00:00:13,392 --> 00:00:16,115
+this returns a DataFrame with the columns
+
+7
+00:00:16,115 --> 00:00:18,224
+I selected. As you can see, the columns
+
+8
+00:00:18,224 --> 00:00:19,999
+can be in any order, regardless of the
+
+9
+00:00:19,999 --> 00:00:22,670
+order in which they appeared in the
+
+10
+00:00:22,670 --> 00:00:24,372
+original DataFrame. Similarly, when I
+
+11
+00:00:24,372 --> 00:00:27,187
+select a single series I can use the same
+
+12
+00:00:27,187 --> 00:00:30,063
+logic on that series to select a number of
+
+13
+00:00:30,063 --> 00:00:33,064
+rows. Now note that in both cases here we
+
+14
+00:00:33,064 --> 00:00:35,028
+have double square brackets. The outer
+
+15
+00:00:35,028 --> 00:00:37,210
+brackets mean we are indexing into the
+
+16
+00:00:37,210 --> 00:00:39,260
+DataFrame of our series, and the inner
+
+17
+00:00:39,260 --> 00:00:41,133
+brackets mean that we're using a Python
+
+18
+00:00:41,133 --> 00:00:43,675
+list to select multiple things at once.
+
+19
+00:00:43,675 --> 00:00:47,153
+Another thing we can pass to the indexing
+
+20
+00:00:47,153 --> 00:00:50,219
+operator is a slice. You may know this
+
+21
+00:00:50,219 --> 00:00:52,911
+from Python. A slice a uses a colon to
+
+22
+00:00:52,911 --> 00:00:55,291
+select a range of things. So far, we've
+
+23
+00:00:55,291 --> 00:00:57,633
+used indexing to select columns from a
+
+24
+00:00:57,633 --> 00:01:00,426
+DataFrame, but with a slice you always
+
+25
+00:01:00,426 --> 00:01:02,884
+select rows, and this expression means
+
+26
+00:01:02,884 --> 00:01:06,012
+we're selecting rows 2 up to, but not
+
+27
+00:01:06,012 --> 00:01:09,530
+including 4, so that means rows 2 and 3.
+
+28
+00:01:09,530 --> 00:01:11,607
+Because this returns a DataFrame, I can
+
+29
+00:01:11,607 --> 00:01:13,475
+select which columns I want immediately
+
+30
+00:01:13,475 --> 00:01:16,543
+after this, so let's use the double square
+
+31
+00:01:16,543 --> 00:01:18,870
+brackets to select the temperature and
+
+32
+00:01:18,870 --> 00:01:22,116
+pressure at these two rows. Now if we look
+
+33
+00:01:22,116 --> 00:01:24,396
+at our transposed DataFrame, let's try to
+
+34
+00:01:24,396 --> 00:01:27,615
+get exactly the same data points from this
+
+35
+00:01:27,615 --> 00:01:29,825
+data structure. Again, indexing with a
+
+36
+00:01:29,825 --> 00:01:32,532
+slice will always select rows, so here to
+
+37
+00:01:32,532 --> 00:01:34,951
+select pressure and temperature let's say
+
+38
+00:01:34,951 --> 00:01:38,032
+3 followed by a column, which means I want
+
+39
+00:01:38,032 --> 00:01:40,164
+a range of all rows starting from the
+
+40
+00:01:40,164 --> 00:01:43,391
+fourth row, which is offset 3 up until the
+
+41
+00:01:43,391 --> 00:01:45,676
+very last row. Again, this returns a
+
+42
+00:01:45,676 --> 00:01:47,935
+DataFrame, so if we want to select columns
+
+43
+00:01:47,935 --> 00:01:51,809
+2 and 3 from this we cannot use a slice,
+
+44
+00:01:51,809 --> 00:01:54,553
+because that always selects rows, but I
+
+45
+00:01:54,553 --> 00:01:57,546
+can use a list to select multiple columns.
+
+46
+00:01:57,546 --> 00:01:59,884
+So let's use double square brackets, and
+
+47
+00:01:59,884 --> 00:02:02,967
+now we have the same data as above, only
+
+48
+00:02:02,967 --> 00:02:05,838
+transposed. Now if you select only a
+
+49
+00:02:05,838 --> 00:02:08,864
+single row like this, we now have a
+
+50
+00:02:08,864 --> 00:02:11,635
+series, and here, again, we can also use
+
+51
+00:02:11,635 --> 00:02:14,489
+slicing, and again, a slice always selects
+
+52
+00:02:14,489 --> 00:02:18,627
+rows, so I can say column 4 to select only
+
+53
+00:02:18,627 --> 00:02:22,196
+the first four rows. Even in the case of
+
+54
+00:02:22,196 --> 00:02:24,751
+our transposed data structure where the
+
+55
+00:02:24,751 --> 00:02:27,395
+row indices are strings, slicing works,
+
+56
+00:02:27,395 --> 00:02:31,342
+and it selects rows. And we can even use
+
+57
+00:02:31,342 --> 00:02:34,199
+slicing with strings. So in this example
+
+58
+00:02:34,199 --> 00:02:36,898
+I'm selecting the rows Time up until
+
+59
+00:02:36,898 --> 00:02:39,192
+Pressure. Note that in this case the end
+
+60
+00:02:39,192 --> 00:02:41,712
+of the slice is inclusive, so the Pressure
+
+61
+00:02:41,712 --> 00:02:44,410
+row is included in the results, whereas
+
+62
+00:02:44,410 --> 00:02:50,000
+with integer slices the endpoint of the slice is not included in the results.
+

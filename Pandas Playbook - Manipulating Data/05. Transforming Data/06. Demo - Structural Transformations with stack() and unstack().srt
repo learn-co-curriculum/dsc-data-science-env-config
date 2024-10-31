@@ -1,0 +1,280 @@
+1
+00:00:00,384 --> 00:00:04,369
+So we've seen how we can transform our
+
+2
+00:00:04,369 --> 00:00:07,718
+data by applying functions to it, but
+
+3
+00:00:07,718 --> 00:00:10,243
+let's see how we can transform the
+
+4
+00:00:10,243 --> 00:00:12,503
+structure of our DataFrame. So we'll see
+
+5
+00:00:12,503 --> 00:00:14,956
+how to move our data from our columns to
+
+6
+00:00:14,956 --> 00:00:17,497
+our rows, or from our rows to our columns,
+
+7
+00:00:17,497 --> 00:00:19,950
+and there's four functions that are of
+
+8
+00:00:19,950 --> 00:00:24,409
+interest here, stack, unstack, pivot, and
+
+9
+00:00:24,409 --> 00:00:27,646
+melt. Sometimes you just don't agree with
+
+10
+00:00:27,646 --> 00:00:31,023
+the way your data is structured into rows
+
+11
+00:00:31,023 --> 00:00:34,115
+and columns. As an example, let's take
+
+12
+00:00:34,115 --> 00:00:36,401
+this dataset, monthly_data. csv, and here
+
+13
+00:00:36,401 --> 00:00:39,559
+it shows a row for every year, and then
+
+14
+00:00:39,559 --> 00:00:42,457
+the months are in the columns. So here for
+
+15
+00:00:42,457 --> 00:00:45,359
+2009 we have a value for January and one
+
+16
+00:00:45,359 --> 00:00:47,671
+for February, etc., etc., and then the
+
+17
+00:00:47,671 --> 00:00:50,583
+values for 2010 are on the next line. Now
+
+18
+00:00:50,583 --> 00:00:53,800
+this is vey nice, but what if I want to
+
+19
+00:00:53,800 --> 00:00:56,051
+see the chronological order of all these
+
+20
+00:00:56,051 --> 00:00:59,064
+values, let's say I want to plot how these
+
+21
+00:00:59,064 --> 00:01:01,463
+values change over time. Then it would
+
+22
+00:01:01,463 --> 00:01:04,443
+nicer if all these values are in a single
+
+23
+00:01:04,443 --> 00:01:07,145
+column. Now there's a function to do just
+
+24
+00:01:07,145 --> 00:01:09,857
+that, but before we do this let's remove
+
+25
+00:01:09,857 --> 00:01:12,925
+the year column and put it in the index.
+
+26
+00:01:12,925 --> 00:01:15,108
+So for that I have the set_index function,
+
+27
+00:01:15,108 --> 00:01:17,583
+as you may remember, and I use
+
+28
+00:01:17,583 --> 00:01:19,889
+inplace=True to immediately update our
+
+29
+00:01:19,889 --> 00:01:23,351
+DataFrame. So now we have the years as the
+
+30
+00:01:23,351 --> 00:01:26,353
+index, and then I can call the. stack
+
+31
+00:01:26,353 --> 00:01:28,893
+method, and this will move all the data
+
+32
+00:01:28,893 --> 00:01:31,585
+from my rows into a single column. Let me
+
+33
+00:01:31,585 --> 00:01:34,219
+show you. So now we have a Series that has
+
+34
+00:01:34,219 --> 00:01:36,379
+all our data points below each other. So
+
+35
+00:01:36,379 --> 00:01:38,868
+first we get the values for the first row,
+
+36
+00:01:38,868 --> 00:01:41,274
+and then for the second row, etc., etc.
+
+37
+00:01:41,274 --> 00:01:43,956
+Our values are indexed first by year, and
+
+38
+00:01:43,956 --> 00:01:46,703
+then inside the year they're indexed by
+
+39
+00:01:46,703 --> 00:01:49,026
+month. Now I'm not saying a lot in this
+
+40
+00:01:49,026 --> 00:01:50,802
+course about multi-level indexing, but we
+
+41
+00:01:50,802 --> 00:01:53,543
+have already seen them with groupby. So
+
+42
+00:01:53,543 --> 00:01:55,383
+groupby and stack are two typical
+
+43
+00:01:55,383 --> 00:01:57,660
+scenarios where you will see a multi-level
+
+44
+00:01:57,660 --> 00:02:00,715
+index. So after calling stack, it's also
+
+45
+00:02:00,715 --> 00:02:03,196
+suddenly possible to do calculations for
+
+46
+00:02:03,196 --> 00:02:06,399
+the entire dataset. So if I want to know
+
+47
+00:02:06,399 --> 00:02:09,694
+the sum of all my data, I can simply say
+
+48
+00:02:09,694 --> 00:02:11,879
+m. stack. sum. And because after stack all
+
+49
+00:02:11,879 --> 00:02:13,795
+my data will be in a single column,
+
+50
+00:02:13,795 --> 00:02:15,944
+calling sum on that column will give me
+
+51
+00:02:15,944 --> 00:02:18,793
+the sum of all my data. Now stack also has
+
+52
+00:02:18,793 --> 00:02:20,957
+a reverse called unstack, and that will
+
+53
+00:02:20,957 --> 00:02:23,889
+put my data from my columns into my rows.
+
+54
+00:02:23,889 --> 00:02:26,820
+As an example, let's look at what we saw
+
+55
+00:02:26,820 --> 00:02:29,286
+in the previous demo the mean weight of
+
+56
+00:02:29,286 --> 00:02:31,436
+athletes grouped by sport and gender. So
+
+57
+00:02:31,436 --> 00:02:33,886
+here we have a value for every combination
+
+58
+00:02:33,886 --> 00:02:36,676
+of sport and gender, and all these values
+
+59
+00:02:36,676 --> 00:02:39,515
+are below each other in a single column.
+
+60
+00:02:39,515 --> 00:02:43,321
+Now, as I just said, unstack will move
+
+61
+00:02:43,321 --> 00:02:46,729
+values from columns into rows. So here we
+
+62
+00:02:46,729 --> 00:02:49,129
+have a multi-level index, and the inner
+
+63
+00:02:49,129 --> 00:02:51,549
+level is our gender. So the first level is
+
+64
+00:02:51,549 --> 00:02:53,226
+the sport and the second level is the
+
+65
+00:02:53,226 --> 00:02:55,753
+gender, and unstack, by default, will take
+
+66
+00:02:55,753 --> 00:02:58,987
+the inner level of our index. So we will
+
+67
+00:02:58,987 --> 00:03:01,433
+get two columns, one for females and one
+
+68
+00:03:01,433 --> 00:03:04,287
+for males. So let's execute this and here
+
+69
+00:03:04,287 --> 00:03:07,278
+we see the same data, but instead of
+
+70
+00:03:07,278 --> 00:03:12,000
+everything being in a single column, it's now in two rows.
+

@@ -1,0 +1,480 @@
+1
+00:00:00,802 --> 00:00:04,077
+So let's go over what we've just seen.
+
+2
+00:00:04,077 --> 00:00:07,464
+First of all, here's an example of using a
+
+3
+00:00:07,464 --> 00:00:09,856
+binary operator with two Series. In this
+
+4
+00:00:09,856 --> 00:00:12,226
+case I'm using the plus operator, and as
+
+5
+00:00:12,226 --> 00:00:14,999
+you can see, the first Series has indices
+
+6
+00:00:14,999 --> 00:00:18,392
+a, b, c, and the second Series has indices
+
+7
+00:00:18,392 --> 00:00:21,264
+b, e, and the result of adding these two
+
+8
+00:00:21,264 --> 00:00:23,495
+together is a new Series object that
+
+9
+00:00:23,495 --> 00:00:26,401
+contains all of the indices from both
+
+10
+00:00:26,401 --> 00:00:29,482
+inputs. Now, the one green row here has
+
+11
+00:00:29,482 --> 00:00:32,866
+the index b, and this is the only index
+
+12
+00:00:32,866 --> 00:00:35,570
+that is contained in both of the inputs.
+
+13
+00:00:35,570 --> 00:00:37,674
+That's why I made it green in the output
+
+14
+00:00:37,674 --> 00:00:39,544
+because it's the only one that actually
+
+15
+00:00:39,544 --> 00:00:42,696
+has a result. All the other rows, a, c,
+
+16
+00:00:42,696 --> 00:00:46,825
+and e have as an output value NaN. So, the
+
+17
+00:00:46,825 --> 00:00:50,236
+general rule is that the results will only
+
+18
+00:00:50,236 --> 00:00:52,969
+be filled for those indices that are in
+
+19
+00:00:52,969 --> 00:00:57,415
+both inputs. In all other rows, the result
+
+20
+00:00:57,415 --> 00:01:01,352
+will be NaN. Here we see a similar
+
+21
+00:01:01,352 --> 00:01:03,408
+example, but I'm multiplying two
+
+22
+00:01:03,408 --> 00:01:05,801
+DataFrames. The rules are more or less the
+
+23
+00:01:05,801 --> 00:01:07,681
+same though. So I've used colors here to
+
+24
+00:01:07,681 --> 00:01:09,652
+make it a little bit more clear what part
+
+25
+00:01:09,652 --> 00:01:12,534
+of the results come from which input. So,
+
+26
+00:01:12,534 --> 00:01:14,427
+for example, column a in the output is
+
+27
+00:01:14,427 --> 00:01:16,260
+blue because it comes from the first
+
+28
+00:01:16,260 --> 00:01:18,209
+input, but because the second input
+
+29
+00:01:18,209 --> 00:01:20,956
+doesn't have column a, all the values in
+
+30
+00:01:20,956 --> 00:01:24,052
+the output in column a will be NaN. And,
+
+31
+00:01:24,052 --> 00:01:25,460
+again, in this example there's only one
+
+32
+00:01:25,460 --> 00:01:27,783
+cell that actually contains a value, and
+
+33
+00:01:27,783 --> 00:01:30,792
+that's cell b1. This is, of course,
+
+34
+00:01:30,792 --> 00:01:33,679
+because both the first and the second
+
+35
+00:01:33,679 --> 00:01:37,724
+input have a column b and a row 1. Now
+
+36
+00:01:37,724 --> 00:01:40,384
+this is the third example, and here we're
+
+37
+00:01:40,384 --> 00:01:42,857
+operating on a DataFrame and a Series, and
+
+38
+00:01:42,857 --> 00:01:45,144
+in this case it works a little bit
+
+39
+00:01:45,144 --> 00:01:47,462
+differently. Now what I like to do in this
+
+40
+00:01:47,462 --> 00:01:49,747
+case, I like to rotate the Series in my
+
+41
+00:01:49,747 --> 00:01:52,113
+mind so that it's horizontal instead of
+
+42
+00:01:52,113 --> 00:01:53,929
+vertical. You see, in this operation the
+
+43
+00:01:53,929 --> 00:01:55,991
+indices of my series are matched on the
+
+44
+00:01:55,991 --> 00:01:58,346
+column labels of my DataFrame. You can
+
+45
+00:01:58,346 --> 00:02:00,887
+also see this in the output. There's a
+
+46
+00:02:00,887 --> 00:02:02,976
+column a in the output, and that comes
+
+47
+00:02:02,976 --> 00:02:05,868
+from the first label a from my Series. Now
+
+48
+00:02:05,868 --> 00:02:08,454
+these kinds of operations are executed per
+
+49
+00:02:08,454 --> 00:02:11,494
+row of my DataFrame. So we take the first
+
+50
+00:02:11,494 --> 00:02:13,824
+row of my DataFrame, apply the operation
+
+51
+00:02:13,824 --> 00:02:16,142
+with our Series, and that becomes the
+
+52
+00:02:16,142 --> 00:02:18,788
+first row of my results. Then we take the
+
+53
+00:02:18,788 --> 00:02:20,979
+second row of the DataFrame, apply the
+
+54
+00:02:20,979 --> 00:02:23,688
+operation with the Series again, and that
+
+55
+00:02:23,688 --> 00:02:26,310
+becomes the second row, etc., etc. Now
+
+56
+00:02:26,310 --> 00:02:28,707
+what if you want to apply a mathematical
+
+57
+00:02:28,707 --> 00:02:31,136
+operation on a DataFrame and a Series, but
+
+58
+00:02:31,136 --> 00:02:33,599
+you want to apply the Series to every
+
+59
+00:02:33,599 --> 00:02:36,008
+column instead of every row? Well, that's
+
+60
+00:02:36,008 --> 00:02:38,616
+not possible with the normal mathematical
+
+61
+00:02:38,616 --> 00:02:40,943
+operators, so for those cases Pandas gives
+
+62
+00:02:40,943 --> 00:02:43,447
+us a set of functions. All of these
+
+63
+00:02:43,447 --> 00:02:45,921
+support the axis argument so you can tell
+
+64
+00:02:45,921 --> 00:02:48,352
+them to operate on the columns instead of
+
+65
+00:02:48,352 --> 00:02:51,060
+the rows. There's df. add if you want to
+
+66
+00:02:51,060 --> 00:02:53,694
+add a Series to your DataFrame, and
+
+67
+00:02:53,694 --> 00:02:57,017
+there's df. radd if you want this, but you
+
+68
+00:02:57,017 --> 00:02:59,119
+need your DataFrame to be on the
+
+69
+00:02:59,119 --> 00:03:00,621
+right-hand side of the operator.
+
+70
+00:03:00,621 --> 00:03:03,076
+Similarly, there's df. sub for subtracting
+
+71
+00:03:03,076 --> 00:03:05,284
+something from your DataFrame, and there's
+
+72
+00:03:05,284 --> 00:03:07,851
+df. rsub if you want your DataFrame to be
+
+73
+00:03:07,851 --> 00:03:10,950
+on the right-hand side of the minus sign.
+
+74
+00:03:10,950 --> 00:03:13,641
+There's mul and rmul for multiplication,
+
+75
+00:03:13,641 --> 00:03:17,357
+and div and rdiv for division. There's
+
+76
+00:03:17,357 --> 00:03:20,366
+also floordiv and rfloordiv for Python
+
+77
+00:03:20,366 --> 00:03:22,580
+floor division, and finally there's
+
+78
+00:03:22,580 --> 00:03:26,049
+functions for powers and the modulo
+
+79
+00:03:26,049 --> 00:03:28,541
+function. Numpy offers us a large number
+
+80
+00:03:28,541 --> 00:03:30,507
+of mathematical functions that we can
+
+81
+00:03:30,507 --> 00:03:33,902
+apply directly on our DataFrame or Series,
+
+82
+00:03:33,902 --> 00:03:37,437
+and in numpy these functions are called
+
+83
+00:03:37,437 --> 00:03:40,198
+ufuncs, for universal functions. So here
+
+84
+00:03:40,198 --> 00:03:42,736
+in the example you see np. sin for
+
+85
+00:03:42,736 --> 00:03:46,314
+computing the sin function and np. exp for
+
+86
+00:03:46,314 --> 00:03:48,946
+computing the exponential function. Now
+
+87
+00:03:48,946 --> 00:03:51,529
+for a complete list of the ufuncs that
+
+88
+00:03:51,529 --> 00:03:56,649
+numpy has to offer, here's a link to the
+
+89
+00:03:56,649 --> 00:03:59,188
+numpy documentation. Now if you wrote a
+
+90
+00:03:59,188 --> 00:04:00,597
+function yourself that you want to apply
+
+91
+00:04:00,597 --> 00:04:02,620
+to your data, or maybe there's a function
+
+92
+00:04:02,620 --> 00:04:04,889
+from a different library that you want to
+
+93
+00:04:04,889 --> 00:04:06,913
+apply, there's the df. applymap function.
+
+94
+00:04:06,913 --> 00:04:10,179
+And what you do is you pass your function
+
+95
+00:04:10,179 --> 00:04:13,558
+to df. applymap, but you don't put
+
+96
+00:04:13,558 --> 00:04:16,339
+parentheses after your function name. So
+
+97
+00:04:16,339 --> 00:04:19,279
+this way you pass the function as an
+
+98
+00:04:19,279 --> 00:04:21,762
+object to applymap, and it will call
+
+99
+00:04:21,762 --> 00:04:24,178
+applymap for every cell in your DataFrame,
+
+100
+00:04:24,178 --> 00:04:27,703
+and this will return a new DataFrame with
+
+101
+00:04:27,703 --> 00:04:29,797
+the results. Now, an important thing to
+
+102
+00:04:29,797 --> 00:04:32,322
+realize is that you can also do this on a
+
+103
+00:04:32,322 --> 00:04:35,067
+Series object, but in that case the method
+
+104
+00:04:35,067 --> 00:04:39,281
+on the Series is called apply and not
+
+105
+00:04:39,281 --> 00:04:42,643
+applymap. And to make things a little bit
+
+106
+00:04:42,643 --> 00:04:45,073
+more confusing, a DataFrame also has an
+
+107
+00:04:45,073 --> 00:04:47,171
+apply method and you can also pass a
+
+108
+00:04:47,171 --> 00:04:49,384
+function to it, but this will apply the
+
+109
+00:04:49,384 --> 00:04:51,620
+function to every column of your DataFrame
+
+110
+00:04:51,620 --> 00:04:54,694
+or to every row of your DataFrame. So
+
+111
+00:04:54,694 --> 00:04:57,387
+DataFrame. apply and Series. apply have
+
+112
+00:04:57,387 --> 00:05:00,137
+the same name, but they do different
+
+113
+00:05:00,137 --> 00:05:02,240
+things, because Series. apply applies a
+
+114
+00:05:02,240 --> 00:05:05,801
+function to every value in every cell of
+
+115
+00:05:05,801 --> 00:05:08,094
+the Series, whereas DataFrame. apply
+
+116
+00:05:08,094 --> 00:05:11,014
+applies a function to whole rows and
+
+117
+00:05:11,014 --> 00:05:13,032
+columns. Now the first two examples here
+
+118
+00:05:13,032 --> 00:05:15,582
+show you how to apply a function for every
+
+119
+00:05:15,582 --> 00:05:18,496
+column of your DataFrame, and the third
+
+120
+00:05:18,496 --> 00:05:25,000
+example has the axis argument and this will make apply work for every row.
+

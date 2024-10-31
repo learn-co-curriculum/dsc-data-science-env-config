@@ -1,0 +1,88 @@
+1
+00:00:00,000 --> 00:00:03,061
+Hi, in this module we're going to take a
+
+2
+00:00:03,061 --> 00:00:07,011
+look at the common ways to clean up your
+
+3
+00:00:07,011 --> 00:00:10,101
+dataset. When you start working with a new
+
+4
+00:00:10,101 --> 00:00:12,394
+dataset, usually there are some steps you
+
+5
+00:00:12,394 --> 00:00:14,832
+want to take to tidy up. In this module, I
+
+6
+00:00:14,832 --> 00:00:17,131
+will go over some of the more common
+
+7
+00:00:17,131 --> 00:00:19,333
+scenarios and how to tackle them. To
+
+8
+00:00:19,333 --> 00:00:21,571
+start, we will see how to investigate
+
+9
+00:00:21,571 --> 00:00:23,690
+missing data, also called null values, and
+
+10
+00:00:23,690 --> 00:00:26,057
+we'll see how to detect these values and
+
+11
+00:00:26,057 --> 00:00:28,614
+take a closer look at them, how to remove
+
+12
+00:00:28,614 --> 00:00:31,231
+them, and how to replace them with other
+
+13
+00:00:31,231 --> 00:00:33,626
+values either by replacing all missing
+
+14
+00:00:33,626 --> 00:00:36,695
+values with a filler, or by interpolating
+
+15
+00:00:36,695 --> 00:00:39,778
+them from surrounding data. You might also
+
+16
+00:00:39,778 --> 00:00:42,390
+have some other unwanted data in your
+
+17
+00:00:42,390 --> 00:00:44,652
+dataset like outliers, or data that occurs
+
+18
+00:00:44,652 --> 00:00:46,937
+more than once, and of course we'll see
+
+19
+00:00:46,937 --> 00:00:49,254
+how to handle these as well. And we'll see
+
+20
+00:00:49,254 --> 00:00:51,308
+how to fix values that don't have the
+
+21
+00:00:51,308 --> 00:00:53,460
+correct data type, and finally, we'll take
+
+22
+00:00:53,460 --> 00:00:58,000
+a look at tidying up the index of your DataFrame.
+

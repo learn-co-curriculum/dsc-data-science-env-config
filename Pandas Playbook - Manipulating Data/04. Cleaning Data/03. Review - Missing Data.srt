@@ -1,0 +1,328 @@
+1
+00:00:00,432 --> 00:00:04,044
+So to detect the missing data in our
+
+2
+00:00:04,044 --> 00:00:06,753
+DataFrame, we use the function isnull,
+
+3
+00:00:06,753 --> 00:00:09,797
+which returns a Series that is true for
+
+4
+00:00:09,797 --> 00:00:13,028
+every cell that is not a number. And then
+
+5
+00:00:13,028 --> 00:00:15,298
+we can plug that into any, which returns
+
+6
+00:00:15,298 --> 00:00:18,725
+true if a column is true at least once. So
+
+7
+00:00:18,725 --> 00:00:22,162
+if we say df. isnull. any, we get an
+
+8
+00:00:22,162 --> 00:00:24,593
+overview of which columns have missing
+
+9
+00:00:24,593 --> 00:00:28,282
+values, or you can use the axis is 1
+
+10
+00:00:28,282 --> 00:00:31,552
+argument to show the rows that have
+
+11
+00:00:31,552 --> 00:00:34,363
+missing values. And then if you plug that
+
+12
+00:00:34,363 --> 00:00:36,866
+into an indexing, so here you see df.
+
+13
+00:00:36,866 --> 00:00:39,248
+float by square brackets, and then in the
+
+14
+00:00:39,248 --> 00:00:41,355
+square brackets the whole expression df.
+
+15
+00:00:41,355 --> 00:00:45,051
+isnull. any with axis is 1, this will
+
+16
+00:00:45,051 --> 00:00:48,982
+actually show you the contents of the rows
+
+17
+00:00:48,982 --> 00:00:52,534
+that have null values. Now there are two
+
+18
+00:00:52,534 --> 00:00:54,429
+other functions, notnull, which does
+
+19
+00:00:54,429 --> 00:00:57,239
+exactly the opposite of isnull, returns a
+
+20
+00:00:57,239 --> 00:01:00,522
+Series that's true for every cell that is
+
+21
+00:01:00,522 --> 00:01:03,146
+not null, and there's all that does the
+
+22
+00:01:03,146 --> 00:01:05,549
+opposite of any in the sense that it
+
+23
+00:01:05,549 --> 00:01:08,998
+returns true only if a column is
+
+24
+00:01:08,998 --> 00:01:12,474
+completely true. To remove parts of your
+
+25
+00:01:12,474 --> 00:01:15,289
+DataFrame, there's the function drop, and
+
+26
+00:01:15,289 --> 00:01:17,896
+of course you can use that function drop
+
+27
+00:01:17,896 --> 00:01:20,211
+to remove missing values as well. But
+
+28
+00:01:20,211 --> 00:01:22,366
+there's a more powerful function called
+
+29
+00:01:22,366 --> 00:01:24,720
+dropna, and this is actually a workhorse,
+
+30
+00:01:24,720 --> 00:01:27,516
+it can do a lot of things. First of all,
+
+31
+00:01:27,516 --> 00:01:30,353
+if you just call it like that, df. dropna,
+
+32
+00:01:30,353 --> 00:01:33,016
+it will drop all rows with null values
+
+33
+00:01:33,016 --> 00:01:35,743
+from your DataFrame. Or if you call it
+
+34
+00:01:35,743 --> 00:01:38,580
+with axis=1, it will drop all columns that
+
+35
+00:01:38,580 --> 00:01:40,955
+contain null values. Sometimes you only
+
+36
+00:01:40,955 --> 00:01:44,126
+want to drop those rows that have a lot of
+
+37
+00:01:44,126 --> 00:01:46,531
+missing values, and for that you can add
+
+38
+00:01:46,531 --> 00:01:49,065
+the argument thresh, which only keeps
+
+39
+00:01:49,065 --> 00:01:52,476
+those rows which have more values than the
+
+40
+00:01:52,476 --> 00:01:55,075
+threshold you specify. Then there's the
+
+41
+00:01:55,075 --> 00:01:57,906
+how argument, which lets you either drop
+
+42
+00:01:57,906 --> 00:02:00,983
+all the rows which are completely null, or
+
+43
+00:02:00,983 --> 00:02:03,931
+all the rows where one or more values are
+
+44
+00:02:03,931 --> 00:02:07,290
+null. So you can say how is all or how is
+
+45
+00:02:07,290 --> 00:02:09,555
+any. And finally, of course, there's the
+
+46
+00:02:09,555 --> 00:02:11,690
+inplace option which we've seen with
+
+47
+00:02:11,690 --> 00:02:15,690
+almost every function that you can use on
+
+48
+00:02:15,690 --> 00:02:18,220
+your DataFrame. Filling missing values you
+
+49
+00:02:18,220 --> 00:02:21,280
+do with the fillna method, and you can
+
+50
+00:02:21,280 --> 00:02:23,401
+just pass it the value and it will replace
+
+51
+00:02:23,401 --> 00:02:25,595
+all the null values in your DataFrame with
+
+52
+00:02:25,595 --> 00:02:28,303
+that value, so here it will replace all
+
+53
+00:02:28,303 --> 00:02:31,557
+the null values with the value 5. But
+
+54
+00:02:31,557 --> 00:02:34,702
+fillna can also accept a Series, and in
+
+55
+00:02:34,702 --> 00:02:36,694
+that case, you can, for example, compute
+
+56
+00:02:36,694 --> 00:02:39,668
+the mean for every column with df. mean,
+
+57
+00:02:39,668 --> 00:02:43,340
+pass that to fillna, and per column all
+
+58
+00:02:43,340 --> 00:02:46,231
+the nulls in each column will then be
+
+59
+00:02:46,231 --> 00:02:48,789
+replaced by the mean for that column. And
+
+60
+00:02:48,789 --> 00:02:51,089
+you can see that this is a very powerful
+
+61
+00:02:51,089 --> 00:02:54,530
+way to fill missing values with a
+
+62
+00:02:54,530 --> 00:02:57,233
+statistical estimate. Sometimes you want
+
+63
+00:02:57,233 --> 00:03:00,141
+to fill the null values with values based
+
+64
+00:03:00,141 --> 00:03:02,109
+on the surrounding data, and there's two
+
+65
+00:03:02,109 --> 00:03:04,650
+ways to do this. You can either use the
+
+66
+00:03:04,650 --> 00:03:07,439
+fillna method and you can give it a method
+
+67
+00:03:07,439 --> 00:03:10,658
+argument that tells it how to fill the
+
+68
+00:03:10,658 --> 00:03:13,110
+null values. Either give it the ffill
+
+69
+00:03:13,110 --> 00:03:15,417
+option, which fills forward, so when it
+
+70
+00:03:15,417 --> 00:03:18,609
+sees a null value it will fill that with
+
+71
+00:03:18,609 --> 00:03:21,407
+the previous value it has seen, or bfill
+
+72
+00:03:21,407 --> 00:03:24,010
+to fill backwards, which means if it sees
+
+73
+00:03:24,010 --> 00:03:27,717
+a null value it will take the next value
+
+74
+00:03:27,717 --> 00:03:31,410
+that it sees and fills backwards. Now of
+
+75
+00:03:31,410 --> 00:03:33,831
+course fillna also accepts the options
+
+76
+00:03:33,831 --> 00:03:36,880
+inplace and columns, as we've seen so far
+
+77
+00:03:36,880 --> 00:03:39,901
+with every other method. Now if you need a
+
+78
+00:03:39,901 --> 00:03:41,450
+little bit more advanced interpolation
+
+79
+00:03:41,450 --> 00:03:44,237
+where you do calculations based upon the
+
+80
+00:03:44,237 --> 00:03:46,309
+surrounding data, there's the df.
+
+81
+00:03:46,309 --> 00:03:48,977
+interpolate method which lets you do all
+
+82
+00:03:48,977 --> 00:03:54,000
+kinds of mathematic estimates for interpolating your data.
+

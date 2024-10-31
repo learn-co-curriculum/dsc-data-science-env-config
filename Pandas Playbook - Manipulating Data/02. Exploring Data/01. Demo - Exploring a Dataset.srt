@@ -1,0 +1,312 @@
+1
+00:00:00,565 --> 00:00:04,144
+So now let's start off with a short demo.
+
+2
+00:00:04,144 --> 00:00:07,026
+We'll look at some of the core Pandas
+
+3
+00:00:07,026 --> 00:00:09,256
+features that we can use to get a first
+
+4
+00:00:09,256 --> 00:00:11,293
+impression of the contents of a new
+
+5
+00:00:11,293 --> 00:00:13,557
+dataset, including the number of rows and
+
+6
+00:00:13,557 --> 00:00:17,383
+columns and their data types, as well as a
+
+7
+00:00:17,383 --> 00:00:20,357
+preview of the actual data itself. I've
+
+8
+00:00:20,357 --> 00:00:22,433
+started a Jupyter Notebook and navigated
+
+9
+00:00:22,433 --> 00:00:25,272
+to the directory where I keep the data for
+
+10
+00:00:25,272 --> 00:00:27,490
+this course. All files I use will be
+
+11
+00:00:27,490 --> 00:00:29,946
+available to download, so here you can see
+
+12
+00:00:29,946 --> 00:00:32,480
+a file called weather. csv, which I have
+
+13
+00:00:32,480 --> 00:00:35,252
+prepared so that it's really easy to read
+
+14
+00:00:35,252 --> 00:00:37,883
+with Pandas. So starting a notebook here
+
+15
+00:00:37,883 --> 00:00:40,849
+in this directory, I select Python 3, and
+
+16
+00:00:40,849 --> 00:00:42,874
+in the new notebook let's start by setting
+
+17
+00:00:42,874 --> 00:00:44,919
+the title and calling it Exploring a
+
+18
+00:00:44,919 --> 00:00:47,330
+dataset. Then I start the notebook by
+
+19
+00:00:47,330 --> 00:00:50,292
+loading the essentials I always need. I
+
+20
+00:00:50,292 --> 00:00:54,169
+import numpy as np, pandas as pd, and I
+
+21
+00:00:54,169 --> 00:00:56,597
+say matplotlib inline, which enables us to
+
+22
+00:00:56,597 --> 00:00:58,917
+view graphical output in the notebook.
+
+23
+00:00:58,917 --> 00:01:01,905
+Then I press Shift+Enter to execute the
+
+24
+00:01:01,905 --> 00:01:04,485
+cell. Next let's read the weather data
+
+25
+00:01:04,485 --> 00:01:07,760
+from the file. To do so, I call the pd.
+
+26
+00:01:07,760 --> 00:01:09,957
+read_csv method with the name of the
+
+27
+00:01:09,957 --> 00:01:12,152
+weather. csv file. I make a new variable,
+
+28
+00:01:12,152 --> 00:01:14,156
+df, which is short for DataFrame, and in
+
+29
+00:01:14,156 --> 00:01:16,707
+there I store the data from csv. Now I've
+
+30
+00:01:16,707 --> 00:01:19,409
+taken care to make it so that weather. csv
+
+31
+00:01:19,409 --> 00:01:22,166
+contains data that we can read with this
+
+32
+00:01:22,166 --> 00:01:23,900
+simple function call. In real-world
+
+33
+00:01:23,900 --> 00:01:25,650
+situations, reading your data will
+
+34
+00:01:25,650 --> 00:01:27,468
+probably be slightly more complicated, but
+
+35
+00:01:27,468 --> 00:01:29,772
+for now I'm going to ignore that and just
+
+36
+00:01:29,772 --> 00:01:31,867
+assume that you're getting your data
+
+37
+00:01:31,867 --> 00:01:33,706
+loaded into a pandas DataFrame
+
+38
+00:01:33,706 --> 00:01:35,600
+successfully. Let's go ahead and see what
+
+39
+00:01:35,600 --> 00:01:37,559
+this DataFrame looks like. I might start
+
+40
+00:01:37,559 --> 00:01:40,070
+by saying df. shape, and this is a
+
+41
+00:01:40,070 --> 00:01:42,272
+property, not a function, and it contains
+
+42
+00:01:42,272 --> 00:01:44,797
+a tuple telling us the size of the
+
+43
+00:01:44,797 --> 00:01:48,123
+DataFrame. So now we know that there are
+
+44
+00:01:48,123 --> 00:01:51,564
+8784 rows and 5 columns to the DataFrame.
+
+45
+00:01:51,564 --> 00:01:54,814
+But kinds of data are in there? Let's call
+
+46
+00:01:54,814 --> 00:01:57,475
+df. info. And this function call gives us
+
+47
+00:01:57,475 --> 00:01:59,841
+a little more information. It tells us
+
+48
+00:01:59,841 --> 00:02:02,702
+that our df object is of class DataFrame,
+
+49
+00:02:02,702 --> 00:02:05,690
+it has 5 columns, and it also tells us the
+
+50
+00:02:05,690 --> 00:02:07,995
+name and type of each column. Now this is
+
+51
+00:02:07,995 --> 00:02:10,233
+a very clean dataset in the sense that it
+
+52
+00:02:10,233 --> 00:02:12,013
+doesn't contain any empty or missing
+
+53
+00:02:12,013 --> 00:02:14,580
+values or errors, and you can see that
+
+54
+00:02:14,580 --> 00:02:18,135
+reflected in the fact that each column has
+
+55
+00:02:18,135 --> 00:02:21,769
+a value count of 8784. We have four
+
+56
+00:02:21,769 --> 00:02:24,416
+integer columns which cannot hold missing
+
+57
+00:02:24,416 --> 00:02:26,800
+values anyway, and a single floating-point
+
+58
+00:02:26,800 --> 00:02:29,801
+column. The info method also shows us the
+
+59
+00:02:29,801 --> 00:02:32,559
+amount of memory occupied by our data, and
+
+60
+00:02:32,559 --> 00:02:35,240
+the type of index for this DataFrame. In
+
+61
+00:02:35,240 --> 00:02:37,109
+this case, the index has been added
+
+62
+00:02:37,109 --> 00:02:39,857
+automatically by Pandas, so we have a
+
+63
+00:02:39,857 --> 00:02:43,751
+range index which is the default, a range
+
+64
+00:02:43,751 --> 00:02:47,695
+of numbers from 0 to 8783. Now I also like
+
+65
+00:02:47,695 --> 00:02:49,741
+to get an impression of what the actual
+
+66
+00:02:49,741 --> 00:02:52,131
+data looks like. For that, there are two
+
+67
+00:02:52,131 --> 00:02:54,403
+methods you should know about, head and
+
+68
+00:02:54,403 --> 00:02:56,791
+tail. As you probably can guess, df. head
+
+69
+00:02:56,791 --> 00:02:58,854
+shows you the first rows of data.
+
+70
+00:02:58,854 --> 00:03:01,506
+Executing it, we see that it shows five
+
+71
+00:03:01,506 --> 00:03:04,182
+rows, but I can optionally add the number
+
+72
+00:03:04,182 --> 00:03:07,140
+of lines to show as an argument. So let's
+
+73
+00:03:07,140 --> 00:03:10,045
+change this to 50 here, and now we see the
+
+74
+00:03:10,045 --> 00:03:13,038
+first 50 lines. In this case, we don't see
+
+75
+00:03:13,038 --> 00:03:15,058
+anything unexpected. The data does seem to
+
+76
+00:03:15,058 --> 00:03:17,159
+be sorted by month, day, and hour though.
+
+77
+00:03:17,159 --> 00:03:19,716
+Let's check the last few rows as well with
+
+78
+00:03:19,716 --> 00:03:25,000
+df. tail, and this seems to confirm that our data is nicely sorted.
+

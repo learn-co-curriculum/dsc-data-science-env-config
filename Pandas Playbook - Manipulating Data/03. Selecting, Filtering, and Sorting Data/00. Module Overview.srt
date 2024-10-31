@@ -1,0 +1,140 @@
+1
+00:00:00,000 --> 00:00:03,761
+Hi, in this module I'll introduce you to
+
+2
+00:00:03,761 --> 00:00:07,409
+several ways to select, retrieve, and sort
+
+3
+00:00:07,409 --> 00:00:10,640
+data with Pandas. After watching this
+
+4
+00:00:10,640 --> 00:00:14,057
+module, you'll be able to retrieve exactly
+
+5
+00:00:14,057 --> 00:00:16,880
+the subset of data you need from any
+
+6
+00:00:16,880 --> 00:00:18,479
+Pandas DataFrame. Usually there are
+
+7
+00:00:18,479 --> 00:00:20,343
+several different ways to accomplish this,
+
+8
+00:00:20,343 --> 00:00:23,209
+and I will compare and contrast those for
+
+9
+00:00:23,209 --> 00:00:25,507
+you. Most of this module is about
+
+10
+00:00:25,507 --> 00:00:28,095
+indexing, which is the primary way to get
+
+11
+00:00:28,095 --> 00:00:30,843
+to your data. There's a lot to say about
+
+12
+00:00:30,843 --> 00:00:32,324
+indexing, because Pandas offers many
+
+13
+00:00:32,324 --> 00:00:34,351
+powerful options there. I'll start by
+
+14
+00:00:34,351 --> 00:00:36,337
+covering the basics of the indexing
+
+15
+00:00:36,337 --> 00:00:38,704
+operator and what happens when you pass a
+
+16
+00:00:38,704 --> 00:00:41,406
+single value to it to select a single row
+
+17
+00:00:41,406 --> 00:00:43,531
+or column. Next we'll see what happens
+
+18
+00:00:43,531 --> 00:00:46,481
+when you index a DataFrame with a more
+
+19
+00:00:46,481 --> 00:00:49,126
+complex data structure like a list or
+
+20
+00:00:49,126 --> 00:00:51,510
+slice, and we'll see two DataFrame
+
+21
+00:00:51,510 --> 00:00:53,857
+attributes called loc and iloc, which
+
+22
+00:00:53,857 --> 00:00:56,582
+allow us to index in even more powerful
+
+23
+00:00:56,582 --> 00:00:59,070
+ways. Then we'll move on to Boolean
+
+24
+00:00:59,070 --> 00:01:00,860
+filtering, selecting data using a
+
+25
+00:01:00,860 --> 00:01:04,137
+comparison like all rows that have a value
+
+26
+00:01:04,137 --> 00:01:06,915
+higher than x, for example. We'll see that
+
+27
+00:01:06,915 --> 00:01:09,105
+you can assign values to the part of a
+
+28
+00:01:09,105 --> 00:01:11,850
+DataFrame that you select when you use an
+
+29
+00:01:11,850 --> 00:01:14,859
+index, and finally, I have a short word
+
+30
+00:01:14,859 --> 00:01:18,100
+about sorting. Let's start with a demo
+
+31
+00:01:18,100 --> 00:01:21,086
+about indexing. I'll start with the
+
+32
+00:01:21,086 --> 00:01:23,504
+basics, selecting single rows and columns,
+
+33
+00:01:23,504 --> 00:01:25,877
+and we'll gradually move towards more
+
+34
+00:01:25,877 --> 00:01:28,603
+complex use cases like indexing with
+
+35
+00:01:28,603 --> 00:01:33,000
+slices, lists, and indexing with loc and iloc.
+

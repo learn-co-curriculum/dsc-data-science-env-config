@@ -1,0 +1,224 @@
+1
+00:00:00,755 --> 00:00:03,269
+So the most straightforward thing you can
+
+2
+00:00:03,269 --> 00:00:06,072
+do with indexing is to pass a column
+
+3
+00:00:06,072 --> 00:00:08,344
+label, which will retrieve the column from
+
+4
+00:00:08,344 --> 00:00:10,679
+the DataFrame as a series. Note that there
+
+5
+00:00:10,679 --> 00:00:12,816
+has to be a column with that index label
+
+6
+00:00:12,816 --> 00:00:15,007
+in the DataFrame, so in the second example
+
+7
+00:00:15,007 --> 00:00:17,372
+here we are retrieving a column with label
+
+8
+00:00:17,372 --> 00:00:20,634
+5, not the column with position 5. To do
+
+9
+00:00:20,634 --> 00:00:23,491
+that, we need to use iloc. Once you
+
+10
+00:00:23,491 --> 00:00:26,023
+retrieve a column, you can use indexing on
+
+11
+00:00:26,023 --> 00:00:29,101
+that to retrieve one or more of its
+
+12
+00:00:29,101 --> 00:00:32,082
+values, and we call this chained indexing.
+
+13
+00:00:32,082 --> 00:00:34,308
+If you need to select multiple columns at
+
+14
+00:00:34,308 --> 00:00:36,677
+once, you can use indexing with a list.
+
+15
+00:00:36,677 --> 00:00:38,956
+note that we have double square brackets
+
+16
+00:00:38,956 --> 00:00:41,359
+in the example here. The outer ones are
+
+17
+00:00:41,359 --> 00:00:43,283
+for the indexing operator, and the inner
+
+18
+00:00:43,283 --> 00:00:46,055
+ones are for the list. And this way you
+
+19
+00:00:46,055 --> 00:00:48,557
+can retrieve any number of columns in any
+
+20
+00:00:48,557 --> 00:00:51,380
+order you like. You can also use a slice,
+
+21
+00:00:51,380 --> 00:00:54,382
+and this behaves differently in the sense
+
+22
+00:00:54,382 --> 00:00:57,175
+that it always selects rows instead of
+
+23
+00:00:57,175 --> 00:00:59,444
+columns. With slices you can select by
+
+24
+00:00:59,444 --> 00:01:01,815
+position or by name, and it both works.
+
+25
+00:01:01,815 --> 00:01:04,232
+And, by the way, you can use lists and
+
+26
+00:01:04,232 --> 00:01:06,391
+slices with all kinds of indexing, so you
+
+27
+00:01:06,391 --> 00:01:09,298
+can use them with loc and iloc, on Series
+
+28
+00:01:09,298 --> 00:01:12,827
+and DataFrame, and it all works. The
+
+29
+00:01:12,827 --> 00:01:15,704
+DataFrame has an attribute called loc
+
+30
+00:01:15,704 --> 00:01:18,440
+which allows for row-based indexing. In
+
+31
+00:01:18,440 --> 00:01:21,143
+the example here, we retrieve the row with
+
+32
+00:01:21,143 --> 00:01:23,327
+label San Marino. If you also want to
+
+33
+00:01:23,327 --> 00:01:25,436
+select the column you want to see, you can
+
+34
+00:01:25,436 --> 00:01:28,072
+pass it a second argument. So with loc you
+
+35
+00:01:28,072 --> 00:01:30,840
+can drill down to a single cell in a
+
+36
+00:01:30,840 --> 00:01:32,839
+single operation. By the way, both
+
+37
+00:01:32,839 --> 00:01:35,542
+arguments can be lists or slices as well,
+
+38
+00:01:35,542 --> 00:01:38,308
+so you can select multiple rows or columns
+
+39
+00:01:38,308 --> 00:01:40,558
+here. Now if you compare this to
+
+40
+00:01:40,558 --> 00:01:42,461
+column-based indexing, you see that we
+
+41
+00:01:42,461 --> 00:01:45,175
+first select a column and then the row,
+
+42
+00:01:45,175 --> 00:01:47,878
+and we need two operations for this. And
+
+43
+00:01:47,878 --> 00:01:50,178
+this is slightly less efficient, and in
+
+44
+00:01:50,178 --> 00:01:52,622
+fact, using loc is usually preferred. I'll
+
+45
+00:01:52,622 --> 00:01:56,594
+get back to this in a moment. Then there's
+
+46
+00:01:56,594 --> 00:01:58,583
+iloc, which also does row-based indexing,
+
+47
+00:01:58,583 --> 00:02:01,618
+but it works by position, whereas loc
+
+48
+00:02:01,618 --> 00:02:05,074
+works by label. So with iloc I can pass an
+
+49
+00:02:05,074 --> 00:02:07,258
+integer to retrieve a single row, and in
+
+50
+00:02:07,258 --> 00:02:09,396
+this case it will retrieve the sixth row
+
+51
+00:02:09,396 --> 00:02:11,501
+because, of course, we start counting at
+
+52
+00:02:11,501 --> 00:02:14,431
+0. Iloc also lets us select the column in
+
+53
+00:02:14,431 --> 00:02:16,293
+the same operation. Again, this will
+
+54
+00:02:16,293 --> 00:02:18,427
+select by position, so we're getting the
+
+55
+00:02:18,427 --> 00:02:20,455
+third column, and like I've said before,
+
+56
+00:02:20,455 --> 00:02:27,000
+you can use slices and lists as arguments both with loc and iloc.
+

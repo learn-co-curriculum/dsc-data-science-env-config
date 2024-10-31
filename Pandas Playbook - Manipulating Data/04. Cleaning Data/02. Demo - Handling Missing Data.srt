@@ -1,0 +1,772 @@
+1
+00:00:00,497 --> 00:00:03,677
+Let's begin cleaning up our dataset. I'll
+
+2
+00:00:03,677 --> 00:00:06,161
+start by completely removing the weather
+
+3
+00:00:06,161 --> 00:00:08,403
+type column because that one contains
+
+4
+00:00:08,403 --> 00:00:11,008
+coded values that are useless to me. I can
+
+5
+00:00:11,008 --> 00:00:13,378
+remove a column by calling drop on our
+
+6
+00:00:13,378 --> 00:00:15,328
+DataFrame, and by default drop removes
+
+7
+00:00:15,328 --> 00:00:18,344
+rows, so I should specify that I want to
+
+8
+00:00:18,344 --> 00:00:21,091
+remove a column. And here I always run
+
+9
+00:00:21,091 --> 00:00:23,583
+into the same pitfall. Actually the
+
+10
+00:00:23,583 --> 00:00:26,460
+argument is not called column but columns,
+
+11
+00:00:26,460 --> 00:00:29,730
+even if you only want to drop one column.
+
+12
+00:00:29,730 --> 00:00:32,512
+So let's fix this, very well, and this
+
+13
+00:00:32,512 --> 00:00:34,568
+gives a new DataFrame without the
+
+14
+00:00:34,568 --> 00:00:36,897
+WEATHER_CODE column. The fact that we see
+
+15
+00:00:36,897 --> 00:00:39,512
+a new DataFrame here might tell you
+
+16
+00:00:39,512 --> 00:00:41,654
+something. The original DataFrame hasn't
+
+17
+00:00:41,654 --> 00:00:44,168
+been changed. To actually drop the column
+
+18
+00:00:44,168 --> 00:00:46,489
+from our original DataFrame, we add the
+
+19
+00:00:46,489 --> 00:00:49,181
+familiar inplace parameter which we've
+
+20
+00:00:49,181 --> 00:00:52,701
+already used with other methods. Now the
+
+21
+00:00:52,701 --> 00:00:54,769
+most straightforward approach to dealing
+
+22
+00:00:54,769 --> 00:00:57,021
+with missing values is to just remove
+
+23
+00:00:57,021 --> 00:00:59,044
+them. Now in many cases this is not
+
+24
+00:00:59,044 --> 00:01:00,596
+actually necessary because most
+
+25
+00:01:00,596 --> 00:01:03,195
+calculations and plots handle null values
+
+26
+00:01:03,195 --> 00:01:05,659
+in the way you probably want them to.
+
+27
+00:01:05,659 --> 00:01:07,459
+Taking the mean, for example, simply
+
+28
+00:01:07,459 --> 00:01:09,906
+calculates the mean from the data points
+
+29
+00:01:09,906 --> 00:01:12,344
+that are actually there, ignoring any null
+
+30
+00:01:12,344 --> 00:01:14,772
+values, so you might just be completely
+
+31
+00:01:14,772 --> 00:01:17,815
+okay with null values in your datasets.
+
+32
+00:01:17,815 --> 00:01:21,316
+Now in case of the MIN_GROUND_TEMP, I only
+
+33
+00:01:21,316 --> 00:01:24,046
+have a value once every six rows, and
+
+34
+00:01:24,046 --> 00:01:26,594
+removing all rows with null value is not
+
+35
+00:01:26,594 --> 00:01:29,552
+an option at all. But I may want to fill
+
+36
+00:01:29,552 --> 00:01:31,763
+in this data with something else. Pandas
+
+37
+00:01:31,763 --> 00:01:34,711
+offers a function to do this for us called
+
+38
+00:01:34,711 --> 00:01:37,936
+fillna. The simple way to use it is to
+
+39
+00:01:37,936 --> 00:01:41,014
+just provide a value, let's say 0, and
+
+40
+00:01:41,014 --> 00:01:43,892
+this fills every missing value with 0.
+
+41
+00:01:43,892 --> 00:01:45,606
+Now, of course, this is not actually what
+
+42
+00:01:45,606 --> 00:01:48,521
+I want in this case, I want to fill the
+
+43
+00:01:48,521 --> 00:01:50,734
+missing entries based on the actual
+
+44
+00:01:50,734 --> 00:01:52,981
+measurements. Fortunately, fillna can also
+
+45
+00:01:52,981 --> 00:01:56,651
+do this by saying method is ffill, which
+
+46
+00:01:56,651 --> 00:01:59,332
+stands for forward fill, and Pandas will
+
+47
+00:01:59,332 --> 00:02:01,772
+take each measurement and fill the empty
+
+48
+00:02:01,772 --> 00:02:04,355
+slots after it. You can see the result
+
+49
+00:02:04,355 --> 00:02:06,426
+here. Each measurement is repeated six
+
+50
+00:02:06,426 --> 00:02:08,873
+times. Only the thing is that the
+
+51
+00:02:08,873 --> 00:02:11,483
+measurements are taken over the previous 6
+
+52
+00:02:11,483 --> 00:02:14,373
+hours, and as a result our first five
+
+53
+00:02:14,373 --> 00:02:17,106
+cells are still empty, so we actually want
+
+54
+00:02:17,106 --> 00:02:19,983
+to fill backwards. For this we can use
+
+55
+00:02:19,983 --> 00:02:22,587
+bfill. Very well. This looks better. Let's
+
+56
+00:02:22,587 --> 00:02:25,253
+add the parameter inplace is True to
+
+57
+00:02:25,253 --> 00:02:27,538
+update our DataFrame with these values.
+
+58
+00:02:27,538 --> 00:02:29,757
+And let's check for the columns with null
+
+59
+00:02:29,757 --> 00:02:32,806
+values again, and now it tells us that the
+
+60
+00:02:32,806 --> 00:02:35,111
+MIN_TEMP_GROUND column doesn't have any
+
+61
+00:02:35,111 --> 00:02:37,683
+null values anymore. So that's nice, we
+
+62
+00:02:37,683 --> 00:02:39,763
+seem to be about halfway done, because
+
+63
+00:02:39,763 --> 00:02:42,265
+almost half of our columns are now False
+
+64
+00:02:42,265 --> 00:02:45,536
+here. And as a side note, in case you need
+
+65
+00:02:45,536 --> 00:02:47,577
+more sophisticated interpolation of your
+
+66
+00:02:47,577 --> 00:02:50,463
+values, instead of just copying a value
+
+67
+00:02:50,463 --> 00:02:53,388
+across a number of missing values, there's
+
+68
+00:02:53,388 --> 00:02:56,088
+also the interpolate method. And the
+
+69
+00:02:56,088 --> 00:02:59,349
+interpolate method will do all kinds of
+
+70
+00:02:59,349 --> 00:03:01,487
+interpolation. I encourage you to try out
+
+71
+00:03:01,487 --> 00:03:04,061
+this method on the MIN_GROUND_TEMP and see
+
+72
+00:03:04,061 --> 00:03:07,587
+what kind of results you get. Now let's go
+
+73
+00:03:07,587 --> 00:03:09,773
+back to the notebook and let's inspect the
+
+74
+00:03:09,773 --> 00:03:12,123
+missing values we still have left in our
+
+75
+00:03:12,123 --> 00:03:14,546
+data. Remember, we can get the rows with
+
+76
+00:03:14,546 --> 00:03:16,619
+missing values by using the same
+
+77
+00:03:16,619 --> 00:03:18,636
+expression we already have, but specifying
+
+78
+00:03:18,636 --> 00:03:21,488
+the other axis, and we can use that to
+
+79
+00:03:21,488 --> 00:03:24,062
+select the actual data by putting it
+
+80
+00:03:24,062 --> 00:03:26,396
+inside square brackets. And this shows us
+
+81
+00:03:26,396 --> 00:03:28,736
+the rows with missing values we have left.
+
+82
+00:03:28,736 --> 00:03:31,355
+Scrolling to the right a bit, we see that
+
+83
+00:03:31,355 --> 00:03:34,029
+most of the time all the values are
+
+84
+00:03:34,029 --> 00:03:37,443
+missing in the last seven columns. Now to
+
+85
+00:03:37,443 --> 00:03:40,281
+look at the date where this occurs I can
+
+86
+00:03:40,281 --> 00:03:42,381
+use indexing with loc, and this selects
+
+87
+00:03:42,381 --> 00:03:44,620
+only the dates from these rows, and I'm
+
+88
+00:03:44,620 --> 00:03:47,679
+going to say. value_counts. And now we see
+
+89
+00:03:47,679 --> 00:03:50,270
+that there are three days in August where
+
+90
+00:03:50,270 --> 00:03:52,523
+there are null values for a large part of
+
+91
+00:03:52,523 --> 00:03:55,000
+the day, and to me this looks like there
+
+92
+00:03:55,000 --> 00:03:56,949
+were technical problems at the weather
+
+93
+00:03:56,949 --> 00:03:59,543
+station at that time. So let's just assume
+
+94
+00:03:59,543 --> 00:04:02,132
+that for my data science project I need
+
+95
+00:04:02,132 --> 00:04:04,087
+temperature, pressure, and weather types,
+
+96
+00:04:04,087 --> 00:04:07,452
+so these rows will now be useless to me
+
+97
+00:04:07,452 --> 00:04:09,830
+because they are missing for large parts
+
+98
+00:04:09,830 --> 00:04:13,034
+of the date. And I see two possible
+
+99
+00:04:13,034 --> 00:04:16,091
+solutions. Either remove this data or try
+
+100
+00:04:16,091 --> 00:04:18,618
+to fill it in some way. Now let's start
+
+101
+00:04:18,618 --> 00:04:21,460
+with the first one. To simply drop all
+
+102
+00:04:21,460 --> 00:04:24,897
+rows that contain null values, we say df.
+
+103
+00:04:24,897 --> 00:04:27,243
+dropna. Now I don't want to do this
+
+104
+00:04:27,243 --> 00:04:29,160
+inplace because I want to show another
+
+105
+00:04:29,160 --> 00:04:31,611
+approach in a moment, so I don't want to
+
+106
+00:04:31,611 --> 00:04:34,203
+mess up my data. Instead I wail save the
+
+107
+00:04:34,203 --> 00:04:36,306
+output from this command into a new
+
+108
+00:04:36,306 --> 00:04:38,558
+variable called nulls_dropped. So this
+
+109
+00:04:38,558 --> 00:04:41,486
+variable will contain a new DataFrame
+
+110
+00:04:41,486 --> 00:04:44,179
+where all the rows with null values have
+
+111
+00:04:44,179 --> 00:04:46,574
+been dropped. And calling info on it now
+
+112
+00:04:46,574 --> 00:04:48,870
+shows that all columns have the same count
+
+113
+00:04:48,870 --> 00:04:52,150
+of non-null values, but note that the
+
+114
+00:04:52,150 --> 00:04:56,040
+index still goes from 0 to 8783. So the
+
+115
+00:04:56,040 --> 00:04:58,486
+side effect of this approach is that now
+
+116
+00:04:58,486 --> 00:05:01,196
+our data isn't nicely continuous anymore.
+
+117
+00:05:01,196 --> 00:05:06,993
+If I ask for rows 5300 to 5310, we can see
+
+118
+00:05:06,993 --> 00:05:09,506
+here that the index is discontinuous. It
+
+119
+00:05:09,506 --> 00:05:13,383
+jumps from 5305 to 5318, because that is
+
+120
+00:05:13,383 --> 00:05:17,143
+where we just removed some rows. You can
+
+121
+00:05:17,143 --> 00:05:20,550
+also see that the row with position 5306
+
+122
+00:05:20,550 --> 00:05:23,944
+now has index 5318, which is kind of
+
+123
+00:05:23,944 --> 00:05:27,323
+weird. We'll see how to fix this later.
+
+124
+00:05:27,323 --> 00:05:30,520
+Now a very useful option with dropna is
+
+125
+00:05:30,520 --> 00:05:32,836
+thresh. It allows me to determine how many
+
+126
+00:05:32,836 --> 00:05:35,771
+values must be present in a row to keep it
+
+127
+00:05:35,771 --> 00:05:38,829
+in my dataset. So here, again, I have the
+
+128
+00:05:38,829 --> 00:05:41,233
+original dataset df and I call dropna on
+
+129
+00:05:41,233 --> 00:05:44,108
+it, but I say that I want to drop only
+
+130
+00:05:44,108 --> 00:05:46,401
+those rows that have less than seven
+
+131
+00:05:46,401 --> 00:05:48,741
+measurements in them, and then I use
+
+132
+00:05:48,741 --> 00:05:51,880
+isnull and any to inspect the rows with
+
+133
+00:05:51,880 --> 00:05:54,520
+null values. And as you can see, now we
+
+134
+00:05:54,520 --> 00:05:56,904
+have only two rows left, and only the last
+
+135
+00:05:56,904 --> 00:05:59,419
+five columns are null. Now these are
+
+136
+00:05:59,419 --> 00:06:02,590
+weather types and contain only 1 or a 0
+
+137
+00:06:02,590 --> 00:06:04,937
+depending on what is observed, so you
+
+138
+00:06:04,937 --> 00:06:07,138
+could, for example, use fillna to fill
+
+139
+00:06:07,138 --> 00:06:09,530
+these cells with zeros. Please take a
+
+140
+00:06:09,530 --> 00:06:12,052
+moment to try this for yourself. Now,
+
+141
+00:06:12,052 --> 00:06:13,834
+again, in this case we've dropped some
+
+142
+00:06:13,834 --> 00:06:16,122
+rows and our index will not be continuous
+
+143
+00:06:16,122 --> 00:06:18,830
+anymore. So let's take a look at another
+
+144
+00:06:18,830 --> 00:06:21,140
+approach, which is to fill in our missing
+
+145
+00:06:21,140 --> 00:06:23,284
+data instead of dropping it. I haven't
+
+146
+00:06:23,284 --> 00:06:25,861
+used an inplace parameter, so our original
+
+147
+00:06:25,861 --> 00:06:27,992
+DataFrame, df, is still intact. The
+
+148
+00:06:27,992 --> 00:06:30,433
+expression to select all rows with null
+
+149
+00:06:30,433 --> 00:06:32,780
+values should by now be familiar.
+
+150
+00:06:32,780 --> 00:06:35,177
+Remember, this returns a series of
+
+151
+00:06:35,177 --> 00:06:38,371
+Booleans, which is true for any row with
+
+152
+00:06:38,371 --> 00:06:42,040
+null values. Let me just store this in a
+
+153
+00:06:42,040 --> 00:06:44,180
+variable, rows_to_fill, and you can use it
+
+154
+00:06:44,180 --> 00:06:46,028
+immediately to look at the rows in
+
+155
+00:06:46,028 --> 00:06:48,323
+question. These are exactly the rows we
+
+156
+00:06:48,323 --> 00:06:50,693
+were dropping from the DataFrame a moment
+
+157
+00:06:50,693 --> 00:06:53,379
+ago. Now a very common approach here is to
+
+158
+00:06:53,379 --> 00:06:55,833
+fill the empty cells with some kind of
+
+159
+00:06:55,833 --> 00:06:57,914
+statistical estimate of what the value
+
+160
+00:06:57,914 --> 00:07:00,689
+might be, like the mean of the column.
+
+161
+00:07:00,689 --> 00:07:03,294
+Remember, we can calculate the mean of
+
+162
+00:07:03,294 --> 00:07:06,073
+each column with df. mean, and I can
+
+163
+00:07:06,073 --> 00:07:08,520
+simply pass this to fillna to use these
+
+164
+00:07:08,520 --> 00:07:10,794
+mean values instead of the missing cells.
+
+165
+00:07:10,794 --> 00:07:13,453
+And let's store this in a variable again.
+
+166
+00:07:13,453 --> 00:07:15,351
+Now, of course, I want to see what the
+
+167
+00:07:15,351 --> 00:07:17,520
+affected rows look like, but I cannot ask
+
+168
+00:07:17,520 --> 00:07:20,171
+nulls_filled for its rows which used to be
+
+169
+00:07:20,171 --> 00:07:23,900
+null. Luckily, I stored these rows in a
+
+170
+00:07:23,900 --> 00:07:25,980
+variable, rows_to_fill. Okay, so this
+
+171
+00:07:25,980 --> 00:07:28,938
+looks nice, but now the last six rows
+
+172
+00:07:28,938 --> 00:07:31,575
+don't contain zeros and ones, but some
+
+173
+00:07:31,575 --> 00:07:34,230
+floating points, and that's not what I
+
+174
+00:07:34,230 --> 00:07:36,913
+want. So in the cases of VIEW_RANGE and
+
+175
+00:07:36,913 --> 00:07:39,675
+CLOUD I'm okay with those rows having a
+
+176
+00:07:39,675 --> 00:07:42,823
+mean value, but in case of MIST, RAIN,
+
+177
+00:07:42,823 --> 00:07:45,729
+SNOW, THUNDER, and ICE I just want to see
+
+178
+00:07:45,729 --> 00:07:48,126
+ones and zeros. So in this case it might
+
+179
+00:07:48,126 --> 00:07:50,408
+be better to use the mode instead of the
+
+180
+00:07:50,408 --> 00:07:53,000
+mean, and the mode of our data is the most
+
+181
+00:07:53,000 --> 00:07:55,750
+occurring value. Now there is a trick to
+
+182
+00:07:55,750 --> 00:07:59,089
+using it though, and we can read it in the
+
+183
+00:07:59,089 --> 00:08:01,379
+documentation of the mode method. And here
+
+184
+00:08:01,379 --> 00:08:03,946
+is a line that actually shows us exactly
+
+185
+00:08:03,946 --> 00:08:06,580
+how to call mode with fillna. So let's
+
+186
+00:08:06,580 --> 00:08:09,619
+copy this line and put it in the notebook,
+
+187
+00:08:09,619 --> 00:08:12,742
+and now we can see that our data has been
+
+188
+00:08:12,742 --> 00:08:14,979
+filled in quite nicely. So at this point
+
+189
+00:08:14,979 --> 00:08:16,954
+I'm satisfied, and I want to store this
+
+190
+00:08:16,954 --> 00:08:19,088
+result back in the original DataFrame. So
+
+191
+00:08:19,088 --> 00:08:22,028
+I'm just going to use inplace is True to
+
+192
+00:08:22,028 --> 00:08:23,916
+actually update our DataFrame, so this
+
+193
+00:08:23,916 --> 00:08:29,000
+will be the version we will be working with from here.
+

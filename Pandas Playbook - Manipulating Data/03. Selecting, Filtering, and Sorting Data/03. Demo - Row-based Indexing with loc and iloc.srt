@@ -1,0 +1,420 @@
+1
+00:00:00,498 --> 00:00:03,739
+So with the regular indexing operator on a
+
+2
+00:00:03,739 --> 00:00:06,198
+DataFrame, you can select one or more
+
+3
+00:00:06,198 --> 00:00:08,436
+columns. But what if you want to select
+
+4
+00:00:08,436 --> 00:00:11,018
+just a row or several rows? We've seen
+
+5
+00:00:11,018 --> 00:00:13,945
+that you can use slicing, but there are
+
+6
+00:00:13,945 --> 00:00:15,706
+several other possibilities that we
+
+7
+00:00:15,706 --> 00:00:18,122
+haven't seen yet. Before I start, let's
+
+8
+00:00:18,122 --> 00:00:20,851
+make a new DataFrame to play with. This
+
+9
+00:00:20,851 --> 00:00:23,298
+time I will create a DataFrame using
+
+10
+00:00:23,298 --> 00:00:25,147
+Python data structures. You can type along
+
+11
+00:00:25,147 --> 00:00:26,747
+if you like, or you can download the
+
+12
+00:00:26,747 --> 00:00:28,398
+notebook from the course materials. What
+
+13
+00:00:28,398 --> 00:00:31,327
+we have here is a list of some of the
+
+14
+00:00:31,327 --> 00:00:33,551
+smallest capital cities in the world. I'm
+
+15
+00:00:33,551 --> 00:00:35,600
+creating a DataFrame by calling pd.
+
+16
+00:00:35,600 --> 00:00:38,524
+DataFrame, and I pass the list of cities
+
+17
+00:00:38,524 --> 00:00:41,460
+as a list of lists. So these outer
+
+18
+00:00:41,460 --> 00:00:44,049
+brackets contain five lists, and each of
+
+19
+00:00:44,049 --> 00:00:46,460
+those lists is a row containing the data
+
+20
+00:00:46,460 --> 00:00:49,057
+for a city. For example, we see that the
+
+21
+00:00:49,057 --> 00:00:51,111
+country of Tuvalu has a capital city
+
+22
+00:00:51,111 --> 00:00:54,513
+called Funafuti with about 4. 5 thousand
+
+23
+00:00:54,513 --> 00:00:57,601
+inhabitants, making up 45% of the total
+
+24
+00:00:57,601 --> 00:01:00,272
+population of the country. As a second
+
+25
+00:01:00,272 --> 00:01:02,234
+argument, I'm passing a list of countries
+
+26
+00:01:02,234 --> 00:01:04,378
+which will become the row index, and I'm
+
+27
+00:01:04,378 --> 00:01:06,629
+giving an argument columns where I set the
+
+28
+00:01:06,629 --> 00:01:09,470
+name of the columns, which is also a list.
+
+29
+00:01:09,470 --> 00:01:12,559
+So now when I say capitals, this is what
+
+30
+00:01:12,559 --> 00:01:15,082
+our data looks like. Now I want to
+
+31
+00:01:15,082 --> 00:01:17,094
+introduce two other ways to retrieve data
+
+32
+00:01:17,094 --> 00:01:19,206
+from this DataFrame. First of all, there's
+
+33
+00:01:19,206 --> 00:01:21,705
+the loc attribute, which allows us to do
+
+34
+00:01:21,705 --> 00:01:23,791
+row-based indexing as opposed to
+
+35
+00:01:23,791 --> 00:01:26,049
+column-based indexing which you've seen in
+
+36
+00:01:26,049 --> 00:01:28,411
+the previous clips. In this case, I also
+
+37
+00:01:28,411 --> 00:01:31,011
+use square brackets, and I start with
+
+38
+00:01:31,011 --> 00:01:34,166
+selecting a row, let's say Nauru. And here
+
+39
+00:01:34,166 --> 00:01:36,215
+loc allows me to immediately select a
+
+40
+00:01:36,215 --> 00:01:38,486
+column as well, inside the brackets. So
+
+41
+00:01:38,486 --> 00:01:40,925
+let's ask for the population of the
+
+42
+00:01:40,925 --> 00:01:46,347
+capital of Nauru by typing a comma and
+
+43
+00:01:46,347 --> 00:01:49,013
+population within quotes. Now remember
+
+44
+00:01:49,013 --> 00:01:50,975
+that to retrieve the same data from the
+
+45
+00:01:50,975 --> 00:01:52,851
+DataFrame with column-based indexing, we
+
+46
+00:01:52,851 --> 00:01:56,081
+have to first select the Population column
+
+47
+00:01:56,081 --> 00:01:58,734
+and then drill down into the row for
+
+48
+00:01:58,734 --> 00:02:00,486
+Nauru. And this is called chained
+
+49
+00:02:00,486 --> 00:02:02,189
+indexing, and it takes two operations,
+
+50
+00:02:02,189 --> 00:02:04,769
+where the line with loc only takes a
+
+51
+00:02:04,769 --> 00:02:07,070
+single operation, and for this reason the
+
+52
+00:02:07,070 --> 00:02:09,480
+use of loc is usually preferred over
+
+53
+00:02:09,480 --> 00:02:11,380
+chained indexing, and I'll get back to
+
+54
+00:02:11,380 --> 00:02:13,960
+this point in a moment. Both arguments of
+
+55
+00:02:13,960 --> 00:02:17,609
+loc also support lists and slices, so for
+
+56
+00:02:17,609 --> 00:02:20,847
+example, here I use a slice to select the
+
+57
+00:02:20,847 --> 00:02:24,571
+rows for Palau up to Nauru, and the list
+
+58
+00:02:24,571 --> 00:02:27,844
+to select two specific rows. Of course,
+
+59
+00:02:27,844 --> 00:02:30,288
+you can also use a list as the first
+
+60
+00:02:30,288 --> 00:02:32,087
+argument and the slice as the second.
+
+61
+00:02:32,087 --> 00:02:34,303
+Please take a moment to try and verify for
+
+62
+00:02:34,303 --> 00:02:36,301
+yourself that this works. And, again, you
+
+63
+00:02:36,301 --> 00:02:38,485
+can do this with column-based indexing as
+
+64
+00:02:38,485 --> 00:02:41,267
+well, but it will take two separate steps,
+
+65
+00:02:41,267 --> 00:02:43,595
+where this is a single operation. Now by
+
+66
+00:02:43,595 --> 00:02:46,541
+the way, you can also leave out the second
+
+67
+00:02:46,541 --> 00:02:48,942
+argument altogether. So in this example
+
+68
+00:02:48,942 --> 00:02:52,060
+I'm using capitals. loc to quickly get the
+
+69
+00:02:52,060 --> 00:02:55,067
+rows for San Marino and the Vatican. Now
+
+70
+00:02:55,067 --> 00:02:57,482
+one thing you should realize is that loc
+
+71
+00:02:57,482 --> 00:03:00,341
+only indexes by label, not by position. To
+
+72
+00:03:00,341 --> 00:03:03,233
+retrieve items by position, we use another
+
+73
+00:03:03,233 --> 00:03:05,563
+attribute called iloc. It works in a
+
+74
+00:03:05,563 --> 00:03:08,213
+similar way, we start by selecting one or
+
+75
+00:03:08,213 --> 00:03:10,843
+more rows, but this time we use integers
+
+76
+00:03:10,843 --> 00:03:16,220
+to denote the positions of the rows we
+
+77
+00:03:16,220 --> 00:03:19,183
+want. And, again, we can add a second
+
+78
+00:03:19,183 --> 00:03:21,394
+argument here to select columns. I can
+
+79
+00:03:21,394 --> 00:03:23,695
+select all columns except the first by
+
+80
+00:03:23,695 --> 00:03:26,950
+using a slice that starts at 1. Now with
+
+81
+00:03:26,950 --> 00:03:29,815
+iloc, indexing is strictly location based.
+
+82
+00:03:29,815 --> 00:03:32,043
+So even if you have an integer index and
+
+83
+00:03:32,043 --> 00:03:34,425
+there is no row with index 4, or the
+
+84
+00:03:34,425 --> 00:03:36,698
+indices are not nicely ordered, this line
+
+85
+00:03:36,698 --> 00:03:39,633
+of code will always select the fifth row
+
+86
+00:03:39,633 --> 00:03:42,168
+and the second row. Now as a final
+
+87
+00:03:42,168 --> 00:03:43,965
+example, let me show you, you can do
+
+88
+00:03:43,965 --> 00:03:46,242
+something with iloc which you cannot do
+
+89
+00:03:46,242 --> 00:03:48,246
+with the column-based indexing from
+
+90
+00:03:48,246 --> 00:03:51,018
+previous clips. It allows us to select a
+
+91
+00:03:51,018 --> 00:03:53,181
+column by position. Let me show you. I
+
+92
+00:03:53,181 --> 00:03:55,065
+start by selecting all rows by using only
+
+93
+00:03:55,065 --> 00:03:57,691
+a colon, which is a slice that selects the
+
+94
+00:03:57,691 --> 00:04:00,215
+whole range, and then I can select column
+
+95
+00:04:00,215 --> 00:04:03,533
+2 for example. So loc and iloc allow you
+
+96
+00:04:03,533 --> 00:04:06,263
+to select rows, columns, and even single
+
+97
+00:04:06,263 --> 00:04:09,129
+cells with a single operation. You can use
+
+98
+00:04:09,129 --> 00:04:11,077
+two arguments. The first one selects rows
+
+99
+00:04:11,077 --> 00:04:13,269
+and the second one selects columns, and
+
+100
+00:04:13,269 --> 00:04:15,983
+the big difference between the two is that
+
+101
+00:04:15,983 --> 00:04:19,225
+loc uses labels and iloc uses positions.
+
+102
+00:04:19,225 --> 00:04:22,216
+In other words, it uses integers to denote
+
+103
+00:04:22,216 --> 00:04:25,100
+the position of a row or column. With loc,
+
+104
+00:04:25,100 --> 00:04:27,669
+of course, you can also use integers, but
+
+105
+00:04:27,669 --> 00:04:33,000
+only if your actual index labels are integers.
+

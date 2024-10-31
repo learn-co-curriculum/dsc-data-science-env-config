@@ -1,0 +1,576 @@
+1
+00:00:00,487 --> 00:00:04,598
+To convert the type of a Pandas column, we
+
+2
+00:00:04,598 --> 00:00:07,654
+can use the astype function, and we pass
+
+3
+00:00:07,654 --> 00:00:10,263
+it the date type we want to convert to. So
+
+4
+00:00:10,263 --> 00:00:12,917
+in this example here we take a column, in
+
+5
+00:00:12,917 --> 00:00:15,214
+this case we take the column called
+
+6
+00:00:15,214 --> 00:00:17,683
+some_column, and we call. astype(int) on
+
+7
+00:00:17,683 --> 00:00:21,059
+it to convert all the values to ints.
+
+8
+00:00:21,059 --> 00:00:23,200
+Alternatively, you can convert multiple
+
+9
+00:00:23,200 --> 00:00:26,123
+columns into different data types by
+
+10
+00:00:26,123 --> 00:00:29,962
+passing a dict into astype. So here I call
+
+11
+00:00:29,962 --> 00:00:32,769
+astype on the DataFrame as a whole by
+
+12
+00:00:32,769 --> 00:00:35,010
+saying df. astype, and I pass it a
+
+13
+00:00:35,010 --> 00:00:36,913
+dictionary that says I want to convert the
+
+14
+00:00:36,913 --> 00:00:39,919
+name column to a string and the age column
+
+15
+00:00:39,919 --> 00:00:42,786
+to an int. Now it's very important to
+
+16
+00:00:42,786 --> 00:00:46,143
+realize that all of this only works if all
+
+17
+00:00:46,143 --> 00:00:49,270
+values in the column actually fit into the
+
+18
+00:00:49,270 --> 00:00:52,027
+target data type. So let's say that the
+
+19
+00:00:52,027 --> 00:00:54,561
+age column in this example has only one
+
+20
+00:00:54,561 --> 00:00:57,189
+value that's not convertible to an int,
+
+21
+00:00:57,189 --> 00:01:00,380
+let's say it contains a character. In that
+
+22
+00:01:00,380 --> 00:01:03,458
+case, the df. astype will raise an
+
+23
+00:01:03,458 --> 00:01:05,445
+exception. So you'll have to make sure
+
+24
+00:01:05,445 --> 00:01:07,249
+that all your values actually conform to
+
+25
+00:01:07,249 --> 00:01:11,397
+the new data type before you try to call
+
+26
+00:01:11,397 --> 00:01:14,529
+astype. Now what kind of data types can
+
+27
+00:01:14,529 --> 00:01:16,957
+you pass to astype? Well, there's four
+
+28
+00:01:16,957 --> 00:01:19,363
+broad categories you have to be aware of.
+
+29
+00:01:19,363 --> 00:01:22,059
+First of all, there's strings. These are
+
+30
+00:01:22,059 --> 00:01:25,046
+nullable, so these cells can be empty, and
+
+31
+00:01:25,046 --> 00:01:28,299
+the string data type can be denoted in two
+
+32
+00:01:28,299 --> 00:01:31,335
+ways, you can just say str, which means
+
+33
+00:01:31,335 --> 00:01:34,342
+the Python string data type, or you can
+
+34
+00:01:34,342 --> 00:01:36,901
+say np. object. It doesn't really matter
+
+35
+00:01:36,901 --> 00:01:40,069
+which of these two you pass to the astype
+
+36
+00:01:40,069 --> 00:01:42,831
+method, because in any case the type of
+
+37
+00:01:42,831 --> 00:01:45,848
+your column will be objects, but it's good
+
+38
+00:01:45,848 --> 00:01:49,249
+to realize that in a sense these are
+
+39
+00:01:49,249 --> 00:01:52,665
+similar to Python strings. Then there's
+
+40
+00:01:52,665 --> 00:01:54,874
+floats. These are also nullable, so these
+
+41
+00:01:54,874 --> 00:01:58,064
+cells can also be empty, and you can use
+
+42
+00:01:58,064 --> 00:02:01,711
+the Python float data type, or in numpy
+
+43
+00:02:01,711 --> 00:02:04,735
+you can say np. float64. Actually, there
+
+44
+00:02:04,735 --> 00:02:07,791
+are some more numpy float data types, they
+
+45
+00:02:07,791 --> 00:02:10,516
+are, for example, float32, but normally
+
+46
+00:02:10,516 --> 00:02:13,985
+you won't need those, and the use of those
+
+47
+00:02:13,985 --> 00:02:16,959
+I consider to be a little bit too advanced
+
+48
+00:02:16,959 --> 00:02:19,220
+for this course. Then there's integers.
+
+49
+00:02:19,220 --> 00:02:22,184
+Integers cannot be null, they cannot be
+
+50
+00:02:22,184 --> 00:02:24,738
+empty, and as you probably know, integers
+
+51
+00:02:24,738 --> 00:02:27,302
+are whole numbers and floats are numbers
+
+52
+00:02:27,302 --> 00:02:31,208
+with a dot and a decimal part behind the
+
+53
+00:02:31,208 --> 00:02:33,740
+dot. Now for an integer you say either
+
+54
+00:02:33,740 --> 00:02:36,661
+int, which is the Python int data type, or
+
+55
+00:02:36,661 --> 00:02:40,850
+you use the numpy name, np. int64. And,
+
+56
+00:02:40,850 --> 00:02:43,288
+again, there's multiple numpy int data
+
+57
+00:02:43,288 --> 00:02:45,561
+types. There's also, for example, an
+
+58
+00:02:45,561 --> 00:02:47,715
+int32, and similarly as with float.
+
+59
+00:02:47,715 --> 00:02:50,714
+Usually you don't need it, you just use
+
+60
+00:02:50,714 --> 00:02:54,325
+np. int64. Now if you convert a column to
+
+61
+00:02:54,325 --> 00:02:56,972
+float and then you call info on your
+
+62
+00:02:56,972 --> 00:02:59,280
+DataFrame, you will see that the column is
+
+63
+00:02:59,280 --> 00:03:02,818
+of type float64. And similar with int, if
+
+64
+00:03:02,818 --> 00:03:05,799
+you say astype(int) usually you will see
+
+65
+00:03:05,799 --> 00:03:09,301
+that the column will be of type int64. And
+
+66
+00:03:09,301 --> 00:03:11,576
+then there's some other data types as
+
+67
+00:03:11,576 --> 00:03:13,779
+well. I don't really use those a lot in
+
+68
+00:03:13,779 --> 00:03:15,705
+this course, but I just want to mention
+
+69
+00:03:15,705 --> 00:03:17,684
+them here. For example, there's the bool
+
+70
+00:03:17,684 --> 00:03:20,925
+data type that can just be true or false,
+
+71
+00:03:20,925 --> 00:03:24,116
+and you can convert to that by saying
+
+72
+00:03:24,116 --> 00:03:26,676
+astype(bool), and there's the complex data
+
+73
+00:03:26,676 --> 00:03:29,163
+type for complex numbers, and those are
+
+74
+00:03:29,163 --> 00:03:30,930
+the four most important data types that
+
+75
+00:03:30,930 --> 00:03:35,233
+you might pass to the astype function. So
+
+76
+00:03:35,233 --> 00:03:37,581
+suppose you have a dataset and initially
+
+77
+00:03:37,581 --> 00:03:41,005
+it has a very nice index that has a range
+
+78
+00:03:41,005 --> 00:03:44,183
+of numbers counting from 0 up to the end
+
+79
+00:03:44,183 --> 00:03:46,997
+of the DataFrame, but you remove some rows
+
+80
+00:03:46,997 --> 00:03:49,805
+and after that your index is kind of
+
+81
+00:03:49,805 --> 00:03:52,557
+messed up, it's not continuous anymore. To
+
+82
+00:03:52,557 --> 00:03:55,724
+fix it, you call df. reset_index, and it
+
+83
+00:03:55,724 --> 00:03:58,800
+resets the index to a simple range. Now as
+
+84
+00:03:58,800 --> 00:04:00,889
+a side effect reset_index creates a new
+
+85
+00:04:00,889 --> 00:04:03,432
+column that has the data from the original
+
+86
+00:04:03,432 --> 00:04:06,130
+index, and in many cases you don't really
+
+87
+00:04:06,130 --> 00:04:08,995
+want that and you can add the drop is True
+
+88
+00:04:08,995 --> 00:04:11,008
+argument, and that will drop the original
+
+89
+00:04:11,008 --> 00:04:14,324
+index and you'll only be left with the new
+
+90
+00:04:14,324 --> 00:04:15,772
+index. Something else that sometimes
+
+91
+00:04:15,772 --> 00:04:18,244
+happens is that you read in a dataset and
+
+92
+00:04:18,244 --> 00:04:21,070
+it already has a column with data that you
+
+93
+00:04:21,070 --> 00:04:24,432
+would like to use for the index, and to do
+
+94
+00:04:24,432 --> 00:04:27,536
+that, you call set_index. So here I say
+
+95
+00:04:27,536 --> 00:04:29,860
+df. set_index, and as a first argument I
+
+96
+00:04:29,860 --> 00:04:32,440
+pass it the name of the column that I want
+
+97
+00:04:32,440 --> 00:04:35,581
+to use for my index. So in this case, the
+
+98
+00:04:35,581 --> 00:04:38,330
+column is named id, and I take all the
+
+99
+00:04:38,330 --> 00:04:40,718
+values from the id column to fill my
+
+100
+00:04:40,718 --> 00:04:43,558
+index. And, again, here we see the drop is
+
+101
+00:04:43,558 --> 00:04:45,882
+True argument to drop the original column
+
+102
+00:04:45,882 --> 00:04:49,646
+from our dataset so that we don't have the
+
+103
+00:04:49,646 --> 00:04:52,808
+same data twice. And the final thing we
+
+104
+00:04:52,808 --> 00:04:56,242
+saw is the rename method, and this lets me
+
+105
+00:04:56,242 --> 00:04:58,624
+rename either columns or indices by
+
+106
+00:04:58,624 --> 00:05:00,935
+passing a dictionary that contains the
+
+107
+00:05:00,935 --> 00:05:03,826
+original name and the new name for either
+
+108
+00:05:03,826 --> 00:05:07,260
+each column or each row. So in the first
+
+109
+00:05:07,260 --> 00:05:10,278
+example here I say rename with columns and
+
+110
+00:05:10,278 --> 00:05:13,036
+then I pass a dictionary and I rename the
+
+111
+00:05:13,036 --> 00:05:15,674
+column with name 'a' to Ann and the column
+
+112
+00:05:15,674 --> 00:05:18,075
+with name 'b' to Bob. And then in the
+
+113
+00:05:18,075 --> 00:05:20,706
+second argument I'm renaming rows. So here
+
+114
+00:05:20,706 --> 00:05:24,482
+I say index, which means the labels in the
+
+115
+00:05:24,482 --> 00:05:27,254
+indexes, and the row with index 'a' I
+
+116
+00:05:27,254 --> 00:05:30,885
+rename to Ann and the row with index 'b' I
+
+117
+00:05:30,885 --> 00:05:34,930
+rename to Bob. And that brings us to the
+
+118
+00:05:34,930 --> 00:05:37,746
+end of our module. What have we seen?
+
+119
+00:05:37,746 --> 00:05:40,077
+Well, we started by looking at missing
+
+120
+00:05:40,077 --> 00:05:42,835
+data. We learned how to find the missing
+
+121
+00:05:42,835 --> 00:05:45,607
+data in our dataset, and how to inspect
+
+122
+00:05:45,607 --> 00:05:48,577
+it. Then we saw how to remove it with the
+
+123
+00:05:48,577 --> 00:05:50,826
+dropna method or if we don't want to
+
+124
+00:05:50,826 --> 00:05:53,074
+remove it we can fill it with other values
+
+125
+00:05:53,074 --> 00:05:55,949
+based on the data in our DataFrame. For
+
+126
+00:05:55,949 --> 00:05:59,233
+this we saw two methods, fillna or
+
+127
+00:05:59,233 --> 00:06:01,874
+interpolate. Next we saw two other types
+
+128
+00:06:01,874 --> 00:06:04,287
+of unwanted data, outliers, for which it's
+
+129
+00:06:04,287 --> 00:06:07,181
+very hard to give a general way to remove
+
+130
+00:06:07,181 --> 00:06:09,655
+those, but I showed you some pointers of
+
+131
+00:06:09,655 --> 00:06:12,145
+how to find and remove outliers, and then
+
+132
+00:06:12,145 --> 00:06:14,407
+we looked at duplicates, for which there's
+
+133
+00:06:14,407 --> 00:06:17,090
+also some very nice Pandas methods like
+
+134
+00:06:17,090 --> 00:06:19,661
+drop_duplicates. Then we looked at type
+
+135
+00:06:19,661 --> 00:06:21,961
+conversions with the astype method, which
+
+136
+00:06:21,961 --> 00:06:25,284
+allows us to convert the type of data for
+
+137
+00:06:25,284 --> 00:06:27,761
+a column into another data type. And
+
+138
+00:06:27,761 --> 00:06:30,700
+finally, we saw how to tidy up our
+
+139
+00:06:30,700 --> 00:06:32,830
+indexes, either make them continuous again
+
+140
+00:06:32,830 --> 00:06:36,465
+or to set them based on the data in one of
+
+141
+00:06:36,465 --> 00:06:39,167
+our columns. And that's all I have to say
+
+142
+00:06:39,167 --> 00:06:41,031
+about cleaning data. I hope I'll see you
+
+143
+00:06:41,031 --> 00:06:42,612
+back in the next module, in which we'll
+
+144
+00:06:42,612 --> 00:06:48,000
+learn how to transform our data in a lot of different ways.
+

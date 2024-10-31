@@ -1,0 +1,316 @@
+1
+00:00:00,558 --> 00:00:03,139
+Now for the final part of this module,
+
+2
+00:00:03,139 --> 00:00:06,094
+let's look at two more ways to clean up
+
+3
+00:00:06,094 --> 00:00:08,528
+our data. First of all, let's convert
+
+4
+00:00:08,528 --> 00:00:11,088
+those values that have the wrong data type
+
+5
+00:00:11,088 --> 00:00:13,515
+into the right data type, and let's see
+
+6
+00:00:13,515 --> 00:00:18,185
+how we can tidy up our indices. So we've
+
+7
+00:00:18,185 --> 00:00:21,174
+done some cleanup of this dataset, but
+
+8
+00:00:21,174 --> 00:00:24,423
+looking at the output of athletes. info, I
+
+9
+00:00:24,423 --> 00:00:27,093
+see something I don't really like. Most
+
+10
+00:00:27,093 --> 00:00:29,249
+columns have type object, and this
+
+11
+00:00:29,249 --> 00:00:31,705
+basically means that they have been read
+
+12
+00:00:31,705 --> 00:00:34,763
+from the csv file as strings, and I don't
+
+13
+00:00:34,763 --> 00:00:37,325
+really agree with that. For example, let's
+
+14
+00:00:37,325 --> 00:00:39,731
+look at the three last columns.
+
+15
+00:00:39,731 --> 00:00:42,102
+Apparently, these cells denote the number
+
+16
+00:00:42,102 --> 00:00:44,955
+of medals an athlete won. In this case, we
+
+17
+00:00:44,955 --> 00:00:46,712
+see that the third athlete in our dataset
+
+18
+00:00:46,712 --> 00:00:50,671
+won a bronze medal, so these columns are
+
+19
+00:00:50,671 --> 00:00:52,674
+numbers. Why were they not read as
+
+20
+00:00:52,674 --> 00:00:54,562
+numbers? You see, when they're not seen as
+
+21
+00:00:54,562 --> 00:00:56,823
+numbers by Pandas, a lot of calculations
+
+22
+00:00:56,823 --> 00:00:59,708
+won't work the way we want them to. For
+
+23
+00:00:59,708 --> 00:01:01,819
+example, summing the bronze column to get
+
+24
+00:01:01,819 --> 00:01:04,278
+the total number of bronze medals awarded,
+
+25
+00:01:04,278 --> 00:01:07,203
+this just concatenates all the strings and
+
+26
+00:01:07,203 --> 00:01:09,582
+gives me a long list of ones and zeros,
+
+27
+00:01:09,582 --> 00:01:11,886
+and this is not really helpful, so let's
+
+28
+00:01:11,886 --> 00:01:14,757
+try to convert one of these columns to
+
+29
+00:01:14,757 --> 00:01:17,353
+integers and see what happens. And for
+
+30
+00:01:17,353 --> 00:01:19,755
+this there's the Pandas function astype.
+
+31
+00:01:19,755 --> 00:01:22,133
+Now this gives an error, and when I scroll
+
+32
+00:01:22,133 --> 00:01:25,269
+down all the way to the end we see that it
+
+33
+00:01:25,269 --> 00:01:27,521
+tells us that there's an invalid literal
+
+34
+00:01:27,521 --> 00:01:29,744
+for int. In other words, there's a value
+
+35
+00:01:29,744 --> 00:01:32,192
+in the data that cannot be converted to an
+
+36
+00:01:32,192 --> 00:01:34,314
+integer, and actually it turns out that
+
+37
+00:01:34,314 --> 00:01:37,109
+this is the capital letter O. So this data
+
+38
+00:01:37,109 --> 00:01:39,063
+was probably entered manually and someone
+
+39
+00:01:39,063 --> 00:01:42,668
+typed an O instead of a zero. So let's fix
+
+40
+00:01:42,668 --> 00:01:46,203
+this. I will retrieve the row holding this
+
+41
+00:01:46,203 --> 00:01:49,002
+value. So this row we see here holds O's
+
+42
+00:01:49,002 --> 00:01:51,371
+for the medals. I can change these values
+
+43
+00:01:51,371 --> 00:01:53,747
+into zeros, let me just copy the row
+
+44
+00:01:53,747 --> 00:01:56,907
+number here, and we'll use loc to retrieve
+
+45
+00:01:56,907 --> 00:02:00,160
+the row and select the three columns. And
+
+46
+00:02:00,160 --> 00:02:02,753
+I can just set them to 0. So let's try
+
+47
+00:02:02,753 --> 00:02:04,544
+again to convert these values into
+
+48
+00:02:04,544 --> 00:02:07,184
+integers. This time I'll try to convert
+
+49
+00:02:07,184 --> 00:02:10,789
+them all at once by just selecting all
+
+50
+00:02:10,789 --> 00:02:13,711
+three columns and saying. astype(int). And
+
+51
+00:02:13,711 --> 00:02:15,809
+let's assign the result back to the
+
+52
+00:02:15,809 --> 00:02:18,194
+original three columns. So I'm just going
+
+53
+00:02:18,194 --> 00:02:21,167
+to copy this here and assign that back
+
+54
+00:02:21,167 --> 00:02:23,432
+into itself. So now these columns should
+
+55
+00:02:23,432 --> 00:02:25,872
+contain integers, and we should be able to
+
+56
+00:02:25,872 --> 00:02:28,967
+do things like sum them to see how many of
+
+57
+00:02:28,967 --> 00:02:31,753
+each medal were given out. And that looks
+
+58
+00:02:31,753 --> 00:02:35,468
+a lot better. So now when I run athletes.
+
+59
+00:02:35,468 --> 00:02:37,934
+info again, here there's only one data
+
+60
+00:02:37,934 --> 00:02:40,345
+type left that I disagree with. If you
+
+61
+00:02:40,345 --> 00:02:42,338
+look in the csv file, you will see that
+
+62
+00:02:42,338 --> 00:02:44,508
+all the weights are given in whole
+
+63
+00:02:44,508 --> 00:02:47,896
+kilograms, so why do these show up here as
+
+64
+00:02:47,896 --> 00:02:50,083
+floats? Well, in this case it's because
+
+65
+00:02:50,083 --> 00:02:52,595
+some of these weights are missing, and the
+
+66
+00:02:52,595 --> 00:02:55,050
+only data types that can contain null
+
+67
+00:02:55,050 --> 00:02:58,017
+values in a DataFrame are either floats or
+
+68
+00:02:58,017 --> 00:03:01,146
+objects. So if you want to convert the
+
+69
+00:03:01,146 --> 00:03:03,991
+weights to ints, we either have to drop
+
+70
+00:03:03,991 --> 00:03:06,664
+the null values or fill them with some
+
+71
+00:03:06,664 --> 00:03:08,412
+integer value. And personally, in this
+
+72
+00:03:08,412 --> 00:03:10,565
+case I think both of these options don't
+
+73
+00:03:10,565 --> 00:03:12,667
+really make sense, so that means that I'll
+
+74
+00:03:12,667 --> 00:03:15,008
+have to live with a column that shows
+
+75
+00:03:15,008 --> 00:03:16,952
+floating points even though the source
+
+76
+00:03:16,952 --> 00:03:19,846
+values in the csv were integers. Now
+
+77
+00:03:19,846 --> 00:03:22,029
+unfortunately this is just one of the
+
+78
+00:03:22,029 --> 00:03:25,964
+limitations of Pandas. It's not possible
+
+79
+00:03:25,964 --> 00:03:30,000
+to have a column of integers that also contains empty values.
+

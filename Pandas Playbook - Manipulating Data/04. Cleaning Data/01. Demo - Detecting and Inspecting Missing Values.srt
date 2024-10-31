@@ -1,0 +1,688 @@
+1
+00:00:00,536 --> 00:00:03,488
+So, let's start off with the first demo,
+
+2
+00:00:03,488 --> 00:00:06,833
+in which I'll show you how to work with
+
+3
+00:00:06,833 --> 00:00:09,499
+missing data. First we'll see how to
+
+4
+00:00:09,499 --> 00:00:11,819
+detect missing values, then how to remove
+
+5
+00:00:11,819 --> 00:00:14,174
+them, and finally we will learn how to
+
+6
+00:00:14,174 --> 00:00:18,226
+replace them by other values based on your
+
+7
+00:00:18,226 --> 00:00:21,494
+actual data. So here we are again in a new
+
+8
+00:00:21,494 --> 00:00:23,342
+notebook, and we start with the familiar
+
+9
+00:00:23,342 --> 00:00:26,321
+two imports of pandas and numpy. I'm
+
+10
+00:00:26,321 --> 00:00:29,292
+reading a csv file again, and it's from
+
+11
+00:00:29,292 --> 00:00:30,977
+the weather dataset we've seen before,
+
+12
+00:00:30,977 --> 00:00:33,615
+only this time I haven't cleaned it up
+
+13
+00:00:33,615 --> 00:00:36,370
+completely. When I call info on it, not
+
+14
+00:00:36,370 --> 00:00:38,297
+only do we see some extra columns we
+
+15
+00:00:38,297 --> 00:00:40,300
+didn't see before, there is another
+
+16
+00:00:40,300 --> 00:00:42,861
+interesting thing you may not notice
+
+17
+00:00:42,861 --> 00:00:44,575
+immediately. Not all counts for all
+
+18
+00:00:44,575 --> 00:00:46,635
+columns are the same, and this means that
+
+19
+00:00:46,635 --> 00:00:49,268
+not all columns contain the same amount of
+
+20
+00:00:49,268 --> 00:00:52,038
+values. For example, we see that the
+
+21
+00:00:52,038 --> 00:00:53,964
+MIN_TEMP_GROUND column contains only about
+
+22
+00:00:53,964 --> 00:00:56,047
+1500 measurements. If you check it, you
+
+23
+00:00:56,047 --> 00:00:58,715
+will find that it only contains a value
+
+24
+00:00:58,715 --> 00:01:01,467
+for every six rows. The VIEW_RANGE and
+
+25
+00:01:01,467 --> 00:01:03,831
+CLOUD columns also have some missing data,
+
+26
+00:01:03,831 --> 00:01:06,039
+as well as the columns for different
+
+27
+00:01:06,039 --> 00:01:08,000
+weather types, MIST, RAIN, SNOW, THUNDER,
+
+28
+00:01:08,000 --> 00:01:10,694
+ICE, and at the end we see the
+
+29
+00:01:10,694 --> 00:01:13,540
+WEATHER_CODE column and it also has some
+
+30
+00:01:13,540 --> 00:01:15,803
+missing data. Taking a look at what some
+
+31
+00:01:15,803 --> 00:01:17,737
+of these columns contain, we see that some
+
+32
+00:01:17,737 --> 00:01:20,493
+cells here have a value of NaN instead of
+
+33
+00:01:20,493 --> 00:01:22,991
+a number, and this is an abbreviation for
+
+34
+00:01:22,991 --> 00:01:25,635
+not a number, and it simply means that
+
+35
+00:01:25,635 --> 00:01:28,661
+there is no value here, so no
+
+36
+00:01:28,661 --> 00:01:30,670
+measurements. Basically, there are holes
+
+37
+00:01:30,670 --> 00:01:33,430
+in our data. Sometimes you want this.
+
+38
+00:01:33,430 --> 00:01:35,667
+Looking at the MIN_TEMP_GROUND column, the
+
+39
+00:01:35,667 --> 00:01:37,891
+minimum temperature at ground level is
+
+40
+00:01:37,891 --> 00:01:40,962
+only recorded once every 6 hours. It's the
+
+41
+00:01:40,962 --> 00:01:43,110
+minimum temperature measured over that
+
+42
+00:01:43,110 --> 00:01:44,998
+interval, and the number shows up in the
+
+43
+00:01:44,998 --> 00:01:46,457
+data at the moment that the measurement
+
+44
+00:01:46,457 --> 00:01:49,265
+was recorded and the data is left empty at
+
+45
+00:01:49,265 --> 00:01:52,017
+other moments, so this is not an error. In
+
+46
+00:01:52,017 --> 00:01:53,811
+the case of the missing WEATHER_CODE, I'm
+
+47
+00:01:53,811 --> 00:01:55,961
+not so sure where this comes from. It
+
+48
+00:01:55,961 --> 00:01:58,106
+might mean anything from a measurement
+
+49
+00:01:58,106 --> 00:02:00,513
+error to an unknown weather type. Let's
+
+50
+00:02:00,513 --> 00:02:02,878
+take a closer look at the rows and columns
+
+51
+00:02:02,878 --> 00:02:04,917
+that contain missing values. I can call
+
+52
+00:02:04,917 --> 00:02:07,881
+df. isnull, and null, by the way, means no
+
+53
+00:02:07,881 --> 00:02:10,496
+value, and in the Pandas ecosystem null
+
+54
+00:02:10,496 --> 00:02:13,691
+and not a number are equivalent. This is
+
+55
+00:02:13,691 --> 00:02:15,945
+not the case everywhere though. In many
+
+56
+00:02:15,945 --> 00:02:18,959
+languages, not a number and null are two
+
+57
+00:02:18,959 --> 00:02:21,102
+very different things. Anyway, in this
+
+58
+00:02:21,102 --> 00:02:23,129
+case the function isnull returns a
+
+59
+00:02:23,129 --> 00:02:26,320
+DataFrame with True whenever our data is
+
+60
+00:02:26,320 --> 00:02:28,891
+null and False otherwise. On this
+
+61
+00:02:28,891 --> 00:02:30,849
+DataFrame I can call any, and this
+
+62
+00:02:30,849 --> 00:02:32,622
+function takes every column of our
+
+63
+00:02:32,622 --> 00:02:34,916
+DataFrame and returns True if it contains
+
+64
+00:02:34,916 --> 00:02:38,133
+any true values at all. So in this case it
+
+65
+00:02:38,133 --> 00:02:40,658
+shows True for every column that has null
+
+66
+00:02:40,658 --> 00:02:43,243
+values, and that's quite a lot of columns.
+
+67
+00:02:43,243 --> 00:02:45,981
+Again, df. isnull is a new DataFrame that
+
+68
+00:02:45,981 --> 00:02:48,759
+contains True for every null value and
+
+69
+00:02:48,759 --> 00:02:51,011
+False for everything else. And the
+
+70
+00:02:51,011 --> 00:02:53,005
+function any works similar to, for
+
+71
+00:02:53,005 --> 00:02:55,272
+example, the mean function. It computes a
+
+72
+00:02:55,272 --> 00:02:58,005
+value for every column in the data. In the
+
+73
+00:02:58,005 --> 00:03:00,464
+case of any, it returns True if there is
+
+74
+00:03:00,464 --> 00:03:02,547
+any true value in the column. Like we've
+
+75
+00:03:02,547 --> 00:03:04,318
+seen before, we can give arguments to say
+
+76
+00:03:04,318 --> 00:03:07,012
+that we want to work over the other axis,
+
+77
+00:03:07,012 --> 00:03:09,906
+so over the rows instead of the columns.
+
+78
+00:03:09,906 --> 00:03:12,176
+And now we have a True value for every row
+
+79
+00:03:12,176 --> 00:03:14,477
+in our data that has one or more null
+
+80
+00:03:14,477 --> 00:03:16,809
+values. And because this is a list of
+
+81
+00:03:16,809 --> 00:03:18,848
+Booleans, we can use it to select these
+
+82
+00:03:18,848 --> 00:03:20,850
+rows and look at them. Right now, all we
+
+83
+00:03:20,850 --> 00:03:22,543
+can tell from this is that most of the
+
+84
+00:03:22,543 --> 00:03:24,639
+null values are in the MIN_TEMP_GROUND
+
+85
+00:03:24,639 --> 00:03:27,784
+column. We'll fix that soon. For now, I
+
+86
+00:03:27,784 --> 00:03:30,434
+wonder if there are any rows that only
+
+87
+00:03:30,434 --> 00:03:32,867
+contain null values. Again, I'll start by
+
+88
+00:03:32,867 --> 00:03:35,385
+saying df. isnull, but this time instead
+
+89
+00:03:35,385 --> 00:03:38,193
+of any I'll use the all function, and in
+
+90
+00:03:38,193 --> 00:03:40,580
+this case we get an overview of all
+
+91
+00:03:40,580 --> 00:03:43,196
+elements of our DataFrame where all values
+
+92
+00:03:43,196 --> 00:03:45,637
+are True. In the case of the columns, we
+
+93
+00:03:45,637 --> 00:03:47,089
+already know that every column contains
+
+94
+00:03:47,089 --> 00:03:50,472
+some data at least, so all columns return
+
+95
+00:03:50,472 --> 00:03:53,249
+False. To do the same for all rows, again,
+
+96
+00:03:53,249 --> 00:03:56,402
+I say axis is 1, and I get a very long
+
+97
+00:03:56,402 --> 00:03:58,672
+list telling me for every row in our data
+
+98
+00:03:58,672 --> 00:04:01,074
+whether it is completely empty or not. I
+
+99
+00:04:01,074 --> 00:04:04,037
+would like to know if there are any True
+
+100
+00:04:04,037 --> 00:04:07,139
+values in this list, so of course I can
+
+101
+00:04:07,139 --> 00:04:10,306
+say any again. So now we know for sure
+
+102
+00:04:10,306 --> 00:04:13,150
+that every row in our data contains at
+
+103
+00:04:13,150 --> 00:04:15,309
+least one value. Explaining the syntax
+
+104
+00:04:15,309 --> 00:04:18,222
+here once here, df. isnull is a DataFrame
+
+105
+00:04:18,222 --> 00:04:20,956
+that's True for every null value, and for
+
+106
+00:04:20,956 --> 00:04:23,417
+every row in that DataFrame we check
+
+107
+00:04:23,417 --> 00:04:26,861
+whether it's all true values by saying all
+
+108
+00:04:26,861 --> 00:04:30,800
+with axis is 1. So now we have a series of
+
+109
+00:04:30,800 --> 00:04:33,488
+True and False value. Calling any on that
+
+110
+00:04:33,488 --> 00:04:35,975
+Series tells us whether it contains any
+
+111
+00:04:35,975 --> 00:04:38,700
+True values, which it doesn't, so we know
+
+112
+00:04:38,700 --> 00:04:41,387
+if we don't have any rows that are
+
+113
+00:04:41,387 --> 00:04:44,106
+completely empty. Now, there's another
+
+114
+00:04:44,106 --> 00:04:46,976
+function called notnull which does exactly
+
+115
+00:04:46,976 --> 00:04:49,717
+the opposite from isnull. It returns True
+
+116
+00:04:49,717 --> 00:04:53,195
+for every value that is not null. So to
+
+117
+00:04:53,195 --> 00:04:56,935
+get all columns that have no values at
+
+118
+00:04:56,935 --> 00:05:00,690
+all, I can say df. notnull. all. Now let's
+
+119
+00:05:00,690 --> 00:05:02,623
+take it one step further. The column that
+
+120
+00:05:02,623 --> 00:05:05,576
+has by far the most missing values is the
+
+121
+00:05:05,576 --> 00:05:07,960
+minimum ground temperature, and by simply
+
+122
+00:05:07,960 --> 00:05:10,809
+looking at the data it seems that every
+
+123
+00:05:10,809 --> 00:05:13,311
+sixth value is a number. And actually,
+
+124
+00:05:13,311 --> 00:05:15,475
+this is also what the meteorological
+
+125
+00:05:15,475 --> 00:05:18,029
+institute says. This temperature is only
+
+126
+00:05:18,029 --> 00:05:21,210
+recorded every 6 hours. But let's not just
+
+127
+00:05:21,210 --> 00:05:23,906
+trust what we hear, let's check that it's
+
+128
+00:05:23,906 --> 00:05:26,851
+true. So how do I check that every sixth
+
+129
+00:05:26,851 --> 00:05:29,154
+value is true? Well, let's start by making
+
+130
+00:05:29,154 --> 00:05:31,275
+a list of all positions in the column
+
+131
+00:05:31,275 --> 00:05:34,202
+where I suspect there should be a number.
+
+132
+00:05:34,202 --> 00:05:36,881
+So this uses the standard Python function,
+
+133
+00:05:36,881 --> 00:05:39,151
+range, generating a list of numbers
+
+134
+00:05:39,151 --> 00:05:41,997
+starting with 5, which is the position of
+
+135
+00:05:41,997 --> 00:05:45,087
+the first number in our column, up to the
+
+136
+00:05:45,087 --> 00:05:47,785
+length of the DataFrame with a step size
+
+137
+00:05:47,785 --> 00:05:50,301
+of 6. To get a nice overview of what we
+
+138
+00:05:50,301 --> 00:05:52,142
+just created, I can make this into a
+
+139
+00:05:52,142 --> 00:05:54,789
+Pandas Series. And this shows us that the
+
+140
+00:05:54,789 --> 00:05:57,892
+first number is 5, then 11, then 17, etc.,
+
+141
+00:05:57,892 --> 00:06:00,873
+etc., and scrolling down to the bottom we
+
+142
+00:06:00,873 --> 00:06:03,932
+see that there are 1464 numbers in this
+
+143
+00:06:03,932 --> 00:06:07,312
+list. By the way, making this a Series is
+
+144
+00:06:07,312 --> 00:06:09,674
+not actually necessary, I just did it to
+
+145
+00:06:09,674 --> 00:06:12,092
+quickly display the contents of our list.
+
+146
+00:06:12,092 --> 00:06:15,156
+Now, let's store this in a variable called
+
+147
+00:06:15,156 --> 00:06:17,305
+every_6th_row. And you might remember that
+
+148
+00:06:17,305 --> 00:06:20,575
+we can use a list of indices to retrieve
+
+149
+00:06:20,575 --> 00:06:23,567
+rows from our data, so let's take the
+
+150
+00:06:23,567 --> 00:06:26,544
+MIN_TEMP_GROUND column and index it with
+
+151
+00:06:26,544 --> 00:06:30,047
+our list of positions. So this will select
+
+152
+00:06:30,047 --> 00:06:32,706
+exactly every sixth row from this column.
+
+153
+00:06:32,706 --> 00:06:36,147
+To check that these cells all contain a
+
+154
+00:06:36,147 --> 00:06:38,877
+measurement, I say. notnull. all, and this
+
+155
+00:06:38,877 --> 00:06:41,483
+returns True, so now I know that all these
+
+156
+00:06:41,483 --> 00:06:43,306
+rows are filled. Now to be completely
+
+157
+00:06:43,306 --> 00:06:45,215
+certain of the way this column is filled,
+
+158
+00:06:45,215 --> 00:06:48,223
+let's check the opposite. Are all other
+
+159
+00:06:48,223 --> 00:06:50,783
+rows empty? Again, I select the column,
+
+160
+00:06:50,783 --> 00:06:53,846
+but now I remove every sixth row by using
+
+161
+00:06:53,846 --> 00:06:56,443
+the method drop. Now the drop method does
+
+162
+00:06:56,443 --> 00:06:59,117
+not work in place by default, so our
+
+163
+00:06:59,117 --> 00:07:01,300
+original DataFrame will stay intact, so
+
+164
+00:07:01,300 --> 00:07:03,556
+we're not actually removing anything form
+
+165
+00:07:03,556 --> 00:07:06,273
+our DataFrame. Now these values should all
+
+166
+00:07:06,273 --> 00:07:09,906
+be null, so I can say isnull. all. And,
+
+167
+00:07:09,906 --> 00:07:13,154
+again, we get the answer True. So now I
+
+168
+00:07:13,154 --> 00:07:15,283
+know for sure that this column contains a
+
+169
+00:07:15,283 --> 00:07:17,733
+value every sixth row, and not a number
+
+170
+00:07:17,733 --> 00:07:20,502
+everywhere else. Good. Now I would like to
+
+171
+00:07:20,502 --> 00:07:23,578
+ask you to take a moment and see if you
+
+172
+00:07:23,578 --> 00:07:29,000
+can rewrite the previous line to use loc instead of chained indexing.
+

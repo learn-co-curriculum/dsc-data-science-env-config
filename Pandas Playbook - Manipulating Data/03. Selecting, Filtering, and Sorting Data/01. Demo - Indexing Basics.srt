@@ -1,0 +1,548 @@
+1
+00:00:00,789 --> 00:00:04,097
+I've started a new notebook, and you see
+
+2
+00:00:04,097 --> 00:00:06,316
+the familiar imports. I'm reading the same
+
+3
+00:00:06,316 --> 00:00:08,272
+csv file as before, and I'm getting the
+
+4
+00:00:08,272 --> 00:00:10,294
+first five rows only by calling the
+
+5
+00:00:10,294 --> 00:00:12,728
+function head on it before assigning it to
+
+6
+00:00:12,728 --> 00:00:15,678
+the variable df. This way we have a small
+
+7
+00:00:15,678 --> 00:00:18,408
+and simple dataset to work with for our
+
+8
+00:00:18,408 --> 00:00:21,204
+demo. In a sense, a DataFrame is nothing
+
+9
+00:00:21,204 --> 00:00:23,354
+more than a list of series containing
+
+10
+00:00:23,354 --> 00:00:25,698
+values, and an index that gives each of
+
+11
+00:00:25,698 --> 00:00:27,867
+these series a name, and each series is
+
+12
+00:00:27,867 --> 00:00:31,046
+one of the columns we see here, like Time,
+
+13
+00:00:31,046 --> 00:00:32,981
+Temp or Pressure. So the most
+
+14
+00:00:32,981 --> 00:00:34,736
+straightforward thing we can do with a
+
+15
+00:00:34,736 --> 00:00:36,789
+DataFrame is to select one of these
+
+16
+00:00:36,789 --> 00:00:39,391
+columns, and we can do that with straight
+
+17
+00:00:39,391 --> 00:00:42,096
+brackets and the name of the column we
+
+18
+00:00:42,096 --> 00:00:45,110
+want, like this. And this selects a series
+
+19
+00:00:45,110 --> 00:00:47,399
+of temperatures from this dataset. Of
+
+20
+00:00:47,399 --> 00:00:49,755
+course, when I use a name that doesn't
+
+21
+00:00:49,755 --> 00:00:52,616
+exist I get an error. But let's assume we
+
+22
+00:00:52,616 --> 00:00:55,393
+use an existing column and we retrieve a
+
+23
+00:00:55,393 --> 00:00:57,421
+series. On this series we can now call
+
+24
+00:00:57,421 --> 00:00:59,643
+methods like max or min, or we can select
+
+25
+00:00:59,643 --> 00:01:02,054
+a single value from the series by using
+
+26
+00:01:02,054 --> 00:01:04,497
+the same operator again, but this time on
+
+27
+00:01:04,497 --> 00:01:06,972
+the series itself. Since the first part of
+
+28
+00:01:06,972 --> 00:01:09,700
+the expression here evaluates to a series,
+
+29
+00:01:09,700 --> 00:01:12,390
+we can put another subscript behind it,
+
+30
+00:01:12,390 --> 00:01:15,527
+and that will work on that series. So to
+
+31
+00:01:15,527 --> 00:01:17,850
+get the second temperature, which has
+
+32
+00:01:17,850 --> 00:01:20,837
+index 1, I add square brackets 1. Now
+
+33
+00:01:20,837 --> 00:01:23,052
+before I go into a little more detail
+
+34
+00:01:23,052 --> 00:01:24,713
+here, there's something you should know.
+
+35
+00:01:24,713 --> 00:01:27,056
+What you see in a lot of tutorials and
+
+36
+00:01:27,056 --> 00:01:29,262
+examples is that people leave out the
+
+37
+00:01:29,262 --> 00:01:31,975
+brackets when selecting a column, which
+
+38
+00:01:31,975 --> 00:01:35,039
+looks like this, which, as you can see,
+
+39
+00:01:35,039 --> 00:01:37,418
+selects the same series. Now if you know
+
+40
+00:01:37,418 --> 00:01:39,190
+about Python classes and objects, you will
+
+41
+00:01:39,190 --> 00:01:41,872
+know that this is a syntax for retrieving
+
+42
+00:01:41,872 --> 00:01:44,759
+an attribute from a Python object. For our
+
+43
+00:01:44,759 --> 00:01:46,533
+convenience, DataFrame has an attribute
+
+44
+00:01:46,533 --> 00:01:49,056
+for each of its columns, but this will
+
+45
+00:01:49,056 --> 00:01:51,549
+only work when the name of the column is a
+
+46
+00:01:51,549 --> 00:01:53,832
+valid Python attribute name. To put it
+
+47
+00:01:53,832 --> 00:01:56,687
+simply, this will not work when the column
+
+48
+00:01:56,687 --> 00:01:58,876
+name has spaces or certain special
+
+49
+00:01:58,876 --> 00:02:01,733
+characters like an equals or plus sign, or
+
+50
+00:02:01,733 --> 00:02:04,771
+a dot, and you can also not add a new
+
+51
+00:02:04,771 --> 00:02:07,052
+column with this syntax, which is possible
+
+52
+00:02:07,052 --> 00:02:09,541
+with the brackets, and we'll see that
+
+53
+00:02:09,541 --> 00:02:12,695
+later. So for all of these reasons, in my
+
+54
+00:02:12,695 --> 00:02:15,494
+opinion it is better not to use this
+
+55
+00:02:15,494 --> 00:02:18,827
+syntax, or at least don't use it in any
+
+56
+00:02:18,827 --> 00:02:21,273
+production code. It's just not a best
+
+57
+00:02:21,273 --> 00:02:23,652
+practice, even if it's shorter to type.
+
+58
+00:02:23,652 --> 00:02:26,023
+Let's talk a bit more about simple
+
+59
+00:02:26,023 --> 00:02:27,995
+indexing. For my next example, I'm going
+
+60
+00:02:27,995 --> 00:02:30,306
+to transpose our DataFrame with the. T
+
+61
+00:02:30,306 --> 00:02:32,678
+attribute and assign that to a new
+
+62
+00:02:32,678 --> 00:02:35,041
+variable df. T, and let's see what that
+
+63
+00:02:35,041 --> 00:02:38,052
+looks like. So in this case the names of
+
+64
+00:02:38,052 --> 00:02:41,715
+my columns are integers, and the row index
+
+65
+00:02:41,715 --> 00:02:44,225
+contains strings. Let's see if indexing
+
+66
+00:02:44,225 --> 00:02:47,127
+still works the same way. Using the same
+
+67
+00:02:47,127 --> 00:02:49,316
+approach as before with brackets and
+
+68
+00:02:49,316 --> 00:02:51,192
+quotes doesn't work, and that's because
+
+69
+00:02:51,192 --> 00:02:53,273
+the quotes here create a string asking the
+
+70
+00:02:53,273 --> 00:02:56,260
+DataFrame for a column associated with a
+
+71
+00:02:56,260 --> 00:02:58,829
+string 2. But our column names right now
+
+72
+00:02:58,829 --> 00:03:01,068
+are actually integers, and you can check
+
+73
+00:03:01,068 --> 00:03:04,723
+this by asking for the attribute dft.
+
+74
+00:03:04,723 --> 00:03:06,694
+columns. And this tells us that the
+
+75
+00:03:06,694 --> 00:03:08,625
+columns are indexed by a range of numbers
+
+76
+00:03:08,625 --> 00:03:12,077
+from 0 to 4, so this means that to
+
+77
+00:03:12,077 --> 00:03:15,146
+retrieve column 2 we need to remove the
+
+78
+00:03:15,146 --> 00:03:17,688
+quotes. And now we retrieve the series we
+
+79
+00:03:17,688 --> 00:03:20,377
+want. So to retrieve a column we have to
+
+80
+00:03:20,377 --> 00:03:22,616
+use exactly the kind of value that's in
+
+81
+00:03:22,616 --> 00:03:25,056
+the column index. In this case, it's a
+
+82
+00:03:25,056 --> 00:03:27,936
+number and that means we can also not use
+
+83
+00:03:27,936 --> 00:03:31,010
+the dot syntax. This isn't even valid
+
+84
+00:03:31,010 --> 00:03:33,832
+Python code. Now interestingly, for series
+
+85
+00:03:33,832 --> 00:03:36,312
+this works differently. Once I have a
+
+86
+00:03:36,312 --> 00:03:38,584
+series, like here where I retrieve the
+
+87
+00:03:38,584 --> 00:03:41,418
+column with index 2, I can retrieve a row
+
+88
+00:03:41,418 --> 00:03:43,904
+from that series by a value that's in its
+
+89
+00:03:43,904 --> 00:03:47,003
+index, so in this case let's get the Time
+
+90
+00:03:47,003 --> 00:03:50,867
+for column 2. Let me just remove the other
+
+91
+00:03:50,867 --> 00:03:54,045
+cells here to make things clear again. And
+
+92
+00:03:54,045 --> 00:03:57,001
+similarly, in this case, I can use the
+
+93
+00:03:57,001 --> 00:03:59,255
+index of the row I want to retrieve, since
+
+94
+00:03:59,255 --> 00:04:01,604
+the row for Time is the third row so it
+
+95
+00:04:01,604 --> 00:04:03,799
+has offset 2, and as you can see, I can
+
+96
+00:04:03,799 --> 00:04:06,142
+retrieve it by position as well as by
+
+97
+00:04:06,142 --> 00:04:08,854
+name. Now the subtly here is that you can
+
+98
+00:04:08,854 --> 00:04:10,840
+retrieve rows from a series both by
+
+99
+00:04:10,840 --> 00:04:13,557
+position and by name, but you can retrieve
+
+100
+00:04:13,557 --> 00:04:16,229
+columns only by label. Scrolling back up,
+
+101
+00:04:16,229 --> 00:04:19,135
+we see that we retrieved columns by their
+
+102
+00:04:19,135 --> 00:04:21,512
+index label. Temp is the name of the
+
+103
+00:04:21,512 --> 00:04:23,988
+column as it occurs in the index in the
+
+104
+00:04:23,988 --> 00:04:26,762
+first example, and if you try to retrieve
+
+105
+00:04:26,762 --> 00:04:29,317
+this column with its position, 3, because
+
+106
+00:04:29,317 --> 00:04:31,635
+it's the fourth column and we start
+
+107
+00:04:31,635 --> 00:04:33,861
+counting with 0, you would find that it
+
+108
+00:04:33,861 --> 00:04:35,588
+doesn't work, so you can retrieve this
+
+109
+00:04:35,588 --> 00:04:38,361
+column by its name, but not by its
+
+110
+00:04:38,361 --> 00:04:40,886
+position. And in the other example back
+
+111
+00:04:40,886 --> 00:04:43,124
+down, here we are retrieving a column with
+
+112
+00:04:43,124 --> 00:04:45,621
+a number, but that only works because in
+
+113
+00:04:45,621 --> 00:04:48,731
+this case the column index also contains
+
+114
+00:04:48,731 --> 00:04:50,818
+numbers. Once we have extracted a series
+
+115
+00:04:50,818 --> 00:04:52,665
+from the DataFrame, though, like we would
+
+116
+00:04:52,665 --> 00:04:54,920
+get column 2 here, then we have a series
+
+117
+00:04:54,920 --> 00:04:57,716
+and we can retrieve rows from that series,
+
+118
+00:04:57,716 --> 00:05:00,876
+both by label and position. So you see
+
+119
+00:05:00,876 --> 00:05:03,853
+here that we retrieved the Time row both
+
+120
+00:05:03,853 --> 00:05:07,912
+by saying Time and by saying I want row 2.
+
+121
+00:05:07,912 --> 00:05:10,435
+Well, actually what I'm saying isn't
+
+122
+00:05:10,435 --> 00:05:12,315
+completely correct, you can retrieve
+
+123
+00:05:12,315 --> 00:05:15,267
+columns by position as well, and we'll see
+
+124
+00:05:15,267 --> 00:05:18,839
+that in a moment. Now let me give you a
+
+125
+00:05:18,839 --> 00:05:20,797
+final strange example. Consider the
+
+126
+00:05:20,797 --> 00:05:23,899
+following DataFrame. In this case we have
+
+127
+00:05:23,899 --> 00:05:26,623
+rows indexed with numbers, but the numbers
+
+128
+00:05:26,623 --> 00:05:29,481
+are not a simple range. As you can see,
+
+129
+00:05:29,481 --> 00:05:31,521
+there are even multiple rows with the same
+
+130
+00:05:31,521 --> 00:05:33,845
+index. Now in this case my earlier comment
+
+131
+00:05:33,845 --> 00:05:36,326
+is not true. Here you can only retrieve
+
+132
+00:05:36,326 --> 00:05:39,197
+rows by name. Now my question to you is
+
+133
+00:05:39,197 --> 00:05:41,743
+what do you think will happen if I get the
+
+134
+00:05:41,743 --> 00:05:43,726
+series with values like this and then
+
+135
+00:05:43,726 --> 00:05:46,918
+select row 4 like this? The answer I leave
+
+136
+00:05:46,918 --> 00:05:49,339
+to you. I encourage you to play around in
+
+137
+00:05:49,339 --> 00:05:53,000
+the notebook and figure this one out for yourself.
+

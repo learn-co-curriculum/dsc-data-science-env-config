@@ -1,0 +1,452 @@
+1
+00:00:00,532 --> 00:00:04,419
+Let's take a slightly more formal look at
+
+2
+00:00:04,419 --> 00:00:07,810
+how pivot works. Pivot transforms one
+
+3
+00:00:07,810 --> 00:00:11,676
+column of data into multiple different
+
+4
+00:00:11,676 --> 00:00:14,143
+columns. And you can give it three
+
+5
+00:00:14,143 --> 00:00:16,269
+arguments. The first one is the index
+
+6
+00:00:16,269 --> 00:00:18,430
+column, and you pass the name of a column
+
+7
+00:00:18,430 --> 00:00:20,440
+and for each unique value in that column
+
+8
+00:00:20,440 --> 00:00:23,904
+there will be an index for one of your
+
+9
+00:00:23,904 --> 00:00:26,400
+rows. The second argument is the name of a
+
+10
+00:00:26,400 --> 00:00:28,578
+column that you will use for the column
+
+11
+00:00:28,578 --> 00:00:31,220
+labels, so from that column it will take
+
+12
+00:00:31,220 --> 00:00:33,499
+unique values and for every unique value
+
+13
+00:00:33,499 --> 00:00:36,078
+there will be a column. And the third
+
+14
+00:00:36,078 --> 00:00:38,660
+argument is the column from where the data
+
+15
+00:00:38,660 --> 00:00:41,415
+will be taken. So a new DataFrame will be
+
+16
+00:00:41,415 --> 00:00:43,498
+constructed with rows for every value from
+
+17
+00:00:43,498 --> 00:00:46,273
+the first column, columns for every value
+
+18
+00:00:46,273 --> 00:00:48,745
+from the second column, and the values
+
+19
+00:00:48,745 --> 00:00:51,436
+will come from the third column. Now if
+
+20
+00:00:51,436 --> 00:00:54,648
+this is a little bit abstract, let's
+
+21
+00:00:54,648 --> 00:00:57,662
+visualize this. So here I have a DataFrame
+
+22
+00:00:57,662 --> 00:01:00,108
+with product id's, and then for every
+
+23
+00:01:00,108 --> 00:01:02,620
+product we have prices or stocks, and we
+
+24
+00:01:02,620 --> 00:01:05,499
+can know if the value in the value column
+
+25
+00:01:05,499 --> 00:01:08,566
+is a price or a stock by whatever is
+
+26
+00:01:08,566 --> 00:01:11,152
+listed in the item column. Now with pivot
+
+27
+00:01:11,152 --> 00:01:13,508
+I can convert this into a DataFrame where
+
+28
+00:01:13,508 --> 00:01:16,697
+I have one row for every product. To do
+
+29
+00:01:16,697 --> 00:01:20,157
+this, I say df. pivot, and as the first
+
+30
+00:01:20,157 --> 00:01:22,748
+argument I give the name of the prod_id
+
+31
+00:01:22,748 --> 00:01:25,381
+column. So this will take every unique
+
+32
+00:01:25,381 --> 00:01:28,257
+product id and make one row. And the
+
+33
+00:01:28,257 --> 00:01:30,245
+second argument is item, and this means
+
+34
+00:01:30,245 --> 00:01:32,672
+that for every unique value in the item
+
+35
+00:01:32,672 --> 00:01:35,253
+column there will be a column in the
+
+36
+00:01:35,253 --> 00:01:38,161
+output. So when I run this there's a new
+
+37
+00:01:38,161 --> 00:01:40,768
+DataFrame created, and as you can see, the
+
+38
+00:01:40,768 --> 00:01:44,224
+row labels 1, 2, and 3 are taken from the
+
+39
+00:01:44,224 --> 00:01:46,618
+prod_id column in the input. The column
+
+40
+00:01:46,618 --> 00:01:49,282
+names, price and stock, are from the item
+
+41
+00:01:49,282 --> 00:01:51,957
+column, and the values are taken and
+
+42
+00:01:51,957 --> 00:01:55,071
+filled in in the correct places. So the
+
+43
+00:01:55,071 --> 00:01:58,540
+price for product 1 is 11, and the stock
+
+44
+00:01:58,540 --> 00:02:01,602
+for product 2 is 2, etc., etc. The
+
+45
+00:02:01,602 --> 00:02:04,514
+opposite of pivot is melt. It moves data
+
+46
+00:02:04,514 --> 00:02:06,570
+from multiple columns into a single
+
+47
+00:02:06,570 --> 00:02:08,497
+column, and the most important argument
+
+48
+00:02:08,497 --> 00:02:11,862
+that you can give to melt is called
+
+49
+00:02:11,862 --> 00:02:14,264
+id_vars. Id_vars identifies the column
+
+50
+00:02:14,264 --> 00:02:17,815
+that contains id's in your dataset, so in
+
+51
+00:02:17,815 --> 00:02:20,148
+our previous example, this would be the
+
+52
+00:02:20,148 --> 00:02:21,928
+product id column. Now melt works by
+
+53
+00:02:21,928 --> 00:02:24,740
+taking all the values that are not in this
+
+54
+00:02:24,740 --> 00:02:27,472
+id_vars column, and puts them all in a
+
+55
+00:02:27,472 --> 00:02:29,761
+single column, and then it takes the
+
+56
+00:02:29,761 --> 00:02:32,009
+column labels from your original data and
+
+57
+00:02:32,009 --> 00:02:35,054
+puts these in a separate column under the
+
+58
+00:02:35,054 --> 00:02:38,034
+name variable. Now let's look at a little
+
+59
+00:02:38,034 --> 00:02:40,603
+visualization to make this a little bit
+
+60
+00:02:40,603 --> 00:02:44,095
+more clear. Let's take the same example as
+
+61
+00:02:44,095 --> 00:02:47,092
+with pivot, but let's work backwards. So
+
+62
+00:02:47,092 --> 00:02:49,006
+here I have the DataFrame that was the
+
+63
+00:02:49,006 --> 00:02:50,740
+result of our pivot operation a moment
+
+64
+00:02:50,740 --> 00:02:53,073
+ago. And in this case, before I can use
+
+65
+00:02:53,073 --> 00:02:56,012
+melt I want to move my index into one of
+
+66
+00:02:56,012 --> 00:02:58,483
+my columns, because in this case my index
+
+67
+00:02:58,483 --> 00:03:00,866
+contains my product id's, but melt only
+
+68
+00:03:00,866 --> 00:03:04,176
+looks at the data in my columns, so I want
+
+69
+00:03:04,176 --> 00:03:07,405
+to move my index into a column. So I start
+
+70
+00:03:07,405 --> 00:03:10,249
+by preparing the DataFrame, and I call df.
+
+71
+00:03:10,249 --> 00:03:13,388
+reset_index on it, so this moves my index
+
+72
+00:03:13,388 --> 00:03:17,117
+into a new column, index, and then I say.
+
+73
+00:03:17,117 --> 00:03:20,669
+rename and I rename the new index column
+
+74
+00:03:20,669 --> 00:03:23,625
+to prod_id. So this results in the
+
+75
+00:03:23,625 --> 00:03:26,349
+DataFrame on the right-hand side here. I
+
+76
+00:03:26,349 --> 00:03:28,867
+have a new index 0, 1, 2, which is simply
+
+77
+00:03:28,867 --> 00:03:32,060
+a range, and I have a new column, prod_id,
+
+78
+00:03:32,060 --> 00:03:35,425
+that contains the indices from the
+
+79
+00:03:35,425 --> 00:03:38,548
+original DataFrame. So now all the data I
+
+80
+00:03:38,548 --> 00:03:41,549
+want is in my columns, and I can call
+
+81
+00:03:41,549 --> 00:03:45,771
+melt. So now I say df. melt and I pass it
+
+82
+00:03:45,771 --> 00:03:48,949
+the id_vars argument, and I tell it that
+
+83
+00:03:48,949 --> 00:03:52,149
+my product id column contains the id's.
+
+84
+00:03:52,149 --> 00:03:54,612
+And you can see the result here on the
+
+85
+00:03:54,612 --> 00:03:56,839
+right-hand side. I now have a row for
+
+86
+00:03:56,839 --> 00:03:59,078
+every combination of a product id and a
+
+87
+00:03:59,078 --> 00:04:01,581
+price or a stock. So price and stock here
+
+88
+00:04:01,581 --> 00:04:03,795
+are values that are taken from the column
+
+89
+00:04:03,795 --> 00:04:06,423
+labels of our original DataFrame, and the
+
+90
+00:04:06,423 --> 00:04:08,490
+corresponding values are in the value
+
+91
+00:04:08,490 --> 00:04:11,036
+column. So now you can see that the price
+
+92
+00:04:11,036 --> 00:04:14,477
+for product 1 is 11, and the stock for
+
+93
+00:04:14,477 --> 00:04:17,921
+product 2 is 2, etc., etc. Another
+
+94
+00:04:17,921 --> 00:04:21,172
+function we saw is stack, and this is
+
+95
+00:04:21,172 --> 00:04:24,122
+quite similar to melt in that it moves
+
+96
+00:04:24,122 --> 00:04:26,442
+data from multiple columns into a single
+
+97
+00:04:26,442 --> 00:04:28,006
+column. The difference is that stack
+
+98
+00:04:28,006 --> 00:04:29,978
+simply puts all your data in a single
+
+99
+00:04:29,978 --> 00:04:32,427
+column and adds a multi-level index. So
+
+100
+00:04:32,427 --> 00:04:35,363
+now we have all our values below each
+
+101
+00:04:35,363 --> 00:04:37,408
+other, and we have a multi-level index
+
+102
+00:04:37,408 --> 00:04:39,365
+where the first level is our original
+
+103
+00:04:39,365 --> 00:04:41,630
+index, so the product id's, and the second
+
+104
+00:04:41,630 --> 00:04:45,329
+level tells us whether it's a price or a
+
+105
+00:04:45,329 --> 00:04:49,189
+stock. And, of course, stack also have an
+
+106
+00:04:49,189 --> 00:04:51,441
+opposite called unstack. This looks at
+
+107
+00:04:51,441 --> 00:04:53,348
+your innermost index level, so in this
+
+108
+00:04:53,348 --> 00:04:55,574
+case it's the index that says price or
+
+109
+00:04:55,574 --> 00:04:57,827
+stock, and for every unique value in this
+
+110
+00:04:57,827 --> 00:05:00,303
+index it contains a column. So in the
+
+111
+00:05:00,303 --> 00:05:03,067
+result we now have a column stock and a
+
+112
+00:05:03,067 --> 00:05:05,787
+column price, so as you can see, this is
+
+113
+00:05:05,787 --> 00:05:11,000
+exactly the opposite as the stack method from the previous slide.
+

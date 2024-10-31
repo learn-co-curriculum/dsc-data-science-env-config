@@ -1,0 +1,25 @@
+.green{
+    display: flex;
+    justify-content: center;
+    background-color:green;
+    width: 100px;
+    height: 100px;
+    color: white;
+}
+
+.parent{
+    display: flex;
+    z-index: 10;
+    z-index: 15;
+    justify-content: center;
+    gap: 8px;
+    background-color: aqua;
+    padding: 40px;
+}
+
+.green #second {
+    
+    border-color: red;
+    border-width: 10px;
+    border-right: 2px goldenrod;
+}

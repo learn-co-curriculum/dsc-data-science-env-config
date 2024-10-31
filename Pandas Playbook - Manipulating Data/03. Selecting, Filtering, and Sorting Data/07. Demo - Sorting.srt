@@ -1,0 +1,172 @@
+1
+00:00:00,713 --> 00:00:03,748
+To wrap up the module, let's talk about
+
+2
+00:00:03,748 --> 00:00:06,017
+sorting for a moment. There are two
+
+3
+00:00:06,017 --> 00:00:08,202
+methods you need to be aware of. First
+
+4
+00:00:08,202 --> 00:00:10,775
+there's sort_index, which, as the name
+
+5
+00:00:10,775 --> 00:00:14,030
+implies, sorts by index. So I can say
+
+6
+00:00:14,030 --> 00:00:16,726
+capitals. sort_index, and I get a new
+
+7
+00:00:16,726 --> 00:00:19,260
+DataFrame sorted by index, which in this
+
+8
+00:00:19,260 --> 00:00:22,034
+case means we sort by country names. By
+
+9
+00:00:22,034 --> 00:00:25,210
+default, this method does not change the
+
+10
+00:00:25,210 --> 00:00:28,101
+original DataFrame, so that means if we
+
+11
+00:00:28,101 --> 00:00:30,991
+check capitals it's still unsorted. If you
+
+12
+00:00:30,991 --> 00:00:34,621
+need the original data to be sorted, use
+
+13
+00:00:34,621 --> 00:00:36,680
+inplace=True, and now the capitals
+
+14
+00:00:36,680 --> 00:00:39,865
+variable itself is sorted. You can also do
+
+15
+00:00:39,865 --> 00:00:42,629
+a reverse sort by saying ascending is
+
+16
+00:00:42,629 --> 00:00:45,542
+False. And you can also sort by the column
+
+17
+00:00:45,542 --> 00:00:48,300
+index. To do so we add the argument axis
+
+18
+00:00:48,300 --> 00:00:51,049
+is 1, so now our data is sorted in
+
+19
+00:00:51,049 --> 00:00:54,246
+descending order along the row index and
+
+20
+00:00:54,246 --> 00:00:57,444
+in ascending order along the column index.
+
+21
+00:00:57,444 --> 00:00:58,747
+But, of course, sometimes you don't want
+
+22
+00:00:58,747 --> 00:01:00,836
+to sort by index of your data, but by
+
+23
+00:01:00,836 --> 00:01:03,586
+value. For this there is the method
+
+24
+00:01:03,586 --> 00:01:05,650
+sort_values. And if you run it without any
+
+25
+00:01:05,650 --> 00:01:07,334
+arguments you get an error, because you
+
+26
+00:01:07,334 --> 00:01:09,537
+need to supply it an argument so that it
+
+27
+00:01:09,537 --> 00:01:12,278
+knows by which column to sort, so we can
+
+28
+00:01:12,278 --> 00:01:15,288
+say we want to sort it by the Percentage
+
+29
+00:01:15,288 --> 00:01:17,381
+column. Sometimes you need a secondary
+
+30
+00:01:17,381 --> 00:01:19,981
+column to sort by. As an example, let's
+
+31
+00:01:19,981 --> 00:01:22,368
+sort our grades. And here I'm passing a
+
+32
+00:01:22,368 --> 00:01:25,690
+list of columns to sort by. The primary
+
+33
+00:01:25,690 --> 00:01:28,318
+sort column is test_1, but students who
+
+34
+00:01:28,318 --> 00:01:30,482
+received the same score on that test, for
+
+35
+00:01:30,482 --> 00:01:33,507
+example, Mary and Pete who both received a
+
+36
+00:01:33,507 --> 00:01:36,458
+6, are sorted by test_2. By the way,
+
+37
+00:01:36,458 --> 00:01:38,099
+sort_values also supports the other
+
+38
+00:01:38,099 --> 00:01:39,941
+arguments we've seen like inplace,
+
+39
+00:01:39,941 --> 00:01:42,943
+ascending, and axis. As always, I suggest
+
+40
+00:01:42,943 --> 00:01:45,818
+you take a moment and play around with
+
+41
+00:01:45,818 --> 00:01:48,042
+these methods to verify that this works
+
+42
+00:01:48,042 --> 00:01:50,141
+the way you expect it to. And that brings
+
+43
+00:01:50,141 --> 00:01:56,000
+us to the end of our demos for this module. Let's review.
+

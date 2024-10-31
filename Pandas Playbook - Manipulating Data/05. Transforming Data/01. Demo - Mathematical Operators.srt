@@ -1,0 +1,620 @@
+1
+00:00:00,288 --> 00:00:03,291
+So let's start with our first demo in
+
+2
+00:00:03,291 --> 00:00:06,234
+which we'll see how to apply basic math
+
+3
+00:00:06,234 --> 00:00:08,303
+operations, and how to apply functions,
+
+4
+00:00:08,303 --> 00:00:10,537
+and we'll look both at mathematical
+
+5
+00:00:10,537 --> 00:00:13,100
+functions from the numpy library and
+
+6
+00:00:13,100 --> 00:00:16,917
+functions that we wrote ourselves. As
+
+7
+00:00:16,917 --> 00:00:19,412
+always, I start by importing numpy in
+
+8
+00:00:19,412 --> 00:00:21,963
+Pandas, and here I'm creating a new
+
+9
+00:00:21,963 --> 00:00:24,654
+DataFrame with five rows and four columns,
+
+10
+00:00:24,654 --> 00:00:27,792
+and it only contains ones, and I create
+
+11
+00:00:27,792 --> 00:00:30,780
+this using the numpy function ones. And I
+
+12
+00:00:30,780 --> 00:00:33,569
+set the names of the columns to a list of
+
+13
+00:00:33,569 --> 00:00:36,217
+characters, a, b, c, d. Now the mast basic
+
+14
+00:00:36,217 --> 00:00:39,035
+thing you can probably do is apply a basic
+
+15
+00:00:39,035 --> 00:00:40,793
+mathematical operator to the entire
+
+16
+00:00:40,793 --> 00:00:43,477
+DataFrame, so let's say, for example,
+
+17
+00:00:43,477 --> 00:00:46,615
+multiplying the entire DataFrame by 2. And
+
+18
+00:00:46,615 --> 00:00:48,656
+this multiplies every cell in the
+
+19
+00:00:48,656 --> 00:00:50,762
+DataFrame by 2. Now this doesn't update
+
+20
+00:00:50,762 --> 00:00:53,204
+the DataFrame itself, so if you want to do
+
+21
+00:00:53,204 --> 00:00:55,977
+that we have to use an equals sign here.
+
+22
+00:00:55,977 --> 00:00:58,631
+And then to display the DataFrame I have
+
+23
+00:00:58,631 --> 00:01:01,603
+to say df again. So after executing these
+
+24
+00:01:01,603 --> 00:01:04,231
+two lines, we see that the DataFrame now
+
+25
+00:01:04,231 --> 00:01:06,761
+contains the value 2 for every cell. We
+
+26
+00:01:06,761 --> 00:01:09,080
+can also use these operations on single
+
+27
+00:01:09,080 --> 00:01:11,754
+rows or cells. So, for example, I can
+
+28
+00:01:11,754 --> 00:01:15,114
+select a row with loc and divide it by 2,
+
+29
+00:01:15,114 --> 00:01:17,869
+or I can select a column and subtract 1.
+
+30
+00:01:17,869 --> 00:01:20,812
+And here you see that only the column and
+
+31
+00:01:20,812 --> 00:01:23,393
+the row we have selected have been
+
+32
+00:01:23,393 --> 00:01:25,454
+changed. Now this is all very
+
+33
+00:01:25,454 --> 00:01:27,485
+straightforward, but I can use these
+
+34
+00:01:27,485 --> 00:01:29,198
+mathematical operations on more complex
+
+35
+00:01:29,198 --> 00:01:31,948
+data types as well, so let's see what
+
+36
+00:01:31,948 --> 00:01:34,291
+happens if we use one of these operations
+
+37
+00:01:34,291 --> 00:01:36,190
+on two DataFrames instead of a DataFrame
+
+38
+00:01:36,190 --> 00:01:38,372
+and just a number. So to do that, of
+
+39
+00:01:38,372 --> 00:01:40,979
+course, I have to start by creating a new
+
+40
+00:01:40,979 --> 00:01:43,272
+DataFrame. So here I have a DataFrame,
+
+41
+00:01:43,272 --> 00:01:46,227
+again, with only ones in it, and it has
+
+42
+00:01:46,227 --> 00:01:48,439
+three rows and two columns, and the
+
+43
+00:01:48,439 --> 00:01:51,004
+columns in this case are called d and e,
+
+44
+00:01:51,004 --> 00:01:54,595
+and the rows are 2, 4, and 5, so we have a
+
+45
+00:01:54,595 --> 00:01:56,562
+non-continuous index here. Now let's see
+
+46
+00:01:56,562 --> 00:01:59,553
+what happens if I try to add this second
+
+47
+00:01:59,553 --> 00:02:01,890
+DataFrame to the first DataFrame by saying
+
+48
+00:02:01,890 --> 00:02:06,116
+df + df2. And the result here may surprise
+
+49
+00:02:06,116 --> 00:02:09,214
+you. We get a lot of not a numbers, and we
+
+50
+00:02:09,214 --> 00:02:11,595
+get only two values. So how does this
+
+51
+00:02:11,595 --> 00:02:14,252
+work? Well, first of all it's important to
+
+52
+00:02:14,252 --> 00:02:17,206
+realize that Pandas always works in terms
+
+53
+00:02:17,206 --> 00:02:20,604
+of indices and labels. Now when I add two
+
+54
+00:02:20,604 --> 00:02:22,913
+DataFrames it will take every position in
+
+55
+00:02:22,913 --> 00:02:25,746
+the first DataFrame and try to find the
+
+56
+00:02:25,746 --> 00:02:28,282
+same position in the second DataFrame and
+
+57
+00:02:28,282 --> 00:02:31,417
+add those. So scrolling up a bit, the
+
+58
+00:02:31,417 --> 00:02:35,434
+first cell in df1 has column a and row 0.
+
+59
+00:02:35,434 --> 00:02:38,400
+Pandas will try to locate a cell in df2
+
+60
+00:02:38,400 --> 00:02:41,639
+that has row 0 and column a as well. Now,
+
+61
+00:02:41,639 --> 00:02:44,091
+as you can see in df2, there's no such
+
+62
+00:02:44,091 --> 00:02:46,403
+thing, there is no column a, and there's
+
+63
+00:02:46,403 --> 00:02:50,125
+also no row 0, but in the output we do see
+
+64
+00:02:50,125 --> 00:02:53,433
+a column a and a row 0. So basically,
+
+65
+00:02:53,433 --> 00:02:56,719
+Pandas takes every row and every column
+
+66
+00:02:56,719 --> 00:02:59,414
+from both DataFrames, and puts them all in
+
+67
+00:02:59,414 --> 00:03:01,987
+the output. So the columns a, b, c, d were
+
+68
+00:03:01,987 --> 00:03:04,088
+all in our first DataFrame, so they all
+
+69
+00:03:04,088 --> 00:03:06,576
+show up in the output, but column e is
+
+70
+00:03:06,576 --> 00:03:09,209
+only in DataFrame 2 and it still shows up
+
+71
+00:03:09,209 --> 00:03:11,743
+in the output. And then the actual
+
+72
+00:03:11,743 --> 00:03:14,226
+calculation is only executed for those
+
+73
+00:03:14,226 --> 00:03:17,833
+cells that are in both DataFrames. And in
+
+74
+00:03:17,833 --> 00:03:20,859
+this example there's only two cells that
+
+75
+00:03:20,859 --> 00:03:23,466
+overlap. Again, scrolling up, there's a d2
+
+76
+00:03:23,466 --> 00:03:26,282
+in DataFrame 1 and there's a d2 in
+
+77
+00:03:26,282 --> 00:03:29,001
+DataFrame 2, so these values we can now
+
+78
+00:03:29,001 --> 00:03:31,899
+add, So that's 2 + 1 is 3. Let's look at
+
+79
+00:03:31,899 --> 00:03:34,533
+the output, and we see the result in cell
+
+80
+00:03:34,533 --> 00:03:38,325
+d2 is 3. Similarly, there's a d4 in both
+
+81
+00:03:38,325 --> 00:03:40,676
+DataFrames. Those get added and the result
+
+82
+00:03:40,676 --> 00:03:43,056
+shows up in the output. So basically, what
+
+83
+00:03:43,056 --> 00:03:45,113
+happens is that Pandas takes what we call
+
+84
+00:03:45,113 --> 00:03:47,680
+the Cartesian product of all the rows and
+
+85
+00:03:47,680 --> 00:03:50,198
+columns, so basically there will be a row
+
+86
+00:03:50,198 --> 00:03:52,803
+for every row index in both of the inputs,
+
+87
+00:03:52,803 --> 00:03:55,447
+and there will be a column for all the
+
+88
+00:03:55,447 --> 00:03:57,800
+column labels in both of the inputs. Now
+
+89
+00:03:57,800 --> 00:03:59,969
+for every combination of a row and column
+
+90
+00:03:59,969 --> 00:04:02,506
+that doesn't contain a value for both
+
+91
+00:04:02,506 --> 00:04:06,601
+inputs, we get NaN, as you see here. Now
+
+92
+00:04:06,601 --> 00:04:08,157
+the second question is, what will happen
+
+93
+00:04:08,157 --> 00:04:10,749
+if I use a mathematical operation on two
+
+94
+00:04:10,749 --> 00:04:14,698
+Series. So let's take a row from both
+
+95
+00:04:14,698 --> 00:04:16,785
+DataFrames, and basically here we see the
+
+96
+00:04:16,785 --> 00:04:18,710
+same thing. There's five values here, one
+
+97
+00:04:18,710 --> 00:04:21,362
+for every column from each of the inputs,
+
+98
+00:04:21,362 --> 00:04:24,322
+so a, b, c, d come from our first
+
+99
+00:04:24,322 --> 00:04:26,913
+DataFrame, and the e column is added by
+
+100
+00:04:26,913 --> 00:04:28,915
+our second DataFrame, and again, we only
+
+101
+00:04:28,915 --> 00:04:31,235
+see a result for the case where there's a
+
+102
+00:04:31,235 --> 00:04:34,453
+value in both inputs, and in all other
+
+103
+00:04:34,453 --> 00:04:37,590
+cases the result is NaN. And then, of
+
+104
+00:04:37,590 --> 00:04:39,358
+course, there's the question of operating
+
+105
+00:04:39,358 --> 00:04:41,967
+on a DataFrame in a series, and the
+
+106
+00:04:41,967 --> 00:04:44,383
+classical example for this is removing the
+
+107
+00:04:44,383 --> 00:04:46,983
+mean from your columns. As you may
+
+108
+00:04:46,983 --> 00:04:49,288
+remember, the mean of a DataFrame returns
+
+109
+00:04:49,288 --> 00:04:51,826
+the mean value for every column. So here
+
+110
+00:04:51,826 --> 00:04:54,876
+we have a Series that has a value for each
+
+111
+00:04:54,876 --> 00:04:58,015
+column, and that means that when I say df
+
+112
+00:04:58,015 --> 00:05:00,847
+- df. mean, I'm subtracting a Series from
+
+113
+00:05:00,847 --> 00:05:03,319
+a DataFrame. And this probably does what
+
+114
+00:05:03,319 --> 00:05:06,006
+you would expect it to do. For every
+
+115
+00:05:06,006 --> 00:05:07,711
+column it takes the corresponding value
+
+116
+00:05:07,711 --> 00:05:10,177
+from the Series and subtracts it from each
+
+117
+00:05:10,177 --> 00:05:13,403
+of its cells. So for column a we take the
+
+118
+00:05:13,403 --> 00:05:16,230
+a value from our df. mean series and
+
+119
+00:05:16,230 --> 00:05:19,057
+subtract it from each cell in column a,
+
+120
+00:05:19,057 --> 00:05:21,801
+and for the b column we take the b value
+
+121
+00:05:21,801 --> 00:05:24,366
+from df. mean and subtract it from every
+
+122
+00:05:24,366 --> 00:05:28,954
+cell in b, etc., etc. Now here I have a
+
+123
+00:05:28,954 --> 00:05:31,292
+different example of subtracting a Series
+
+124
+00:05:31,292 --> 00:05:33,776
+from a DataFrame. I'm creating a series
+
+125
+00:05:33,776 --> 00:05:36,638
+that has four values, but in this case the
+
+126
+00:05:36,638 --> 00:05:39,772
+labels of the values are a, b, e, and f,
+
+127
+00:05:39,772 --> 00:05:41,914
+so the labels don't completely correspond
+
+128
+00:05:41,914 --> 00:05:44,413
+with the column names of our DataFrame.
+
+129
+00:05:44,413 --> 00:05:46,430
+When I execute this, we see that the same
+
+130
+00:05:46,430 --> 00:05:48,647
+thing happens as we saw before when we
+
+131
+00:05:48,647 --> 00:05:51,282
+tried to add two DataFrames. For every
+
+132
+00:05:51,282 --> 00:05:54,507
+column label that isn't in both of the
+
+133
+00:05:54,507 --> 00:05:57,500
+inputs, we get NaN. Now what if I want to
+
+134
+00:05:57,500 --> 00:05:59,341
+apply one of these operations on the rows
+
+135
+00:05:59,341 --> 00:06:01,919
+instead of the columns, so I want to take
+
+136
+00:06:01,919 --> 00:06:04,146
+the mean for every row and then subtract
+
+137
+00:06:04,146 --> 00:06:06,526
+it from every row? Well we know that to
+
+138
+00:06:06,526 --> 00:06:08,993
+take the mean for every row we can say df.
+
+139
+00:06:08,993 --> 00:06:11,276
+mean with axis=1, but if I try to subtract
+
+140
+00:06:11,276 --> 00:06:14,029
+this from my DataFrame, I get a result
+
+141
+00:06:14,029 --> 00:06:16,782
+with only null values in this. This is
+
+142
+00:06:16,782 --> 00:06:19,876
+because my df. mean works per row, so the
+
+143
+00:06:19,876 --> 00:06:22,549
+indices of my df. mean are the index
+
+144
+00:06:22,549 --> 00:06:25,728
+labels for my rows, which is 0, 1, 2, 3,
+
+145
+00:06:25,728 --> 00:06:29,134
+4, and these are different from the column
+
+146
+00:06:29,134 --> 00:06:31,451
+labels. So subtraction like this only
+
+147
+00:06:31,451 --> 00:06:34,276
+works per column. If we wanted to work
+
+148
+00:06:34,276 --> 00:06:36,994
+over the other axis, I have to use
+
+149
+00:06:36,994 --> 00:06:40,027
+different methods. I have to say df. sub.
+
+150
+00:06:40,027 --> 00:06:43,557
+So df. sub is a DataFrame method that does
+
+151
+00:06:43,557 --> 00:06:45,980
+subtraction and basically it does the same
+
+152
+00:06:45,980 --> 00:06:48,486
+as the minus symbol, but it gives us some
+
+153
+00:06:48,486 --> 00:06:50,279
+more options. So here, for example, I can
+
+154
+00:06:50,279 --> 00:06:54,005
+give an axis argument, and this allows me
+
+155
+00:06:54,005 --> 00:07:00,000
+to subtract the mean row-wise for every row for my DataFrame.
+

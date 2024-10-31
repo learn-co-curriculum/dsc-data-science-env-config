@@ -1,0 +1,620 @@
+1
+00:00:00,000 --> 00:00:03,909
+So we've either removed or filled all the
+
+2
+00:00:03,909 --> 00:00:07,038
+missing cells in our DataFrame, but there
+
+3
+00:00:07,038 --> 00:00:09,438
+might still be other unwanted values in
+
+4
+00:00:09,438 --> 00:00:13,086
+our DataFrame. Let's look at two classes
+
+5
+00:00:13,086 --> 00:00:16,049
+of unwanted values, outliers and
+
+6
+00:00:16,049 --> 00:00:18,508
+duplicates. There's not really something
+
+7
+00:00:18,508 --> 00:00:21,776
+like a formal definition of what exactly
+
+8
+00:00:21,776 --> 00:00:24,267
+an outlier is, but let's take a short look
+
+9
+00:00:24,267 --> 00:00:26,734
+of ways to detect and remove them anyway.
+
+10
+00:00:26,734 --> 00:00:29,623
+First of all, I'm reading in a dataset
+
+11
+00:00:29,623 --> 00:00:33,036
+about athletes who competed in the Olympic
+
+12
+00:00:33,036 --> 00:00:35,803
+games of 2016. And here we see the various
+
+13
+00:00:35,803 --> 00:00:37,420
+columns in our data. There are actually
+
+14
+00:00:37,420 --> 00:00:39,264
+some missing values in some of the
+
+15
+00:00:39,264 --> 00:00:41,515
+columns, but nothing to worry about right
+
+16
+00:00:41,515 --> 00:00:44,267
+now. For a visual indication of what our
+
+17
+00:00:44,267 --> 00:00:47,318
+data looks like, let's start with a small
+
+18
+00:00:47,318 --> 00:00:49,086
+scatterplot. First I need to say
+
+19
+00:00:49,086 --> 00:00:51,028
+matplotlib inline to make sure that the
+
+20
+00:00:51,028 --> 00:00:54,669
+notebook will show our plots. Then I type
+
+21
+00:00:54,669 --> 00:00:57,789
+athletes. plot. scatter and I select the
+
+22
+00:00:57,789 --> 00:01:00,656
+height column for the x axis and the
+
+23
+00:01:00,656 --> 00:01:03,496
+weight column for the y axis. And here we
+
+24
+00:01:03,496 --> 00:01:05,103
+see heights and weights of all the
+
+25
+00:01:05,103 --> 00:01:06,658
+athletes in the dataset plotted against
+
+26
+00:01:06,658 --> 00:01:08,887
+each other. You might say that there's
+
+27
+00:01:08,887 --> 00:01:11,075
+some kind of cluster of data points, and
+
+28
+00:01:11,075 --> 00:01:13,045
+there are some athletes that are not part
+
+29
+00:01:13,045 --> 00:01:15,608
+of that cluster. Now suppose I want to
+
+30
+00:01:15,608 --> 00:01:17,997
+filter out those athletes that are either
+
+31
+00:01:17,997 --> 00:01:21,548
+very tall, or not tall at all. I get the
+
+32
+00:01:21,548 --> 00:01:23,810
+height column from our DataFrame and store
+
+33
+00:01:23,810 --> 00:01:26,615
+it by itself into a new variable, heights.
+
+34
+00:01:26,615 --> 00:01:30,506
+This I can upload as a box plot by saying
+
+35
+00:01:30,506 --> 00:01:34,318
+heights. plot. box, and this gives a nice
+
+36
+00:01:34,318 --> 00:01:36,493
+visual representation of the distribution
+
+37
+00:01:36,493 --> 00:01:39,377
+of the heights. Half of all athletes are
+
+38
+00:01:39,377 --> 00:01:42,275
+within the box, and 25% of them are below
+
+39
+00:01:42,275 --> 00:01:46,660
+the box, and another 25 are above it. The
+
+40
+00:01:46,660 --> 00:01:48,897
+circles represent outliers. Now exactly
+
+41
+00:01:48,897 --> 00:01:51,614
+how an outlier is defined can differ
+
+42
+00:01:51,614 --> 00:01:53,622
+between box plots. The default behavior
+
+43
+00:01:53,622 --> 00:01:56,154
+for this plot is that it takes the edges
+
+44
+00:01:56,154 --> 00:01:58,800
+of the box, adds the total length of the
+
+45
+00:01:58,800 --> 00:02:01,292
+box times one and a half, and anything
+
+46
+00:02:01,292 --> 00:02:03,703
+further out than that is called an
+
+47
+00:02:03,703 --> 00:02:06,222
+outlier. Of course, this is kind of an
+
+48
+00:02:06,222 --> 00:02:08,000
+arbitrary definition of an outlier, and
+
+49
+00:02:08,000 --> 00:02:09,796
+since there are quite a lot of circles
+
+50
+00:02:09,796 --> 00:02:11,870
+here, it may not be the right definition
+
+51
+00:02:11,870 --> 00:02:14,413
+for this dataset exactly, but let's just
+
+52
+00:02:14,413 --> 00:02:17,612
+see if we can remove these outliers from
+
+53
+00:02:17,612 --> 00:02:20,310
+our dataset. I start by defining two
+
+54
+00:02:20,310 --> 00:02:23,309
+variables, q1 and q3, which are the first
+
+55
+00:02:23,309 --> 00:02:27,241
+and third quartile, or in other words the
+
+56
+00:02:27,241 --> 00:02:29,968
+25th and 75th percentile. If these terms
+
+57
+00:02:29,968 --> 00:02:32,051
+mean nothing to you, let me put it this
+
+58
+00:02:32,051 --> 00:02:34,471
+way, if we sort all heights in order from
+
+59
+00:02:34,471 --> 00:02:37,119
+short to tall, q1 here would be the data
+
+60
+00:02:37,119 --> 00:02:40,046
+point where exactly one fourth of all data
+
+61
+00:02:40,046 --> 00:02:42,976
+points are smaller, and q3 is the point
+
+62
+00:02:42,976 --> 00:02:45,173
+that has exactly three-quarters of all
+
+63
+00:02:45,173 --> 00:02:47,488
+data points smaller than it. And I'm
+
+64
+00:02:47,488 --> 00:02:49,386
+setting these values because they are
+
+65
+00:02:49,386 --> 00:02:52,415
+exactly the edges of the box on the box
+
+66
+00:02:52,415 --> 00:02:56,073
+plot. Saying q3 - q1 in the next line
+
+67
+00:02:56,073 --> 00:03:00,120
+gives us the height of the box, also known
+
+68
+00:03:00,120 --> 00:03:03,892
+as the interquartile range, or IQR. Very
+
+69
+00:03:03,892 --> 00:03:06,701
+well, now we can calculate the position of
+
+70
+00:03:06,701 --> 00:03:09,630
+the ends of the whiskers like this. Pmin
+
+71
+00:03:09,630 --> 00:03:13,397
+is the first quartile, minus 1. 5 times
+
+72
+00:03:13,397 --> 00:03:17,006
+the iqr, and pmax is the third quartile
+
+73
+00:03:17,006 --> 00:03:20,535
+plus 1. 5 times iqr. So now we have
+
+74
+00:03:20,535 --> 00:03:23,488
+basically the same data that the box plot
+
+75
+00:03:23,488 --> 00:03:26,038
+shows graphically. Pmin and pmax are the
+
+76
+00:03:26,038 --> 00:03:28,612
+horizontal lines at the end of the
+
+77
+00:03:28,612 --> 00:03:30,748
+vertical lines and everything beyond them
+
+78
+00:03:30,748 --> 00:03:33,901
+are outliers. So we can use this to remove
+
+79
+00:03:33,901 --> 00:03:37,001
+everything lying outside of the range pmin
+
+80
+00:03:37,001 --> 00:03:39,354
+to pmax. And because I will be throwing
+
+81
+00:03:39,354 --> 00:03:41,311
+data away, I prefer not to change my
+
+82
+00:03:41,311 --> 00:03:45,353
+original data at first. So let's make a
+
+83
+00:03:45,353 --> 00:03:48,539
+new variable, let's say nwh for new
+
+84
+00:03:48,539 --> 00:03:51,181
+heights, and here I select all data points
+
+85
+00:03:51,181 --> 00:03:54,020
+from heights between pmin and pmax. The
+
+86
+00:03:54,020 --> 00:03:56,634
+function between returns a series of
+
+87
+00:03:56,634 --> 00:03:59,886
+Booleans that is true whenever a value
+
+88
+00:03:59,886 --> 00:04:03,456
+lies between pmin and pmax. So I use this
+
+89
+00:04:03,456 --> 00:04:05,637
+series to index into the heights variable,
+
+90
+00:04:05,637 --> 00:04:08,814
+and this leaves me with a list of heights
+
+91
+00:04:08,814 --> 00:04:11,307
+that does not include outliers. This I
+
+92
+00:04:11,307 --> 00:04:13,821
+store in a variable, new heights. But
+
+93
+00:04:13,821 --> 00:04:16,118
+actually, let's think about this a moment.
+
+94
+00:04:16,118 --> 00:04:18,401
+Do I really want to remove the data points
+
+95
+00:04:18,401 --> 00:04:20,369
+with heights that are outside this range?
+
+96
+00:04:20,369 --> 00:04:22,912
+If I'm going to remove entire rows from
+
+97
+00:04:22,912 --> 00:04:25,696
+the DataFrame, I'll be throwing away other
+
+98
+00:04:25,696 --> 00:04:28,314
+data for these athletes too, like the
+
+99
+00:04:28,314 --> 00:04:30,283
+medals they've won for example, and this
+
+100
+00:04:30,283 --> 00:04:32,656
+might affect our results later on in a bad
+
+101
+00:04:32,656 --> 00:04:34,901
+way, so in this case I think it's better
+
+102
+00:04:34,901 --> 00:04:37,753
+to actually replace the outliers with null
+
+103
+00:04:37,753 --> 00:04:40,352
+values, so actually I'll be introducing
+
+104
+00:04:40,352 --> 00:04:43,639
+empty values in our dataset right now. And
+
+105
+00:04:43,639 --> 00:04:46,128
+one way to do this is by using the
+
+106
+00:04:46,128 --> 00:04:47,967
+function where. Now this method works a
+
+107
+00:04:47,967 --> 00:04:49,768
+little bit like an indexing operator in
+
+108
+00:04:49,768 --> 00:04:52,109
+the sense that I can pass it a list of
+
+109
+00:04:52,109 --> 00:04:53,897
+Booleans, which I do by using heights.
+
+110
+00:04:53,897 --> 00:04:56,588
+between as its first argument, and it
+
+111
+00:04:56,588 --> 00:04:59,725
+returns the original height for every true
+
+112
+00:04:59,725 --> 00:05:03,197
+element and null for every false element.
+
+113
+00:05:03,197 --> 00:05:05,284
+In other words, where replaces everything
+
+114
+00:05:05,284 --> 00:05:07,830
+that doesn't fall in the range pmin/pmax
+
+115
+00:05:07,830 --> 00:05:11,463
+with not a number. Now let me just repeat
+
+116
+00:05:11,463 --> 00:05:14,466
+that I'm not trying to tell you that this
+
+117
+00:05:14,466 --> 00:05:16,975
+is the way to remove outliers from your
+
+118
+00:05:16,975 --> 00:05:19,188
+data. What you consider an outlier will
+
+119
+00:05:19,188 --> 00:05:21,739
+depend on your data and what you want to
+
+120
+00:05:21,739 --> 00:05:23,794
+do with that data. For example, instead of
+
+121
+00:05:23,794 --> 00:05:26,518
+the code here you may want to write code
+
+122
+00:05:26,518 --> 00:05:28,503
+that selects everything outside of two
+
+123
+00:05:28,503 --> 00:05:30,757
+standard deviations around the mean, or
+
+124
+00:05:30,757 --> 00:05:33,281
+maybe you want to replace them with some
+
+125
+00:05:33,281 --> 00:05:35,324
+value, let's say the mean of all heights,
+
+126
+00:05:35,324 --> 00:05:37,733
+and in this case, you can add another
+
+127
+00:05:37,733 --> 00:05:39,813
+argument to the where function and this
+
+128
+00:05:39,813 --> 00:05:41,820
+will replace the outliers with the mean.
+
+129
+00:05:41,820 --> 00:05:43,936
+Now in my case it doesn't really make
+
+130
+00:05:43,936 --> 00:05:46,423
+sense to give a lot of people an average
+
+131
+00:05:46,423 --> 00:05:48,961
+height so let's just remove this again and
+
+132
+00:05:48,961 --> 00:05:51,422
+just replace the the outliers with null
+
+133
+00:05:51,422 --> 00:05:54,793
+values. So now I have two series, one with
+
+134
+00:05:54,793 --> 00:05:57,709
+outliers and one without, and I'd like to
+
+135
+00:05:57,709 --> 00:06:00,639
+compare them. A nice way to do this is to
+
+136
+00:06:00,639 --> 00:06:03,115
+put them side by side in a new DataFrame,
+
+137
+00:06:03,115 --> 00:06:06,255
+so I call pd. dataframe and pass it a
+
+138
+00:06:06,255 --> 00:06:08,917
+dictionary with the keys before and after,
+
+139
+00:06:08,917 --> 00:06:12,447
+and our two series as arguments. Now let's
+
+140
+00:06:12,447 --> 00:06:14,777
+compare these both in text and
+
+141
+00:06:14,777 --> 00:06:18,738
+graphically. So I'm going to say compare.
+
+142
+00:06:18,738 --> 00:06:22,467
+describe, and compare. plot. box. And now
+
+143
+00:06:22,467 --> 00:06:25,846
+we see a comparison of the data before and
+
+144
+00:06:25,846 --> 00:06:27,613
+after removing outliers. We've removed
+
+145
+00:06:27,613 --> 00:06:29,853
+about 100 data points, and this has
+
+146
+00:06:29,853 --> 00:06:32,200
+resulted in a slightly different mean
+
+147
+00:06:32,200 --> 00:06:34,974
+value and a tighter standard deviation.
+
+148
+00:06:34,974 --> 00:06:37,591
+The box plot, as well, shows that the
+
+149
+00:06:37,591 --> 00:06:39,652
+distribution of our data has hardly
+
+150
+00:06:39,652 --> 00:06:43,062
+changed, but all the circles are now gone.
+
+151
+00:06:43,062 --> 00:06:45,998
+Let's apply this to the original DataFrame
+
+152
+00:06:45,998 --> 00:06:48,613
+with athletes. I'll just copy the line
+
+153
+00:06:48,613 --> 00:06:51,100
+where I replaced the outliers with null,
+
+154
+00:06:51,100 --> 00:06:54,181
+and add inplace is true. Now if we draw
+
+155
+00:06:54,181 --> 00:07:00,000
+another scatterplot, this shows us that the data is now a bit more compact.
+

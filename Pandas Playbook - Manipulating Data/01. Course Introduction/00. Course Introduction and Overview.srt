@@ -1,0 +1,400 @@
+1
+00:00:00,000 --> 00:00:03,494
+Hi, my name is Reindert-Jan Ekker, and
+
+2
+00:00:03,494 --> 00:00:06,730
+welcome to this course about data
+
+3
+00:00:06,730 --> 00:00:10,259
+manipulation with Pandas. Pandas is not
+
+4
+00:00:10,259 --> 00:00:13,303
+just one of the most popular software
+
+5
+00:00:13,303 --> 00:00:15,607
+packages for data analysis, it's also,
+
+6
+00:00:15,607 --> 00:00:17,584
+without a doubt, the most convenient and
+
+7
+00:00:17,584 --> 00:00:20,414
+fun way to work with your data. In this
+
+8
+00:00:20,414 --> 00:00:22,794
+course, I will cover the most important
+
+9
+00:00:22,794 --> 00:00:24,778
+core functionalities of Pandas, so that
+
+10
+00:00:24,778 --> 00:00:27,102
+after watching this course you will be
+
+11
+00:00:27,102 --> 00:00:29,566
+ready for just about any data wrangling
+
+12
+00:00:29,566 --> 00:00:32,205
+job that you might come across. In this
+
+13
+00:00:32,205 --> 00:00:33,786
+short introduction module, I'll tell you
+
+14
+00:00:33,786 --> 00:00:35,871
+what to expect from this course, what you
+
+15
+00:00:35,871 --> 00:00:37,942
+should already know, and I'll give you an
+
+16
+00:00:37,942 --> 00:00:41,462
+overview of the structure of the course.
+
+17
+00:00:41,462 --> 00:00:45,988
+So, this course focuses on core Pandas
+
+18
+00:00:45,988 --> 00:00:48,816
+functionality for data manipulation, and
+
+19
+00:00:48,816 --> 00:00:50,746
+we will look at that functionality in the
+
+20
+00:00:50,746 --> 00:00:52,717
+context of very common everyday tasks and
+
+21
+00:00:52,717 --> 00:00:54,728
+problems. Just about all of the
+
+22
+00:00:54,728 --> 00:00:56,980
+functionality we will explore is made
+
+23
+00:00:56,980 --> 00:00:59,353
+available through the two main Pandas
+
+24
+00:00:59,353 --> 00:01:03,427
+classes, the Pandas Series and the Pandas
+
+25
+00:01:03,427 --> 00:01:05,084
+DataFrame. There's also several things
+
+26
+00:01:05,084 --> 00:01:07,173
+that you will not find in this course.
+
+27
+00:01:07,173 --> 00:01:10,063
+Fist of all, this is not a general Pandas
+
+28
+00:01:10,063 --> 00:01:11,951
+introduction. I will assume a basic
+
+29
+00:01:11,951 --> 00:01:14,459
+knowledge of what a DataFrame and a Series
+
+30
+00:01:14,459 --> 00:01:16,601
+are. If you do not know the very basics,
+
+31
+00:01:16,601 --> 00:01:18,517
+there's a great intro course here on
+
+32
+00:01:18,517 --> 00:01:21,221
+Pluralsight that you may want to see
+
+33
+00:01:21,221 --> 00:01:23,869
+first. I'm not going to dive deeply into
+
+34
+00:01:23,869 --> 00:01:25,485
+data visualization because that's a
+
+35
+00:01:25,485 --> 00:01:27,646
+completely different topic from the core
+
+36
+00:01:27,646 --> 00:01:29,987
+data manipulation tasks I want to talk
+
+37
+00:01:29,987 --> 00:01:32,689
+about in this course. The same is true for
+
+38
+00:01:32,689 --> 00:01:35,124
+machine learning, or all the various ways
+
+39
+00:01:35,124 --> 00:01:37,692
+to do input and output with Pandas.
+
+40
+00:01:37,692 --> 00:01:39,451
+Furthermore, there are some Pandas
+
+41
+00:01:39,451 --> 00:01:41,554
+features that you may consider important,
+
+42
+00:01:41,554 --> 00:01:44,307
+or even core features, but that I have
+
+43
+00:01:44,307 --> 00:01:47,065
+chosen not to cover in this course because
+
+44
+00:01:47,065 --> 00:01:49,483
+in my opinion they are slightly too
+
+45
+00:01:49,483 --> 00:01:52,943
+involved. I'm talking about such things as
+
+46
+00:01:52,943 --> 00:01:55,539
+categoricals, advanced indexing, or time
+
+47
+00:01:55,539 --> 00:01:59,649
+series. So, what should you already know
+
+48
+00:01:59,649 --> 00:02:02,972
+before watching this? Well, of course, you
+
+49
+00:02:02,972 --> 00:02:05,393
+need some basic Python knowledge. At the
+
+50
+00:02:05,393 --> 00:02:06,927
+very least, you should have an
+
+51
+00:02:06,927 --> 00:02:08,315
+understanding of the built-in data
+
+52
+00:02:08,315 --> 00:02:10,506
+structures like lists and dicts, you
+
+53
+00:02:10,506 --> 00:02:13,414
+should be able to write functions, and you
+
+54
+00:02:13,414 --> 00:02:15,565
+should have a minimal understanding of
+
+55
+00:02:15,565 --> 00:02:17,968
+what classes and objects are. You should
+
+56
+00:02:17,968 --> 00:02:20,716
+also have at least a tiny bit of knowledge
+
+57
+00:02:20,716 --> 00:02:22,333
+of Pandas. Let's say you have played
+
+58
+00:02:22,333 --> 00:02:24,147
+around with it a little and you have an
+
+59
+00:02:24,147 --> 00:02:26,774
+understanding of what a Series, a
+
+60
+00:02:26,774 --> 00:02:29,276
+DataFrame, and an Index are. Finally,
+
+61
+00:02:29,276 --> 00:02:31,459
+there's the Jupyter Notebook, which is a
+
+62
+00:02:31,459 --> 00:02:34,547
+tool I will use to write and run my code.
+
+63
+00:02:34,547 --> 00:02:36,380
+You should have this installed and
+
+64
+00:02:36,380 --> 00:02:39,341
+running, and you should know how to work
+
+65
+00:02:39,341 --> 00:02:41,996
+with Notebook cells, write, edit, and run
+
+66
+00:02:41,996 --> 00:02:44,039
+code. Now in case this is new for you,
+
+67
+00:02:44,039 --> 00:02:45,443
+there's a Pluralsight intro course about
+
+68
+00:02:45,443 --> 00:02:48,716
+Jupyter as well. By the way, my tip to
+
+69
+00:02:48,716 --> 00:02:51,506
+you, install Anaconda from anaconda. org.
+
+70
+00:02:51,506 --> 00:02:54,417
+This will install Jupyter, NumPy, and
+
+71
+00:02:54,417 --> 00:02:57,885
+Pandas, as well as a wealth of other
+
+72
+00:02:57,885 --> 00:03:00,441
+popular packages for data science and
+
+73
+00:03:00,441 --> 00:03:03,497
+analysis. In a moment we'll start with the
+
+74
+00:03:03,497 --> 00:03:05,583
+next module called Exploring Data, and
+
+75
+00:03:05,583 --> 00:03:07,251
+it's about the first steps you take when
+
+76
+00:03:07,251 --> 00:03:09,387
+you start working with a new data set. How
+
+77
+00:03:09,387 --> 00:03:11,848
+much data do you have? What do the rows
+
+78
+00:03:11,848 --> 00:03:15,266
+and columns look like? We'll also do some
+
+79
+00:03:15,266 --> 00:03:17,961
+basic statistical exploration of our data.
+
+80
+00:03:17,961 --> 00:03:20,910
+Then we'll move on to a module called
+
+81
+00:03:20,910 --> 00:03:22,730
+Selecting, Filtering, and Sorting, and
+
+82
+00:03:22,730 --> 00:03:24,809
+this module focuses on getting information
+
+83
+00:03:24,809 --> 00:03:27,153
+out of your data set. Basically, it's
+
+84
+00:03:27,153 --> 00:03:28,990
+about asking the right questions and
+
+85
+00:03:28,990 --> 00:03:31,730
+drilling down into your data set. The
+
+86
+00:03:31,730 --> 00:03:35,135
+third module is about cleaning a data set.
+
+87
+00:03:35,135 --> 00:03:37,760
+Just about every real-world data set will
+
+88
+00:03:37,760 --> 00:03:40,265
+have some problems, and this can range
+
+89
+00:03:40,265 --> 00:03:42,681
+from missing data to unwanted data or
+
+90
+00:03:42,681 --> 00:03:44,807
+outliers, and we'll see various ways to
+
+91
+00:03:44,807 --> 00:03:47,149
+deal with those things. And the final
+
+92
+00:03:47,149 --> 00:03:49,752
+module is about transforming our data. So
+
+93
+00:03:49,752 --> 00:03:52,111
+here we'll see how to run Python functions
+
+94
+00:03:52,111 --> 00:03:53,978
+against our data, including functions we
+
+95
+00:03:53,978 --> 00:03:56,273
+write ourselves, using a very cool and
+
+96
+00:03:56,273 --> 00:03:58,398
+powerful feature called groupby, changing
+
+97
+00:03:58,398 --> 00:04:01,982
+the structure of our columns and rows and
+
+98
+00:04:01,982 --> 00:04:04,416
+combining multiple DataFrames into one.
+
+99
+00:04:04,416 --> 00:04:06,789
+Very well, that's it for this
+
+100
+00:04:06,789 --> 00:04:12,000
+introduction. Let's move on to the next module called Exploring data.
+

@@ -1,0 +1,140 @@
+1
+00:00:00,000 --> 00:00:04,540
+Hi everyone, my name is Reindert-Jan
+
+2
+00:00:04,540 --> 00:00:09,483
+Ekker, and welcome to this playbook about
+
+3
+00:00:09,483 --> 00:00:12,424
+manipulating data with Pandas. I'm a
+
+4
+00:00:12,424 --> 00:00:13,981
+senior developer and freelance educator,
+
+5
+00:00:13,981 --> 00:00:16,619
+and in this course I'll teach you about
+
+6
+00:00:16,619 --> 00:00:18,706
+Pandas, the most popular Python framework
+
+7
+00:00:18,706 --> 00:00:21,749
+for doing data science and analysis. The
+
+8
+00:00:21,749 --> 00:00:23,927
+role of Pandas in data analysis has been
+
+9
+00:00:23,927 --> 00:00:26,519
+growing hard over the past few years, and
+
+10
+00:00:26,519 --> 00:00:28,774
+you simply cannot go without Pandas
+
+11
+00:00:28,774 --> 00:00:30,800
+anymore. This course goes over the core
+
+12
+00:00:30,800 --> 00:00:33,057
+tasks that you will need to perform when
+
+13
+00:00:33,057 --> 00:00:35,050
+working with any real-world dataset, and
+
+14
+00:00:35,050 --> 00:00:37,976
+we'll do so in a very hands-on way. Some
+
+15
+00:00:37,976 --> 00:00:40,128
+of the major topics that we will cover
+
+16
+00:00:40,128 --> 00:00:41,545
+include exploring a new dataset;
+
+17
+00:00:41,545 --> 00:00:43,252
+selecting, sorting, and filtering your
+
+18
+00:00:43,252 --> 00:00:46,857
+data so that you can drill down into your
+
+19
+00:00:46,857 --> 00:00:49,229
+dataset to answer specific questions;
+
+20
+00:00:49,229 --> 00:00:51,106
+cleaning a dataset, which means doing
+
+21
+00:00:51,106 --> 00:00:53,675
+things like fixing bad or missing data
+
+22
+00:00:53,675 --> 00:00:56,184
+points and removing outliers; and
+
+23
+00:00:56,184 --> 00:00:58,816
+transforming your data either by doing
+
+24
+00:00:58,816 --> 00:01:01,447
+calculations on it, or by changing the
+
+25
+00:01:01,447 --> 00:01:03,796
+structure of your dataset. By the end of
+
+26
+00:01:03,796 --> 00:01:05,065
+this course, you'll have a good
+
+27
+00:01:05,065 --> 00:01:06,639
+understanding of the core functionality of
+
+28
+00:01:06,639 --> 00:01:09,144
+a Pandas DataFrame, and you'll be able to
+
+29
+00:01:09,144 --> 00:01:11,065
+handle most everyday tasks. Before
+
+30
+00:01:11,065 --> 00:01:13,476
+beginning the course, you should be
+
+31
+00:01:13,476 --> 00:01:16,000
+familiar with the very basics of Python
+
+32
+00:01:16,000 --> 00:01:18,342
+and data science. I hope you'll join me on
+
+33
+00:01:18,342 --> 00:01:19,812
+this journey to learn how to manipulate
+
+34
+00:01:19,812 --> 00:01:22,909
+your data with Pandas with the Pandas
+
+35
+00:01:22,909 --> 00:01:30,000
+Playbook: Manipulating Data at Pluralsight.
+

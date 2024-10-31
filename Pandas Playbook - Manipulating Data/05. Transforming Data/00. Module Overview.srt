@@ -1,0 +1,112 @@
+1
+00:00:00,000 --> 00:00:03,290
+Hi, welcome to the last module of this
+
+2
+00:00:03,290 --> 00:00:06,366
+course, in which we'll see how to
+
+3
+00:00:06,366 --> 00:00:08,916
+transform our data into something
+
+4
+00:00:08,916 --> 00:00:11,573
+different. So you have a dataset, you've
+
+5
+00:00:11,573 --> 00:00:14,436
+cleaned it up, let's look at some things
+
+6
+00:00:14,436 --> 00:00:17,881
+we can do with our data. First of all,
+
+7
+00:00:17,881 --> 00:00:20,376
+let's do some calculations. We'll see how
+
+8
+00:00:20,376 --> 00:00:22,947
+to apply the basic math operators and how
+
+9
+00:00:22,947 --> 00:00:24,816
+to apply mathematical functions. We'll
+
+10
+00:00:24,816 --> 00:00:28,139
+also see how to define our own functions
+
+11
+00:00:28,139 --> 00:00:31,828
+and apply those to our data. After that,
+
+12
+00:00:31,828 --> 00:00:34,800
+we'll look at groupby, which is a very
+
+13
+00:00:34,800 --> 00:00:36,774
+powerful feature in Pandas that allows us
+
+14
+00:00:36,774 --> 00:00:39,624
+to split up our data into groups, apply
+
+15
+00:00:39,624 --> 00:00:41,916
+functions to those groups, and then
+
+16
+00:00:41,916 --> 00:00:43,981
+aggregate the results into a new
+
+17
+00:00:43,981 --> 00:00:45,877
+DataFrame. Now this might sound a little
+
+18
+00:00:45,877 --> 00:00:48,068
+bit abstract right now, but trust me, this
+
+19
+00:00:48,068 --> 00:00:51,112
+is a really powerful and cool feature in
+
+20
+00:00:51,112 --> 00:00:53,182
+Pandas. Then we'll move on to Pandas
+
+21
+00:00:53,182 --> 00:00:55,167
+operations that don't change the values of
+
+22
+00:00:55,167 --> 00:00:57,529
+your data, but the structure of your data.
+
+23
+00:00:57,529 --> 00:00:59,706
+A lot of the time when you receive a
+
+24
+00:00:59,706 --> 00:01:01,497
+dataset it doesn't have the structure you
+
+25
+00:01:01,497 --> 00:01:03,821
+want. In this part of the module, we'll
+
+26
+00:01:03,821 --> 00:01:06,966
+see several ways to restructure your data
+
+27
+00:01:06,966 --> 00:01:10,043
+either from rows to columns, or
+
+28
+00:01:10,043 --> 00:01:15,000
+vice-versa. Finally, we'll see several techniques to combine multiple datasets.
+

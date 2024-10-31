@@ -1,0 +1,376 @@
+1
+00:00:00,370 --> 00:00:03,247
+Now here's another scenario where I don't
+
+2
+00:00:03,247 --> 00:00:06,429
+like the way my data is structured. Now
+
+3
+00:00:06,429 --> 00:00:08,257
+I'm creating a DataFrame here, and
+
+4
+00:00:08,257 --> 00:00:10,074
+remember, I'm making this file available
+
+5
+00:00:10,074 --> 00:00:12,418
+for download so you don't have to type
+
+6
+00:00:12,418 --> 00:00:14,751
+along here, and the DataFrame here has
+
+7
+00:00:14,751 --> 00:00:17,444
+data about products sold in a store. And
+
+8
+00:00:17,444 --> 00:00:19,668
+as you can see, for every product id here
+
+9
+00:00:19,668 --> 00:00:21,693
+I have different lines, and then per line
+
+10
+00:00:21,693 --> 00:00:24,282
+I give some item. So here I have a product
+
+11
+00:00:24,282 --> 00:00:27,316
+where I have a price, a unit, and a stock.
+
+12
+00:00:27,316 --> 00:00:29,487
+Now although you do sometimes come across
+
+13
+00:00:29,487 --> 00:00:31,763
+data that is structured this way, it's not
+
+14
+00:00:31,763 --> 00:00:34,361
+really the way I like it, because in my
+
+15
+00:00:34,361 --> 00:00:36,442
+opinion, every product should be on its
+
+16
+00:00:36,442 --> 00:00:39,102
+own row, and then all its properties in
+
+17
+00:00:39,102 --> 00:00:41,755
+the columns. Of course, as always, Pandas
+
+18
+00:00:41,755 --> 00:00:44,325
+has a function for this. It's called
+
+19
+00:00:44,325 --> 00:00:46,747
+pivot. Now pivot is a little bit like
+
+20
+00:00:46,747 --> 00:00:49,642
+unstack in the sense that it moves my data
+
+21
+00:00:49,642 --> 00:00:52,622
+from columns into rows, so I will get a
+
+22
+00:00:52,622 --> 00:00:54,753
+new DataFrame that is both wider and
+
+23
+00:00:54,753 --> 00:00:57,183
+shorter because we will only have one row
+
+24
+00:00:57,183 --> 00:00:59,600
+per product. And as the first argument I
+
+25
+00:00:59,600 --> 00:01:02,761
+have to tell it what my row index will be.
+
+26
+00:01:02,761 --> 00:01:05,689
+So I'm going to say please take the id's
+
+27
+00:01:05,689 --> 00:01:08,814
+as row indices, so for every unique id we
+
+28
+00:01:08,814 --> 00:01:11,626
+will now get a row. And the second
+
+29
+00:01:11,626 --> 00:01:14,496
+argument will be where to get my column
+
+30
+00:01:14,496 --> 00:01:16,533
+names. So I'm going to say please take
+
+31
+00:01:16,533 --> 00:01:18,576
+your column names from the item column. So
+
+32
+00:01:18,576 --> 00:01:21,502
+this means I will now have columns prize,
+
+33
+00:01:21,502 --> 00:01:23,740
+unit, and stock. And as the third
+
+34
+00:01:23,740 --> 00:01:26,021
+argument, I can pass the column with which
+
+35
+00:01:26,021 --> 00:01:28,387
+to fill my DataFrame, so the one that
+
+36
+00:01:28,387 --> 00:01:30,227
+actually contains my values, and of
+
+37
+00:01:30,227 --> 00:01:32,363
+course, this is the value column. But
+
+38
+00:01:32,363 --> 00:01:34,740
+because the value column is also the only
+
+39
+00:01:34,740 --> 00:01:37,676
+column that is left after id and item, I
+
+40
+00:01:37,676 --> 00:01:40,472
+can also completely leave it out, so let's
+
+41
+00:01:40,472 --> 00:01:43,518
+just leave out this third argument. And
+
+42
+00:01:43,518 --> 00:01:46,129
+here we see our same product data again,
+
+43
+00:01:46,129 --> 00:01:48,948
+but now we can really clearly see that
+
+44
+00:01:48,948 --> 00:01:51,721
+there are exactly three products, and the
+
+45
+00:01:51,721 --> 00:01:54,659
+id's for the products are now in the
+
+46
+00:01:54,659 --> 00:01:57,120
+index. Then per item, price, stock, and
+
+47
+00:01:57,120 --> 00:01:59,646
+unit we now have three columns, and in
+
+48
+00:01:59,646 --> 00:02:02,544
+these columns, we have the data that was
+
+49
+00:02:02,544 --> 00:02:05,559
+previously in the value column. Now to see
+
+50
+00:02:05,559 --> 00:02:07,739
+the opposite of pivot, let's take a look
+
+51
+00:02:07,739 --> 00:02:10,057
+at the grades dataset. We've seen this
+
+52
+00:02:10,057 --> 00:02:12,921
+before. It lists test scores for students
+
+53
+00:02:12,921 --> 00:02:15,568
+in a classroom. Now in this case what I
+
+54
+00:02:15,568 --> 00:02:17,696
+want to do is quite similar to the stack
+
+55
+00:02:17,696 --> 00:02:19,710
+function. I want to move all my grades
+
+56
+00:02:19,710 --> 00:02:21,996
+into a single column, but I also want an
+
+57
+00:02:21,996 --> 00:02:24,591
+extra column that tells me from which
+
+58
+00:02:24,591 --> 00:02:27,917
+column the data came, so I want an extra
+
+59
+00:02:27,917 --> 00:02:30,866
+column that tells me per grade for which
+
+60
+00:02:30,866 --> 00:02:34,083
+test that grade was. So to do this I call
+
+61
+00:02:34,083 --> 00:02:36,698
+grades. melt. And then we see here all our
+
+62
+00:02:36,698 --> 00:02:38,704
+grades with a separate column that tells
+
+63
+00:02:38,704 --> 00:02:41,043
+us for which test they are. But the
+
+64
+00:02:41,043 --> 00:02:43,540
+problem here is that we now lost the
+
+65
+00:02:43,540 --> 00:02:45,495
+information about the students, so we
+
+66
+00:02:45,495 --> 00:02:48,319
+can't see for which student each grade is.
+
+67
+00:02:48,319 --> 00:02:52,722
+Let's fix this. First I'm going to call
+
+68
+00:02:52,722 --> 00:02:54,891
+grades. reset_index. And the result of
+
+69
+00:02:54,891 --> 00:02:57,560
+this is that now we have an index from 0
+
+70
+00:02:57,560 --> 00:03:01,349
+to 4, and the student names are now in a
+
+71
+00:03:01,349 --> 00:03:04,514
+column called index. So now if I call
+
+72
+00:03:04,514 --> 00:03:06,848
+grades. melt I get something unexpected.
+
+73
+00:03:06,848 --> 00:03:09,441
+Basically I get a single column with all
+
+74
+00:03:09,441 --> 00:03:11,873
+the values from my dataset, and it tells
+
+75
+00:03:11,873 --> 00:03:14,121
+me from which column they are. And this is
+
+76
+00:03:14,121 --> 00:03:15,788
+not exactly what I want, because I want
+
+77
+00:03:15,788 --> 00:03:17,851
+these names in a separate column. And to
+
+78
+00:03:17,851 --> 00:03:20,926
+fix this I can pass to melt a list of
+
+79
+00:03:20,926 --> 00:03:23,570
+columns that I want to use to identify
+
+80
+00:03:23,570 --> 00:03:26,285
+what values we have. So basically I say
+
+81
+00:03:26,285 --> 00:03:28,700
+here this index column with these names,
+
+82
+00:03:28,700 --> 00:03:31,388
+those are not just values, they are used
+
+83
+00:03:31,388 --> 00:03:34,341
+to identify what kind of value we have. So
+
+84
+00:03:34,341 --> 00:03:36,987
+the 6 here we see, we don't just want to
+
+85
+00:03:36,987 --> 00:03:39,821
+know that it's for test 1, we also want to
+
+86
+00:03:39,821 --> 00:03:42,894
+know that it's a grade for Mary. So here I
+
+87
+00:03:42,894 --> 00:03:45,272
+say id_vars is index, and note that this
+
+88
+00:03:45,272 --> 00:03:47,738
+is inside a list so there's square
+
+89
+00:03:47,738 --> 00:03:50,719
+brackets here, and then executing this now
+
+90
+00:03:50,719 --> 00:03:54,336
+we have the result I want. We see all our
+
+91
+00:03:54,336 --> 00:03:57,029
+values in a single column, we have a
+
+92
+00:03:57,029 --> 00:03:59,282
+column that contains the name for each
+
+93
+00:03:59,282 --> 00:04:05,569
+student for each grade, and we also have a
+
+94
+00:04:05,569 --> 00:04:06,000
+column that identifies the test for each grade.
+

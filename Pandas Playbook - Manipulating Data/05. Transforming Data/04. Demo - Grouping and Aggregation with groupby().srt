@@ -1,0 +1,376 @@
+1
+00:00:00,369 --> 00:00:03,870
+Let's take a look at grouping and
+
+2
+00:00:03,870 --> 00:00:07,282
+aggregation with groupby, which is one of
+
+3
+00:00:07,282 --> 00:00:10,627
+the coolest and most powerful features in
+
+4
+00:00:10,627 --> 00:00:14,988
+Pandas. So let's take a look at a very
+
+5
+00:00:14,988 --> 00:00:17,415
+powerful mechanism in Pandas called
+
+6
+00:00:17,415 --> 00:00:20,114
+groupby. And to show you a demo, here we
+
+7
+00:00:20,114 --> 00:00:21,909
+have the athletes dataset, which we're now
+
+8
+00:00:21,909 --> 00:00:23,742
+familiar with, and I cleaned it up a
+
+9
+00:00:23,742 --> 00:00:25,733
+little bit so there won't be any problems
+
+10
+00:00:25,733 --> 00:00:27,556
+with duplicates or having the wrong data
+
+11
+00:00:27,556 --> 00:00:29,963
+types or any of that. Now what groupby
+
+12
+00:00:29,963 --> 00:00:33,423
+lets us do is it lets us break down our
+
+13
+00:00:33,423 --> 00:00:36,129
+dataset into groups and then apply
+
+14
+00:00:36,129 --> 00:00:38,683
+calculations to these groups. Let's just
+
+15
+00:00:38,683 --> 00:00:41,979
+dive straight into an example. If I say
+
+16
+00:00:41,979 --> 00:00:43,876
+athletes. groupby nationality, this
+
+17
+00:00:43,876 --> 00:00:46,914
+returns me a DataFrameGroupBy object, and
+
+18
+00:00:46,914 --> 00:00:50,781
+this by itself tells me nothing. So let's
+
+19
+00:00:50,781 --> 00:00:53,642
+just assign this to a variable g, and I'm
+
+20
+00:00:53,642 --> 00:00:56,718
+going to say g. sum, and this returns me a
+
+21
+00:00:56,718 --> 00:00:58,798
+new DataFrame. And in this DataFrame the
+
+22
+00:00:58,798 --> 00:01:01,525
+first thing that strikes me is that the
+
+23
+00:01:01,525 --> 00:01:03,640
+index is now nationalities. So what
+
+24
+00:01:03,640 --> 00:01:06,185
+groupby does is it takes our original
+
+25
+00:01:06,185 --> 00:01:08,709
+data, splits it up into groups by
+
+26
+00:01:08,709 --> 00:01:11,204
+nationality. So basically you can think of
+
+27
+00:01:11,204 --> 00:01:14,334
+the groupby object containing a set of
+
+28
+00:01:14,334 --> 00:01:17,717
+smaller DataFrames, each with one of our
+
+29
+00:01:17,717 --> 00:01:19,725
+nationalities. So it takes every value
+
+30
+00:01:19,725 --> 00:01:21,859
+from the nationality column and makes new
+
+31
+00:01:21,859 --> 00:01:24,464
+little DataFrames for each of the values
+
+32
+00:01:24,464 --> 00:01:27,865
+there. And then on these groups we can do
+
+33
+00:01:27,865 --> 00:01:30,582
+calculations. So here we see the sums of
+
+34
+00:01:30,582 --> 00:01:32,919
+all the ids for every athlete from
+
+35
+00:01:32,919 --> 00:01:34,368
+Afghanistan. Of course, this doesn't
+
+36
+00:01:34,368 --> 00:01:36,318
+really make sense, but that's what it
+
+37
+00:01:36,318 --> 00:01:38,130
+does. This is the sum of all their
+
+38
+00:01:38,130 --> 00:01:40,101
+heights, and this is the sum of all their
+
+39
+00:01:40,101 --> 00:01:42,842
+weights. And the same data is in here for
+
+40
+00:01:42,842 --> 00:01:44,417
+all my different nationalities. So
+
+41
+00:01:44,417 --> 00:01:46,619
+scrolling down, for example, here we see
+
+42
+00:01:46,619 --> 00:01:48,917
+the sums of heights and weights for
+
+43
+00:01:48,917 --> 00:01:51,095
+Belgium. Of course, the most interesting
+
+44
+00:01:51,095 --> 00:01:54,040
+thing here is the sum of the medals, so
+
+45
+00:01:54,040 --> 00:01:56,576
+how many gold medals and silver medals did
+
+46
+00:01:56,576 --> 00:02:00,281
+a country win. And since g. sum here is a
+
+47
+00:02:00,281 --> 00:02:02,932
+DataFrame, of course I can ask for these
+
+48
+00:02:02,932 --> 00:02:05,868
+columns here. So I can select just a set
+
+49
+00:02:05,868 --> 00:02:08,007
+of columns for my DataFrame. But actually
+
+50
+00:02:08,007 --> 00:02:10,035
+it's smarter to do this on the groupby
+
+51
+00:02:10,035 --> 00:02:11,991
+object, so I'm just going to move this
+
+52
+00:02:11,991 --> 00:02:14,456
+selection here to the place where I define
+
+53
+00:02:14,456 --> 00:02:17,173
+my groupby object. And why this is better?
+
+54
+00:02:17,173 --> 00:02:19,592
+Well, this selects the columns before I
+
+55
+00:02:19,592 --> 00:02:21,518
+start doing my calculations, so now the
+
+56
+00:02:21,518 --> 00:02:23,783
+sum will only be done for the three
+
+57
+00:02:23,783 --> 00:02:26,165
+columns that I'm asking about. Now let's
+
+58
+00:02:26,165 --> 00:02:28,514
+look at a different example. Let's group
+
+59
+00:02:28,514 --> 00:02:30,459
+our athletes by sport. Again, I'm
+
+60
+00:02:30,459 --> 00:02:32,723
+assigning the groupby object to the
+
+61
+00:02:32,723 --> 00:02:35,738
+variable g, and let's say I'm only
+
+62
+00:02:35,738 --> 00:02:38,678
+interested in weights for now. And on this
+
+63
+00:02:38,678 --> 00:02:40,511
+groupby object I can do different things
+
+64
+00:02:40,511 --> 00:02:43,351
+than just sum. Let's ask for the mean
+
+65
+00:02:43,351 --> 00:02:45,774
+weight. And in this case, because we only
+
+66
+00:02:45,774 --> 00:02:48,466
+selected a single column, I get a series
+
+67
+00:02:48,466 --> 00:02:51,552
+with the mean weight per sport for my
+
+68
+00:02:51,552 --> 00:02:53,691
+dataset. You know what, let's also select
+
+69
+00:02:53,691 --> 00:02:56,800
+the height, and in this case I get a nice
+
+70
+00:02:56,800 --> 00:02:58,728
+DataFrame. But apart from selecting
+
+71
+00:02:58,728 --> 00:03:00,855
+multiple columns, I can also select
+
+72
+00:03:00,855 --> 00:03:03,228
+multiple levels to groupby, so let's not
+
+73
+00:03:03,228 --> 00:03:05,688
+just group by sport, but also be gender.
+
+74
+00:03:05,688 --> 00:03:08,780
+So to do this, I pass to groupby a list,
+
+75
+00:03:08,780 --> 00:03:11,116
+so using square brackets again, with the
+
+76
+00:03:11,116 --> 00:03:13,621
+name of multiple columns I want to group
+
+77
+00:03:13,621 --> 00:03:16,422
+on. So here I first group by sport, and
+
+78
+00:03:16,422 --> 00:03:19,972
+then by sex. So let's again go over what
+
+79
+00:03:19,972 --> 00:03:22,510
+this actually does. Groupby takes our
+
+80
+00:03:22,510 --> 00:03:25,221
+DataFrame and makes nice little DataFrames
+
+81
+00:03:25,221 --> 00:03:28,075
+for every combination of sport and gender.
+
+82
+00:03:28,075 --> 00:03:31,159
+So it makes a DataFrame for female archery
+
+83
+00:03:31,159 --> 00:03:33,642
+players, and one for male archery players,
+
+84
+00:03:33,642 --> 00:03:36,396
+and one for female badminton players, and
+
+85
+00:03:36,396 --> 00:03:39,512
+one for male badminton players, etc., etc.
+
+86
+00:03:39,512 --> 00:03:41,799
+Then from there we select the weight and
+
+87
+00:03:41,799 --> 00:03:44,118
+height columns only, and after that when I
+
+88
+00:03:44,118 --> 00:03:46,458
+say g. mean, for every one of these
+
+89
+00:03:46,458 --> 00:03:49,324
+groupings we calculate the means of these
+
+90
+00:03:49,324 --> 00:03:51,904
+two columns. So then we have a mean,
+
+91
+00:03:51,904 --> 00:03:53,627
+again, for every female archery player,
+
+92
+00:03:53,627 --> 00:03:55,850
+and a mean for every male archery player,
+
+93
+00:03:55,850 --> 00:04:00,518
+etc., etc., and at the end, all of this
+
+94
+00:04:00,518 --> 00:04:03,000
+gets combined into this DataFrame you see here.
+
